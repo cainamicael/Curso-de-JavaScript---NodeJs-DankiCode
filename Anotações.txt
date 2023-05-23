@@ -88,6 +88,18 @@ query selector all:
     var els = document.querySelectorAll('.testes ')//como se tivesse referenciando no css
     els[0].innerHTML = '<div class="inside-testes-via-js">TEXTO VIA JS</div>'
 
+Para pegar todos as divs e todos os p:
+
+    document.querySelectorAll('div, p')//Pode colocar classe, id ...
+
+Para pegar todos as divs que possuem um atributo. ex: class:
+
+    document.querySelectorAll('div[class]')
+
+Para pegar todos elementos p que estão dentro de um elemento div - Retorna somente as divs que contem um elemento p:
+
+    document.querySelectorAll('div > p')//Divs que contem o elemento p
+
 Animações com js puro
 
     <!DOCTYPE html>
