@@ -50,3 +50,41 @@ Calculando diferenças de datas: (to-do)
     var diference = (date2.getTime() - date.getTime()) / (1000 * 360 * 24)//Transformando ms em dias
     console.log(diference)
 
+Manipulando conteúdo:
+
+Pela tag:
+
+    var p = document.getElementsByTagName('p')//Cria um array com todas as ocorrências do parágrafo
+
+    console.log(p[0].innerHTML)//Pega todos os paragrafos existendes e seleciona o primeiro[0] e retorna o conteudo
+
+    p[0].innerHTML = 'Novo conteúdo'//Muda o que está escrito
+
+    for (var i = 0; i < p.length; i++){ //Manipulando com laço de repetição
+        p[i].innerHTML =  'Valor:' + i 
+    }
+
+Manipulando css pelo id:
+
+    var el = document.getElementById('box')
+    el.style.backgroundColor = 'red'
+    el.style.marginLeft = '200'
+
+Manipulando css pela classe:
+
+    var elementos = document.getElementsByClassName('box')
+
+    for(var i = 0; i < elementos.length; i++) {
+        var el = elementos[i]//Primeira ocorrência
+
+        el.style.backgroundColor = 'green'
+        el.style.width = '100px'
+        el.style.height = '100px'
+        el.style.margin = '10px'
+    }
+
+query selector all:
+
+    var els = document.querySelectorAll('.testes ')//como se tivesse referenciando no css
+    els[0].innerHTML = '<div class="inside-testes-via-js">TEXTO VIA JS</div>'
+
