@@ -177,3 +177,69 @@ Animação ver mais:
     </body>
     </html>
 
+Mostrar mais com novas ocorrências:
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            .conteudo h2 span {
+                font-size: 13px;
+                cursor: pointer;
+            }
+            .conteudo p {
+                overflow: hidden;
+                height: 10px;
+                transition: 1s;
+            }
+            .mostrar {
+                height: 200px !important;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="conteudo">
+            <h2>Título do conteudo <span>Ver Mais</span></h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur enim natus ipsa delectus, necessitatibus vel nisi modi molestiae est. Rerum, sint aspernatur accusamus suscipit officiis eius reiciendis dolor atque explicabo.! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut hic sit obcaecati nam corrupti, ipsum vero quibusdam quam officia ipsa, nisi perferendis maiores pariatur nobis! Neque, earum. Nisi, rem vitae?</p>
+        </div>
+
+        <div class="conteudo">
+            <h2>Título do conteudo <span>Ver Mais</span></h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur enim natus ipsa delectus, necessitatibus vel nisi modi molestiae est. Rerum, sint aspernatur accusamus suscipit officiis eius reiciendis dolor atque explicabo.! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut hic sit obcaecati nam corrupti, ipsum vero quibusdam quam officia ipsa, nisi perferendis maiores pariatur nobis! Neque, earum. Nisi, rem vitae?</p>
+        </div>
+
+        <div class="conteudo">
+            <h2>Título do conteudo <span>Ver Mais</span></h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur enim natus ipsa delectus, necessitatibus vel nisi modi molestiae est. Rerum, sint aspernatur accusamus suscipit officiis eius reiciendis dolor atque explicabo.! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut hic sit obcaecati nam corrupti, ipsum vero quibusdam quam officia ipsa, nisi perferendis maiores pariatur nobis! Neque, earum. Nisi, rem vitae?</p>
+        </div>
+
+        <div class="conteudo">
+            <h2>Título do conteudo <span>Ver Mais</span></h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur enim natus ipsa delectus, necessitatibus vel nisi modi molestiae est. Rerum, sint aspernatur accusamus suscipit officiis eius reiciendis dolor atque explicabo.! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut hic sit obcaecati nam corrupti, ipsum vero quibusdam quam officia ipsa, nisi perferendis maiores pariatur nobis! Neque, earum. Nisi, rem vitae?</p>
+        </div>
+        <script>
+            var spans = document.querySelectorAll('.conteudo span');
+
+            for (var i = 0; i < spans.length; i++) {
+                var span = spans[i];
+            
+                span.addEventListener('click', function() {
+                    var conteudo = this.parentNode.nextElementSibling;
+            
+                    if (conteudo.classList.contains('mostrar')) {
+                        this.innerHTML = 'Ver mais';
+                        conteudo.classList.remove('mostrar');
+                    } else {
+                        this.innerHTML = 'Ocultar';
+                        conteudo.classList.add('mostrar');
+                    }
+                });
+            }
+        </script>
+    </body>
+    </html>
+
