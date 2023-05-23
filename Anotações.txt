@@ -88,3 +88,92 @@ query selector all:
     var els = document.querySelectorAll('.testes ')//como se tivesse referenciando no css
     els[0].innerHTML = '<div class="inside-testes-via-js">TEXTO VIA JS</div>'
 
+Animações com js puro
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+
+        <style>
+            .box {
+                width: 200px;
+                height: 200px;
+                background-color: red;
+                margin-left: 0;
+            }
+            .animEsquerda {
+                transition: 1s;
+                margin-left: 90px;
+                margin-top: 20px;
+                background-color: green;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="box"></div>
+        <script>
+            var box = document.querySelectorAll('.box')[0]
+            /* Para executar automaticamente
+            setTimeout(()=>{
+                box.classList.add('animEsquerda')
+            }, 1000)
+            */
+            //Animando com o click
+            box.addEventListener('click', ()=>{
+                box.classList.add('animEsquerda')
+            })
+        </script>
+    </body>
+    </html>
+
+Animação ver mais:
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            .conteudo h2 span {
+                font-size: 13px;
+                cursor: pointer;
+            }
+            .conteudo p {
+                overflow: hidden;
+                height: 10px;
+                transition: 1s;
+            }
+            .mostrar {
+                height: 200px !important;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="conteudo">
+            <h2>Título do conteudo <span>Ver Mais</span></h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur enim natus ipsa delectus, necessitatibus vel nisi modi molestiae est. Rerum, sint aspernatur accusamus suscipit officiis eius reiciendis dolor atque explicabo.! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut hic sit obcaecati nam corrupti, ipsum vero quibusdam quam officia ipsa, nisi perferendis maiores pariatur nobis! Neque, earum. Nisi, rem vitae?</p>
+        </div>
+        <script>
+            var span = document.querySelector('.conteudo span')
+            span.addEventListener('click', ()=>{
+                var conteudo = document.querySelector('.conteudo p')
+
+                if(conteudo.classList.contains('mostrar')) {
+                    span.innerHTML = 'Ver mais'
+                    conteudo.classList.remove('mostrar')
+                } else {
+                    span.innerHTML = 'Ocutar'
+                    conteudo.classList.add('mostrar')
+                }
+
+            })
+        </script>
+    </body>
+    </html>
+
