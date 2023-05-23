@@ -298,7 +298,7 @@ Arrow functions e Callback:
         console.log(texto)
     })
 
-Callback:
+Callback: Chama depois que uma ação foi feita
 
     function exibir(num) {
         console.log(`A operação resultou em ${num}`)
@@ -316,4 +316,35 @@ Callback:
 
     soma(2, 2, exibir)
     multiplicacao(2, 4, exibir)
+
+Exemplo 2 da callback:
+
+    const saudacao = nome => alert('Olá ' + nome)
+
+    const processaEntradaUsuario = (callback) => {
+        const nome = prompt('Digite seu nome: ')
+        callback(nome)
+    }
+
+    processaEntradaUsuario(saudacao)
+
+Exemplo 3 de callback:
+
+    const callback = e => alert('Aconteceu um evento ' + e.type)
+    window.addEventListener('click', callback)
+
+Exemplo 4 callback:
+
+    const somar = (x, y) => x + y
+    const calcular = (x, y, computar) => computar(x, y)
+
+    const resultado = calcular(20, 30, somar)
+    console.log(resultado)
+
+Map callback:
+
+    //Função de alta ordem - Cria um novo array com a informação diferente do primeiro
+    const arr = [1, 2, 3]
+    const newArr = arr.map(elemento => elemento * 2)
+    console.log(newArr)
 
