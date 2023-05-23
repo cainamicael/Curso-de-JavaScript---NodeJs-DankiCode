@@ -1,0 +1,52 @@
+Funções e instâncias:
+
+    function Pessoa() {
+        this.nome = 'Guilherme'
+        this.idade = 28
+    }
+
+    var pessoa = new Pessoa()
+    console.log(pessoa.nome)
+    console.log(pessoa.idade)
+
+Classes:
+
+    class Animal {
+        constructor(nome) { //Não precisa do function
+            this.nome = nome
+        }
+
+        printNome() { //Não precisa do function
+            return this.nome
+        }
+    }
+
+    class Cachorro extends Animal {
+        constructor(nome) {
+            super(nome) //Para atribuir ao construtor da classe Animal
+        }
+    }
+
+    cachorro = new Cachorro('Bob')
+    console.log(cachorro.nome)
+
+Trabalhando com datas:
+
+    var date = new Date() //Já é nativo do js - sem parâmetro, retorna a data e o horário atual
+
+    console.log(date.getDate())//O dia do mês. Ex: 25
+    console.log(date.getDay())//O dia da semana (Domingo é zero)
+    console.log(date.getFullYear())//Ano
+    console.log(date.getHours())//Ex: 15
+    console.log(date.getMinutes())//Ex: 58
+
+    var date2 = new Date('05/20/2023')// Datas personalizadas MM-DD-AAAA
+
+Calculando diferenças de datas: (to-do)
+
+    console.log(date2.getTime())//Em milisegundos
+
+
+    var diference = (date2.getTime() - date.getTime()) / (1000 * 360 * 24)//Transformando ms em dias
+    console.log(diference)
+
