@@ -123,38 +123,39 @@
                 valor: parseFloat(precoProduto.value)
             })
 
-            /*Base
-            <div class="lista-produto-single">
-                <h3>RedBull</h3>
-                <h3 class="price-produto"><span>R$20.00</span></h3>
-            </div>
-            */
-
             //Adicionando dinamicamente os itens
             let listaProdutos = document.querySelector('.lista-produtos')
-            //let soma = 0 
-            const valores = itens.map(i => i.valor)
-            const somatorio = valores.reduce( (a, c) => a + c) 
+            var somatorio = itens.map(i => i.valor).reduce( (a, c) => a + c)
             listaProdutos.innerHTML = '' //Para não ficar duplicando
 
             itens.map(val => {
-                //soma += parseFloat(val.valor)
-
                 listaProdutos.innerHTML += `
                     <div class="lista-produto-single">
                         <h3>${val.nome}</h3>
                         <h3 class="price-produto"><span>R$${(val.valor).toFixed(2)}</span></h3>
+                        <button class="remover" >remover</button>
                     </div>`
+
+                
             })
 
-            //soma = soma.toFixed(2)//Duas casas decimais
+            //Removendo individualmente
+            document.querySelectorAll('.remover').forEach((btn, indice) => {
+            btn.addEventListener('click', () => {
+                let selecionada = document.querySelectorAll('.lista-produto-single')[indice];
+                selecionada.style.display = 'none';
+                selecionada.innerText = '';
+                itens.splice(indice, 1);
+            });
+        });
+          
 
-            //Linpando os inputs
+            //Limpando os inputs
             nomeProduto.value = ''
             precoProduto.value = ''
 
             let elementoSoma = document.querySelector('.soma-produto h1')
-            elementoSoma.innerHTML = `Total: R$${somatorio.toFixed(2)}`
+            elementoSoma.innerHTML = `Total: R$ ${itens.length}`//${somatorio.toFixed(2)}`
 
         })
 
