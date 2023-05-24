@@ -113,7 +113,7 @@
 
             itens.push({//Pega os valores do input e adiciona no array
                 nome: nomeProduto.value, 
-                valor: precoProduto.value
+                valor: parseFloat(precoProduto.value)
             })
 
             /*Base
@@ -125,11 +125,13 @@
 
             //Adicionando dinamicamente os itens
             let listaProdutos = document.querySelector('.lista-produtos')
-            let soma = 0
+            //let soma = 0 
+            const valores = itens.map(i => i.valor)
+            const somatorio = valores.reduce( (a, c) => a + c) 
             listaProdutos.innerHTML = '' //Para não ficar duplicando
 
             itens.map(val => {
-                soma += parseFloat(val.valor)
+                //soma += parseFloat(val.valor)
 
                 listaProdutos.innerHTML += `
                     <div class="lista-produto-single">
@@ -138,14 +140,14 @@
                     </div>`
             })
 
-            soma = soma.toFixed(2)//Duas casas decimais
+            //soma = soma.toFixed(2)//Duas casas decimais
 
             //Linpando os inputs
             nomeProduto.value = ''
             precoProduto.value = ''
 
             let elementoSoma = document.querySelector('.soma-produto h1')
-            elementoSoma.innerHTML = `Total: R$${soma}`
+            elementoSoma.innerHTML = `Total: R$${somatorio}`
 
         })
 
