@@ -57,12 +57,19 @@ h3.price-produto {
 
 .soma-produto {
     margin: 20px;
+    text-align: center;
 
 }
 
 button {
     cursor: pointer;
     border: 0;
+
+}
+
+.btn {
+    width: 6%;
+    margin: 0 auto;
 
 }
 
