@@ -380,3 +380,4 @@ Map callback:
     const newArr = arr.map(elemento => elemento * 2)
     console.log(newArr)
 
+Destructure
