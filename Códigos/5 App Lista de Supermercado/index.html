@@ -146,6 +146,7 @@
                 selecionada.style.display = 'none';
                 selecionada.innerText = '';
                 itens.splice(indice, 1);
+
             });
         });
           
@@ -155,7 +156,7 @@
             precoProduto.value = ''
 
             let elementoSoma = document.querySelector('.soma-produto h1')
-            elementoSoma.innerHTML = `Total: R$ ${itens.length}`//${somatorio.toFixed(2)}`
+            elementoSoma.innerHTML = `Total: R$ ${somatorio.toFixed(2)}`
 
         })
 
