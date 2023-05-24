@@ -109,65 +109,76 @@
         <h1>Total: R$0.00</h1>
     </div>
 
-    <button id="limpar" name="limpar">Limpar</button>
+    <button onclick="limparRegistros()" id="limpar" name="limpar">Limpar</button>
     <script>
         var itens = []
-
+    
         document.querySelector('input[type=submit]')
-        .addEventListener('click', () => {
-            var nomeProduto = document.querySelector('input[name=nome_produto]')
-            var precoProduto = document.querySelector('input[name=valor_produto]')
-
-            itens.push({//Pega os valores do input e adiciona no array
-                nome: nomeProduto.value, 
-                valor: parseFloat(precoProduto.value)
+            .addEventListener('click', () => {
+                var nomeProduto = document.querySelector('input[name=nome_produto]')
+                var precoProduto = document.querySelector('input[name=valor_produto]')
+    
+                itens.push({ //Pega os valores do input e adiciona no array
+                    nome: nomeProduto.value,
+                    valor: parseFloat(precoProduto.value)
+                })
+    
+                //Adicionando dinamicamente os itens
+                let listaProdutos = document.querySelector('.lista-produtos')
+                var somatorio = itens.map(i => i.valor).reduce((a, c) => a + c)
+                listaProdutos.innerHTML = '' //Para não ficar duplicando
+    
+                itens.forEach((val, index) => {
+                    listaProdutos.innerHTML += `
+                        <div class="lista-produto-single">
+                            <h3>${val.nome}</h3>
+                            <h3 class="price-produto"><span>R$${(val.valor).toFixed(2)}</span></h3>
+                            <button class="remover" onclick="removerItem(${index})">remover</button>
+                        </div>`
+                })
+    
+                //Limpando os inputs
+                nomeProduto.value = ''
+                precoProduto.value = ''
+    
+                let elementoSoma = document.querySelector('.soma-produto h1')
+                elementoSoma.innerHTML = `Total: R$ ${somatorio.toFixed(2)}`
             })
-
-            //Adicionando dinamicamente os itens
-            let listaProdutos = document.querySelector('.lista-produtos')
-            var somatorio = itens.map(i => i.valor).reduce( (a, c) => a + c)
-            listaProdutos.innerHTML = '' //Para não ficar duplicando
-
-            itens.forEach(val => {
-                listaProdutos.innerHTML += `
-                    <div class="lista-produto-single">
-                        <h3>${val.nome}</h3>
-                        <h3 class="price-produto"><span>R$${(val.valor).toFixed(2)}</span></h3>
-                        <button class="remover" >remover</button>
-                    </div>`
-
-                
-            })
-
-            //Removendo individualmente
-            document.querySelectorAll('.remover').forEach((btn, indice) => {
-            btn.addEventListener('click', () => {
-                let selecionada = document.querySelectorAll('.lista-produto-single')[indice];
-                selecionada.style.display = 'none';
-                selecionada.innerText = '';
-                itens.splice(indice, 1);
-
-            });
-        });
-          
-
-            //Limpando os inputs
-            nomeProduto.value = ''
-            precoProduto.value = ''
-
-            let elementoSoma = document.querySelector('.soma-produto h1')
-            elementoSoma.innerHTML = `Total: R$ ${somatorio.toFixed(2)}`
-
-        })
-
-        //Limpando todos os registros
-        document.querySelector('button')
-        .addEventListener('click', () => {
+    
+        // Função para remover um item da lista
+        function removerItem(index) {
+            if(itens.length == 1){
+                limparRegistros()
+            } else {
+                itens.splice(index, 1) // Remove o item do array
+                let listaProdutos = document.querySelector('.lista-produtos')
+                var somatorio = itens.map(i => i.valor).reduce((a, c) => a + c)
+                listaProdutos.innerHTML = ''
+        
+                itens.forEach((val, index) => {
+                    listaProdutos.innerHTML += `
+                        <div class="lista-produto-single">
+                            <h3>${val.nome}</h3>
+                            <h3 class="price-produto"><span>R$${(val.valor).toFixed(2)}</span></h3>
+                            <button class="remover" onclick="removerItem(${index})">remover</button>
+                        </div>`
+                })
+        
+                let elementoSoma = document.querySelector('.soma-produto h1')
+                elementoSoma.innerHTML = `Total: R$ ${somatorio.toFixed(2)}`
+            }
+            
+        }
+    
+        // Limpando todos os registros
+        function limparRegistros(){
             itens = []
             document.querySelector('.lista-produtos').innerHTML = ''
             document.querySelector('.soma-produto h1').innerHTML = 'Total: R$0,00'
-
-        })
+            
+        }
+        
     </script>
+    
 </body>
 </html>
