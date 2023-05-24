@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Supermercado</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            
+        }
+
+        header {
+            background-color: rgb(120, 55, 194);
+            text-align: center;
+            color: white;
+            padding: 20px 0;
+            
+        }
+
+        .lista-cadastro {
+            display: flex;
+            margin: 20px 0;
+            padding: 20px;
+
+        }
+
+        .lista-cadastro input[type=text]{
+            flex: 1;
+            height: 40px;
+            padding-left: 20px;
+
+        }
+
+        .lista-produto-single {
+            padding: 10px 0;
+            margin: 20px 0;
+            border-bottom: 1px solid #ccc;
+            display: flex;
+
+        }
+
+        .lista-produto-single h3{
+            flex: 1;
+            padding: 0 20px;
+
+        }
+
+        h3.price-produto {
+            text-align: right;
+            font-size: 17px;
+
+        }
+
+        .price-produto > span {
+            background-color: rgb(120, 55, 194);
+            padding: 8px 10px;
+            border-radius: 20px;
+            color: white;
+
+        }
+
+        .soma-produto {
+            margin: 20px;
+
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>App Lista de Supermercado</h2>
+    </header>
+    <div class="lista-cadastro">
+        <input type="text" name="nome_produto" placeholder="Nome do produto">
+        <input type="number" step="0.01" name="valor_produto" placeholder="Valor do produto">
+        <input type="submit" name="acao" value="Cadastrar">
+    </div>
+
+    <div class="lista-produtos">
+
+<!-- Estrutura        
+        <div class="lista-produto-single">
+            <h3>RedBull</h3>
+            <h3 class="price-produto"><span>R$20.00</span></h3>
+        </div>
+-->
+
+    </div>
+
+    <div class="soma-produto">
+        <h1>Total: R$0.00</h1>
+    </div>
+
+    <button name="limpar">Limpar</button>
+    <script>
+        var itens = []
+
+        document.querySelector('input[type=submit]')
+        .addEventListener('click', () => {
+            var nomeProduto = document.querySelector('input[name=nome_produto]')
+            var precoProduto = document.querySelector('input[name=valor_produto]')
+
+            itens.push({//Pega os valores do input e adiciona no array
+                nome: nomeProduto.value, 
+                valor: precoProduto.value
+            })
+
+            /*Base
+            <div class="lista-produto-single">
+                <h3>RedBull</h3>
+                <h3 class="price-produto"><span>R$20.00</span></h3>
+            </div>
+            */
+
+            //Adicionando dinamicamente os itens
+            let listaProdutos = document.querySelector('.lista-produtos')
+            let soma = 0
+            listaProdutos.innerHTML = '' //Para não ficar duplicando
+
+            itens.map(val => {
+                soma += parseFloat(val.valor)
+
+                listaProdutos.innerHTML += `
+                    <div class="lista-produto-single">
+                        <h3>${val.nome}</h3>
+                        <h3 class="price-produto"><span>${val.valor}</span></h3>
+                    </div>`
+            })
+
+            soma = soma.toFixed(2)//Duas casas decimais
+
+            //Linpando os inputs
+            nomeProduto.value = ''
+            precoProduto.value = ''
+
+            let elementoSoma = document.querySelector('.soma-produto h1')
+            elementoSoma.innerHTML = `Total: R$${soma}`
+
+        })
+
+        document.querySelector('button')
+        .addEventListener('click', () => {
+            itens = []
+            document.querySelector('.lista-produtos').innerHTML = ''
+            document.querySelector('.soma-produto h1').innerHTML = 'Total: R$0,00'
+
+        })
+    </script>
+</body>
+</html>
