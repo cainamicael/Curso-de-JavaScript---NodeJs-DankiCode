@@ -393,4 +393,3 @@ Destructure
 
     var [a, b,...c] = arr2 //O a é Guilherme, o b é João, e o c é um array com o resto dos nomes
     console.log(c)
-
