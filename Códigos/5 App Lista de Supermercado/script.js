@@ -66,6 +66,6 @@ function removerItem(index) {
 function limparRegistros(){
     itens = []
     document.querySelector('.lista-produtos').innerHTML = ''
-    document.querySelector('.soma-produto h1').innerHTML = 'Total: R$0,00'
+    document.querySelector('.soma-produto h1').innerHTML = 'Total: R$0.00'
     
 }
