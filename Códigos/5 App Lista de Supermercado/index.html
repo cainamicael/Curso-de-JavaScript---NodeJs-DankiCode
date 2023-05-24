@@ -5,180 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Supermercado</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            
-        }
-
-        header {
-            background-color: rgb(120, 55, 194);
-            text-align: center;
-            color: white;
-            padding: 20px 0;
-            
-        }
-
-        .lista-cadastro {
-            display: flex;
-            margin: 20px 0;
-            padding: 20px;
-
-        }
-
-        .lista-cadastro input[type=text]{
-            flex: 1;
-            height: 40px;
-            padding-left: 20px;
-
-        }
-
-        .lista-produto-single {
-            padding: 10px 0;
-            margin: 20px 0;
-            border-bottom: 1px solid #ccc;
-            display: flex;
-
-        }
-
-        .lista-produto-single h3{
-            flex: 1;
-            padding: 0 20px;
-
-        }
-
-        h3.price-produto {
-            text-align: right;
-            font-size: 17px;
-
-        }
-
-        .price-produto > span {
-            background-color: rgb(120, 55, 194);
-            padding: 8px 10px;
-            border-radius: 20px;
-            color: white;
-
-        }
-
-        .soma-produto {
-            margin: 20px;
-
-        }
-
-        button {
-            cursor: pointer;
-
-        }
-
-        #limpar {
-            background-color: rgb(120, 55, 194);
-            padding: 8px 10px;
-            border-radius: 20px;
-            color: white;
-            margin: 20px;
-            border: 0;
-
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
         <h2>App Lista de Supermercado</h2>
     </header>
     <div class="lista-cadastro">
-        <input type="text" name="nome_produto" placeholder="Nome do produto">
-        <input type="number" step="0.01" name="valor_produto" placeholder="Valor do produto">
+        <input type="text" name="nome_produto" placeholder="Nome do produto" required>
+        <input type="number" step="0.01" name="valor_produto" placeholder="Valor do produto" required>
         <input type="submit" name="acao" value="Cadastrar">
     </div>
-
     <div class="lista-produtos">
-
 <!-- Estrutura        
         <div class="lista-produto-single">
             <h3>RedBull</h3>
             <h3 class="price-produto"><span>R$20.00</span></h3>
         </div>
 -->
-
     </div>
-
     <div class="soma-produto">
         <h1>Total: R$0.00</h1>
     </div>
-
     <button onclick="limparRegistros()" id="limpar" name="limpar">Limpar</button>
-    <script>
-        var itens = []
-    
-        document.querySelector('input[type=submit]')
-            .addEventListener('click', () => {
-                var nomeProduto = document.querySelector('input[name=nome_produto]')
-                var precoProduto = document.querySelector('input[name=valor_produto]')
-    
-                itens.push({ //Pega os valores do input e adiciona no array
-                    nome: nomeProduto.value,
-                    valor: parseFloat(precoProduto.value)
-                })
-    
-                //Adicionando dinamicamente os itens
-                let listaProdutos = document.querySelector('.lista-produtos')
-                var somatorio = itens.map(i => i.valor).reduce((a, c) => a + c)
-                listaProdutos.innerHTML = '' //Para não ficar duplicando
-    
-                itens.forEach((val, index) => {
-                    listaProdutos.innerHTML += `
-                        <div class="lista-produto-single">
-                            <h3>${val.nome}</h3>
-                            <h3 class="price-produto"><span>R$${(val.valor).toFixed(2)}</span></h3>
-                            <button class="remover" onclick="removerItem(${index})">remover</button>
-                        </div>`
-                })
-    
-                //Limpando os inputs
-                nomeProduto.value = ''
-                precoProduto.value = ''
-    
-                let elementoSoma = document.querySelector('.soma-produto h1')
-                elementoSoma.innerHTML = `Total: R$ ${somatorio.toFixed(2)}`
-            })
-    
-        // Função para remover um item da lista
-        function removerItem(index) {
-            if(itens.length == 1){
-                limparRegistros()
-            } else {
-                itens.splice(index, 1) // Remove o item do array
-                let listaProdutos = document.querySelector('.lista-produtos')
-                var somatorio = itens.map(i => i.valor).reduce((a, c) => a + c)
-                listaProdutos.innerHTML = ''
-        
-                itens.forEach((val, index) => {
-                    listaProdutos.innerHTML += `
-                        <div class="lista-produto-single">
-                            <h3>${val.nome}</h3>
-                            <h3 class="price-produto"><span>R$${(val.valor).toFixed(2)}</span></h3>
-                            <button class="remover" onclick="removerItem(${index})">remover</button>
-                        </div>`
-                })
-        
-                let elementoSoma = document.querySelector('.soma-produto h1')
-                elementoSoma.innerHTML = `Total: R$ ${somatorio.toFixed(2)}`
-            }
-            
-        }
-    
-        // Limpando todos os registros
-        function limparRegistros(){
-            itens = []
-            document.querySelector('.lista-produtos').innerHTML = ''
-            document.querySelector('.soma-produto h1').innerHTML = 'Total: R$0,00'
-            
-        }
-        
-    </script>
-    
+    <script src="script.js"></script>
 </body>
 </html>
