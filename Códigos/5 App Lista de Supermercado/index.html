@@ -128,7 +128,7 @@
             var somatorio = itens.map(i => i.valor).reduce( (a, c) => a + c)
             listaProdutos.innerHTML = '' //Para não ficar duplicando
 
-            itens.map(val => {
+            itens.forEach(val => {
                 listaProdutos.innerHTML += `
                     <div class="lista-produto-single">
                         <h3>${val.nome}</h3>
