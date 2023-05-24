@@ -4,7 +4,7 @@ const arr = ['Guilherme', 'João', 'Filipe']
 var [a, b, c] = arr
 console.log(a) //Guilherme
 
-//Operador 
+//Operador spread
 const arr2 = ['Guilherme', 'João', 'Filipe', 'Leo', 'Juliano']
 
 var [a, b,...c] = arr2 //O a é Guilherme, o b é João, e o c é um array com o resto dos nomes
