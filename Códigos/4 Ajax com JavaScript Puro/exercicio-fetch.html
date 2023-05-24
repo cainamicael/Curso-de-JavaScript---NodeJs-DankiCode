@@ -5,6 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consumindo Api de Filmes</title>
+    <style>
+        .tituloFilme {
+            cursor:pointer;
+
+        }
+
+        .tituloFilme:hover {
+            color: red;
+
+        }
+
+        .description {
+            display:none;
+            color: black;
+
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -18,8 +35,21 @@
             .then(json => {
                 var container = document.querySelector('.container')
                 json.results.map((val) => {
-                    container.innerHTML += `<div style="cursor:pointer;" class="tituloFilme">${val.title}<div style="display:none;"class="description">${val.overview}</div><hr></div>` //A chave para recuperar o titulo e a descrição
+                    container.innerHTML += `<div class="tituloFilme">${val.title}<div class="description">${val.overview}</div><hr></div>` //A chave para recuperar o titulo e a descrição
+                    
                 })
+                var titulos = document.querySelectorAll('.tituloFilme')
+                titulos.forEach((titulo) => {
+                    titulo.addEventListener('click', () => {
+                        var description = titulo.querySelector('.description')
+                        if (description.style.display === 'none' || description.style.display === '') {
+                            description.style.display = 'block'
+                        } else {
+                            description.style.display = 'none'
+                        }
+                    })
+                })
+                /* Outra forma de fazer esta função
                 var titulos = document.querySelectorAll('.tituloFilme')
                 for (var i = 0; i < titulos.length; i++) {
                     titulos[i].addEventListener('click', (t)=>{
@@ -28,9 +58,9 @@
                         } else {
                             t.target.querySelector('.description').style.display = 'none'
                         }
-                        
                     })
                 }
+                */
 
             })
         
