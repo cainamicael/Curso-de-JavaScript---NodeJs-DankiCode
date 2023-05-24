@@ -1,7 +1,10 @@
+
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
     
 }
 
@@ -20,10 +23,18 @@ header {
 
 }
 
-.lista-cadastro input[type=text]{
+.lista-cadastro input[type=text] {
     flex: 1;
     height: 40px;
     padding-left: 20px;
+
+}
+
+.lista-cadastro input[type=submit] {
+    padding: 8px 8px;
+    background-color: rgb(120, 55, 194);
+    color: white;
+    border: 0;
 
 }
 
