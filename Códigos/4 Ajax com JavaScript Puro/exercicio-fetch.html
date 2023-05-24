@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumindo Api de Filmes</title>
+</head>
+<body>
+    <div class="container">
+
+    </div>
+    <script>
+        //GET
+        //Link https://api.themoviedb.org/3/movie/popular?api_key=506fadb0256c13349acc05dabebf9604&language=en-US&page=1
+        fetch('https://api.themoviedb.org/3/movie/popular?api_key=506fadb0256c13349acc05dabebf9604&language=en-US&page=1', {method: 'GET'})
+            .then(response => response.json())
+            .then(json => {
+                var container = document.querySelector('.container')
+                json.results.map((val) => {
+                    container.innerHTML += `<div style="cursor:pointer;" class="tituloFilme">${val.title}<div style="display:none;"class="description">${val.overview}</div><hr></div>` //A chave para recuperar o titulo e a descrição
+                })
+                var titulos = document.querySelectorAll('.tituloFilme')
+                for (var i = 0; i < titulos.length; i++) {
+                    titulos[i].addEventListener('click', (t)=>{
+                        if(t.target.querySelector('.description').style.display == 'none') {
+                            t.target.querySelector('.description').style.display = 'block'
+                        } else {
+                            t.target.querySelector('.description').style.display = 'none'
+                        }
+                        
+                    })
+                }
+
+            })
+        
+    </script>
+</body>
+</html>
+
