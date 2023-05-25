@@ -55,21 +55,12 @@
     color: #fff;
     border: none;
     padding: 12px 24px;
-    border-radius: 30px;
     cursor: pointer;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1px;
     transition: background-color 0.3s ease;
     font-size: 16px;
-  }
-  
-  .lista-cadastro input[type="submit"].remover {
-    background-color: #ff0000;
-  }
-  
-  .lista-cadastro input[type="submit"]:hover {
-    background-color: #777;
   }
   
   .lista-produtos {
@@ -99,7 +90,7 @@
   }
   
   .remover {
-    background-color: #ff0000;
+    background-color: #e60b0b;
     color: #fff;
     border: none;
     padding: 8px 16px;
@@ -113,7 +104,7 @@
   }
   
   .remover:hover {
-    background-color: #cc0000;
+    background-color: #c91111;
   }
   
   .soma-produto {
