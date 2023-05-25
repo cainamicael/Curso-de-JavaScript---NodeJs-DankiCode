@@ -36,26 +36,56 @@
         </div>
     
         <div class="enemy-options">
-            <div><img src="images/rock.png"></div>
-            <div><img src="images/paper.png"></div>
-            <div><img src="images/scisor.png"></div>
+            <div><img opt="pedra" src="images/rock.png"></div>
+            <div><img opt="papel" src="images/paper.png"></div>
+            <div><img opt="tesoura" src="images/scisor.png"></div>
         </div>
     </div>
     <script>
         var elementos = document.querySelectorAll('.player-options div > img')
         var playerOpt = ''
+        var enemyOpt = ''
 
+        //para deixar as imagens que não foram selecionadas com a opacidade baixa
         function resetOpacityPlayers() {
             for(var i = 0; i < elementos.length; i++) {
                 elementos[i].style.opacity = 0.3
             }
         }
 
+        function resetInimigo() {
+            const enemyOptions = document.querySelectorAll('.enemy-options div')
+
+            for(var i = 0; i < enemyOptions.length; i++) {      
+                enemyOptions[i].childNodes[0].style.opacity = 0.3
+
+            }
+
+        }
+
+        function inimigoJogar() {
+            var rand = Math.floor(Math.random()*3)//Para gerar um inteiro aleatorio entre 0 e 2
+
+            const enemyOptions = document.querySelectorAll('.enemy-options div')
+            resetInimigo()
+
+            for(var i = 0; i < enemyOptions.length; i++) {
+                if(i == rand) {
+                    enemyOptions[i].childNodes[0].style.opacity = 1 //Uso do childNodes
+                    enemyOpt = enemyOptions[i].childNodes[0].getAttribute('opt')
+
+                }
+            }
+            
+        }
+
         for(var i = 0; i < elementos.length; i++) {
             elementos[i].addEventListener('click', (t) => {
                 resetOpacityPlayers();
-                t.target.style.opacity = 1
+                t.target.style.opacity = 1 //Para deixar a opacidade alta da imagem selecionada
                 playerOpt = t.target.getAttribute('opt')
+
+                inimigoJogar()
                 
             })
         }

@@ -198,6 +198,21 @@ Pegando elemento filho:
             })
         }
 
+Com childNodes:
+
+
+    function inimigoJogar() {
+        var rand = Math.floor(Math.random()*3)//Para gerar um inteiro aleatorio entre 0 e 2
+
+        const enemyOptions = document.querySelectorAll('.enemy-options div')
+        for(var i = 0; i < enemyOptions.length; i++) {
+            if(i == rand) {
+                enemyOptions[i].childNodes[0].style.opacity = 1 //Uso do childNodes
+            }
+        }
+
+    }
+
 Mostrar mais com novas ocorrências:
 
     <!DOCTYPE html>
