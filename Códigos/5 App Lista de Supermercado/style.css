@@ -7,9 +7,9 @@
   
   /* Estilos gerais */
   body {
-    font-family: 'Open Sans', sans-serif;
-    background-color: #1a1a1a;
-    color: #fff;
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    color: #333;
     line-height: 1.5;
   }
   
@@ -25,9 +25,9 @@
   }
   
   h2 {
-    font-size: 48px;
+    font-size: 36px;
     font-weight: bold;
-    color: #00ff8c;
+    color: #333;
     text-transform: uppercase;
     letter-spacing: 2px;
   }
@@ -42,20 +42,20 @@
   
   .lista-cadastro input {
     padding: 12px;
-    border: 2px solid #00ff8c;
+    border: 2px solid #333;
     border-radius: 4px;
     margin: 10px;
     font-size: 16px;
-    background-color: #2b2b2b;
-    color: #fff;
+    background-color: #fff;
+    color: #333;
   }
   
   .lista-cadastro input[type="submit"] {
-    background-color: #00ff8c;
+    background-color: #555;
     color: #fff;
     border: none;
     padding: 12px 24px;
-    border-radius: 4px;
+    border-radius: 30px;
     cursor: pointer;
     font-weight: bold;
     text-transform: uppercase;
@@ -64,8 +64,12 @@
     font-size: 16px;
   }
   
+  .lista-cadastro input[type="submit"].remover {
+    background-color: #ff0000;
+  }
+  
   .lista-cadastro input[type="submit"]:hover {
-    background-color: #00b862;
+    background-color: #777;
   }
   
   .lista-produtos {
@@ -76,7 +80,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #2b2b2b;
+    background-color: #fff;
     padding: 20px;
     border-radius: 4px;
     margin-bottom: 20px;
@@ -86,20 +90,20 @@
   .lista-produto-single h3 {
     font-size: 20px;
     font-weight: bold;
-    color: #fff;
+    color: #333;
   }
   
   .lista-produto-single .price-produto {
-    color: #00ff8c;
+    color: #333;
     font-size: 18px;
   }
   
   .remover {
-    background-color: #00ff8c;
+    background-color: #ff0000;
     color: #fff;
     border: none;
     padding: 8px 16px;
-    border-radius: 4px;
+    border-radius: 30px;
     cursor: pointer;
     font-weight: bold;
     text-transform: uppercase;
@@ -109,7 +113,7 @@
   }
   
   .remover:hover {
-    background-color: #00b862;
+    background-color: #cc0000;
   }
   
   .soma-produto {
@@ -118,9 +122,9 @@
   }
   
   .soma-produto h1 {
-    font-size: 48px;
+    font-size: 36px;
     font-weight: bold;
-    color: #00ff8c;
+    color: #333;
   }
   
   .btn {
@@ -128,11 +132,11 @@
   }
   
   .btn button {
-    background-color: #00ff8c;
+    background-color: #555;
     color: #fff;
     border: none;
     padding: 12px 24px;
-    border-radius: 4px;
+    border-radius: 30px;
     cursor: pointer;
     font-size: 18px;
     font-weight: bold;
@@ -142,12 +146,12 @@
   }
   
   .btn button:hover {
-    background-color: #00b862;
+    background-color: #777;
   }
   
   @media screen and (max-width: 600px) {
     h2 {
-      font-size: 36px;
+      font-size: 28px;
     }
   
     .lista-cadastro input {
@@ -158,10 +162,7 @@
     .lista-cadastro input[type="submit"] {
       margin: 10px 0;
     }
-  }
-  
-  
-  
+  }  
   
 /* css do curso
 * {
