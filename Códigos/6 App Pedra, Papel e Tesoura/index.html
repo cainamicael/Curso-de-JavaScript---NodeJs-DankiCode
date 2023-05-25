@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jo Ken Po</title>
+    <style>
+        .player-options, 
+        .enemy-options {
+            width: 50%;
+
+        } 
+
+        .player-options img, 
+        .enemy-options img {
+            max-width: 200px;
+            opacity: 0.3;
+            cursor: pointer;
+
+        }
+
+        .align {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Pedra, Papel e Tesoura</h1>
+    <hr>
+    <div class="align">
+        <div class="player-options">
+            <div><img opt="pedra" src="images/rock.png"></div>
+            <div><img opt="papel" src="images/paper.png"></div>
+            <div><img opt="tesoura" src="images/scisor.png"></div>
+        </div>
+    
+        <div class="enemy-options">
+            <div><img src="images/rock.png"></div>
+            <div><img src="images/paper.png"></div>
+            <div><img src="images/scisor.png"></div>
+        </div>
+    </div>
+    <script>
+        var elementos = document.querySelectorAll('.player-options div > img')
+        var playerOpt = ''
+
+        function resetOpacityPlayers() {
+            for(var i = 0; i < elementos.length; i++) {
+                elementos[i].style.opacity = 0.3
+            }
+        }
+
+        for(var i = 0; i < elementos.length; i++) {
+            elementos[i].addEventListener('click', (t) => {
+                resetOpacityPlayers();
+                t.target.style.opacity = 1
+                playerOpt = t.target.getAttribute('opt')
+                
+            })
+        }
+    </script>
+</body>
+</html>

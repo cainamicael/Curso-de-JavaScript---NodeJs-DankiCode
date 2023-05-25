@@ -673,3 +673,24 @@ Função no click do button:
         document.querySelector('.soma-produto h1').innerHTML = 'Total: R$0.00'
         
     }
+
+Função para destacar opacidade de item clicado:
+
+    <script>
+        var elementos = document.querySelectorAll('.player-options div > img')
+
+        function resetOpacityPlayers() {
+            for(var i = 0; i < elementos.length; i++) {
+                elementos[i].style.opacity = 0.3
+            }
+        }
+
+        for(var i = 0; i < elementos.length; i++) {
+            elementos[i].addEventListener('click', (t) => {
+                resetOpacityPlayers();
+                t.target.style.opacity = 1
+                
+            })
+        }
+    </script>
+
