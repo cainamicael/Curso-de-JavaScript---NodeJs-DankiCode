@@ -6,11 +6,11 @@
   }
   
   header {
-    background: linear-gradient(to right, #FF00FF,  #39dc92, #0066ff);
+    background: linear-gradient(to right, #FF00FF,  #13cebb, #0066ff);
     /* Adicione os prefixos de navegador para garantir a compatibilidade */
-    background: -webkit-linear-gradient(to right,  #FF00FF,  #39dc92, #0066ff);
-    background: -moz-linear-gradient(to right,  #FF00FF,  #39dc92, #0066ff);
-    background: -o-linear-gradient(to right,  #FF00FF,  #39dc92, #0066ff);
+    background: -webkit-linear-gradient(to right,  #FF00FF,  #13cebb, #0066ff);
+    background: -moz-linear-gradient(to right,  #FF00FF,  #13cebb, #0066ff);
+    background: -o-linear-gradient(to right,  #FF00FF,  #13cebb, #0066ff);
     padding: 12px;
     border-bottom: 1px solid black;
   }
@@ -115,7 +115,7 @@
     margin: 60px auto;
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #0066ff;
+    background-color: #13cebb;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -124,16 +124,16 @@
   }
   
   button#resetar:hover {
-    background-color: #0048cc;
+    background-color: #0ca596;
   }
   
   
   footer {
-    background: linear-gradient(to right, #FF00FF,  #39dc92, #0066ff);
+    background: linear-gradient(to right, #FF00FF,  #13cebb, #0066ff);
     /* Adicione os prefixos de navegador para garantir a compatibilidade */
-    background: -webkit-linear-gradient(to right,  #FF00FF,  #39dc92, #0066ff);
-    background: -moz-linear-gradient(to right,  #FF00FF,  #39dc92, #0066ff);
-    background: -o-linear-gradient(to right,  #FF00FF,  #39dc92, #0066ff);
+    background: -webkit-linear-gradient(to right,  #FF00FF,  #13cebb, #0066ff);
+    background: -moz-linear-gradient(to right,  #FF00FF,  #13cebb, #0066ff);
+    background: -o-linear-gradient(to right,  #FF00FF,  #13cebb, #0066ff);
     padding: 20px;
     border-top: 1px solid black ;
     text-align: center;
@@ -168,7 +168,13 @@
     .vencedor {
       font-size: 18px;
     }
+
+    button#resetar {
+      font-size: 14px;
+      padding: 8px 16px;
+    }
   }
+
   
 /*css do curso*/
 /*
