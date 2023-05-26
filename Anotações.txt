@@ -708,4 +708,3 @@ Função para destacar opacidade de item clicado:
             })
         }
     </script>
-
