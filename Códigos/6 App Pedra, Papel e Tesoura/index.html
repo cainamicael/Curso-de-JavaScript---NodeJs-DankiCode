@@ -27,6 +27,7 @@
 </head>
 <body>
     <h1 style="text-align: center;">Pedra, Papel e Tesoura</h1>
+    <h2 class="vencedor"></h2>
     <hr>
     <div class="align">
         <div class="player-options">
@@ -45,6 +46,59 @@
         var elementos = document.querySelectorAll('.player-options div > img')
         var playerOpt = ''
         var enemyOpt = ''
+
+        function validarVitoria() {
+            let vencedor = document.querySelector('.vencedor')
+
+            if(playerOpt == 'papel') {
+                if(enemyOpt == 'papel') {
+                    //empate
+                    vencedor.innerHTML = 'O jogo foi empatado'
+
+                } else if(enemyOpt == 'tesoura') {
+                    //inimigo ganhou
+                    vencedor.innerHTML = 'O inimigo ganhou'
+
+                } else if(enemyOpt == 'pedra') {
+                    //player ganhou
+                    vencedor.innerHTML = 'O player ganhou'
+
+                }
+
+            } else if(playerOpt == 'tesoura') {
+                if(enemyOpt == 'tesoura') {
+                    //empate
+                    vencedor.innerHTML = 'O jogo foi empatado'
+
+                } else if(enemyOpt == 'pedra') {
+                    //inimigo ganhou
+                    vencedor.innerHTML = 'O inimigo ganhou'
+
+                } else if(enemyOpt == 'papel') {
+                    //player ganhou
+                    vencedor.innerHTML = 'O player ganhou'
+
+                }
+            } else if(playerOpt == 'pedra') {
+                if(enemyOpt == 'pedra') {
+                    //empate
+                    vencedor.innerHTML = 'O jogo foi empatado'
+
+                } else if(enemyOpt == 'papel') {
+                    //inimigo ganhou
+                    vencedor.innerHTML = 'O inimigo ganhou'
+
+                } else if(enemyOpt == 'tesoura') {
+                    //player ganhou
+                    vencedor.innerHTML = 'O player ganhou'
+
+                }
+            } else {
+                vencedor.innerHTML = 'Inicie o Jogo'
+
+            }
+
+        }
 
         //para deixar as imagens que não foram selecionadas com a opacidade baixa
         function resetOpacityPlayers() {
@@ -78,6 +132,8 @@
                 }
 
             }
+
+            validarVitoria()
 
         }
 
