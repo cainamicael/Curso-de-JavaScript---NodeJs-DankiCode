@@ -37,12 +37,14 @@
     <hr>
     <div class="align">
         <div class="player-options">
+            <h2 id="vitorias-player">Vitórias do player: 0</h2>
             <div><img opt="pedra" src="images/rock.png"></div>
             <div><img opt="papel" src="images/paper.png"></div>
             <div><img opt="tesoura" src="images/scisor.png"></div>
         </div>
     
         <div class="enemy-options">
+            <h2 id="vitorias-inimigo">Vitórias do inimigo: 0</h2>
             <div><img opt="pedra" src="images/rock.png"></div>
             <div><img opt="papel" src="images/paper.png"></div>
             <div><img opt="tesoura" src="images/scisor.png"></div>
@@ -51,6 +53,10 @@
     <script>
         var elementos = document.querySelectorAll('.player-options div > img')
         var elementos2 = document.querySelectorAll('.enemy-options div > img')
+        var vitoriasPlayer = document.getElementById('vitorias-player')
+        var vitoriasInimigo = document.getElementById('vitorias-inimigo')
+        var totVitP = 0
+        var totVitI = 0
         var playerOpt = ''
         var enemyOpt = ''
 
@@ -71,16 +77,24 @@
                 if(enemyOpt == 'papel') {
                     //empate
                     vencedor.innerHTML = 'O jogo foi empatado'
+                    totVitP++
+                    vitoriasPlayer.innerHTML = `Vitórias do player: ${totVitP}`
+                    totVitI++
+                    vitoriasInimigo.innerHTML = `Vitórias do player: ${totVitI}`
                     setTimeout(()=>{limpaTela()}, 800)
 
                 } else if(enemyOpt == 'tesoura') {
                     //inimigo ganhou
                     vencedor.innerHTML = 'O inimigo ganhou'
+                    totVitI++
+                    vitoriasInimigo.innerHTML = `Vitórias do player: ${totVitI}`
                     setTimeout(()=>{limpaTela()}, 800)
 
                 } else if(enemyOpt == 'pedra') {
                     //player ganhou
                     vencedor.innerHTML = 'O player ganhou'
+                    totVitP++
+                    vitoriasPlayer.innerHTML = `Vitórias do player: ${totVitP}`
                     setTimeout(()=>{limpaTela()}, 800)
 
                 }
@@ -89,16 +103,24 @@
                 if(enemyOpt == 'tesoura') {
                     //empate
                     vencedor.innerHTML = 'O jogo foi empatado'
+                    totVitP++
+                    vitoriasPlayer.innerHTML = `Vitórias do player: ${totVitP}`
+                    totVitI++
+                    vitoriasInimigo.innerHTML = `Vitórias do player: ${totVitI}`
                     setTimeout(()=>{limpaTela()}, 800)
 
                 } else if(enemyOpt == 'pedra') {
                     //inimigo ganhou
                     vencedor.innerHTML = 'O inimigo ganhou'
+                    totVitI++
+                    vitoriasInimigo.innerHTML = `Vitórias do player: ${totVitI}`
                     setTimeout(()=>{limpaTela()}, 800)
 
                 } else if(enemyOpt == 'papel') {
                     //player ganhou
                     vencedor.innerHTML = 'O player ganhou'
+                    totVitP++
+                    vitoriasPlayer.innerHTML = `Vitórias do player: ${totVitP}`
                     setTimeout(()=>{limpaTela()}, 800)
 
                 }
@@ -106,16 +128,24 @@
                 if(enemyOpt == 'pedra') {
                     //empate
                     vencedor.innerHTML = 'O jogo foi empatado'
+                    totVitP++
+                    vitoriasPlayer.innerHTML = `Vitórias do player: ${totVitP}`
+                    totVitI++
+                    vitoriasInimigo.innerHTML = `Vitórias do player: ${totVitI}`
                     setTimeout(()=>{limpaTela()}, 800)
 
                 } else if(enemyOpt == 'papel') {
                     //inimigo ganhou
                     vencedor.innerHTML = 'O inimigo ganhou'
+                    totVitI++
+                    vitoriasInimigo.innerHTML = `Vitórias do player: ${totVitI}`
                     setTimeout(()=>{limpaTela()}, 800)
 
                 } else if(enemyOpt == 'tesoura') {
                     //player ganhou
                     vencedor.innerHTML = 'O player ganhou'
+                    totVitP++
+                    vitoriasPlayer.innerHTML = `Vitórias do player: ${totVitP}`
                     setTimeout(()=>{limpaTela()}, 800)
 
                 }
