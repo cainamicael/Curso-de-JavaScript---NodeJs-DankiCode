@@ -67,11 +67,12 @@
   .enemy-options img {
     width: 80px;
     height: 80px;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 50%;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease-in-out;
-    padding: 40px;
+    border: 1px solid #333;
+    padding: 10px;
   }
   
   .player-options img:hover,
@@ -85,6 +86,7 @@
     font-size: 24px;
     margin-top: 30px;
   }
+  
   
 /*css do curso*/
 /*
