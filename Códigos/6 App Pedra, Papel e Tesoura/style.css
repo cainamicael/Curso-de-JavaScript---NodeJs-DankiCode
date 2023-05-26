@@ -1,68 +1,91 @@
 /*css do chatgpt*/
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
-    margin: 0;
-    padding: 0;
-}
-
-h1 {
-    text-align: center;
-    margin-top: 20px;
-}
-
-h2 {
-    text-align: center;
-    margin-top: 10px;
-}
-
-hr {
-    border: none;
-    height: 1px;
-    background-color: #ccc;
-    margin: 20px 0;
-}
-
 .align {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+  }
+  
+  .player-options,
+  .enemy-options {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-}
-
-.player-options,
-.enemy-options {
-    width: 40%;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .player-options div,
+  .enemy-options div {
+    margin: 10px;
+  }
+  
+  .player-options h2,
+  .enemy-options h2 {
     text-align: center;
+    color: #333;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #333;
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
+  hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin-bottom: 20px;
+  }
+  
+  body {
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    width: 800px;
+    margin: 0 auto;
     padding: 20px;
     background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin: 10px;
-}
-
-.player-options img,
-.enemy-options img {
-    max-width: 200px;
-    width: 100%;
-    height: auto;
-    transition: opacity 0.3s ease;
-    opacity: 0.7;
-    cursor: pointer;
-}
-
-.player-options img:hover,
-.enemy-options img:hover {
-    opacity: 1;
-}
-
-.vencedor {
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .player-options div,
+  .enemy-options div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .player-options img,
+  .enemy-options img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+    padding: 5px;
+  }
+  
+  .player-options img:hover,
+  .enemy-options img:hover {
+    transform: scale(1.1);
+  }
+  
+  .vencedor {
     text-align: center;
-    margin-top: 20px;
-    font-size: 24px;
     color: #333;
-}
-
+    font-size: 24px;
+    margin-top: 30px;
+  }
+  
 /*css do curso*/
 /*
 .player-options, 
