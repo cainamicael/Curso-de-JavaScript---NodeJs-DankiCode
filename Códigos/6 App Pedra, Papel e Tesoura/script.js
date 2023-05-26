@@ -106,7 +106,9 @@ function validarVitoria() {
 function resetarJogo() {
     let vencedor = document.querySelector('.vencedor')
     vencedor.innerHTML = 'Área do Vencedor'
+    totVitP = 0
     vitoriasPlayer.innerHTML = 'Vitórias do player: 0'
+    totVitI = 0
     vitoriasInimigo.innerHTML = 'Vitórias do inimigo: 0'
 
     elementos.forEach(elemento => {
