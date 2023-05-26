@@ -1,181 +1,184 @@
 /*css do chatgpt - toque pessoal*/
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background: linear-gradient(to right, #FF00FF,  #13cebb, #0066ff);
+  /* Adicione os prefixos de navegador para garantir a compatibilidade */
+  background: -webkit-linear-gradient(to right,  #FF00FF,  #13cebb, #0066ff);
+  background: -moz-linear-gradient(to right,  #FF00FF,  #13cebb, #0066ff);
+  background: -o-linear-gradient(to right,  #FF00FF,  #13cebb, #0066ff);
+  padding: 12px;
+  border-bottom: 1px solid black;
+}
+
+header h1 {
+  color: #FFFFFF;
+  /*text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.3), 1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3), 1px 1px 0 rgba(0, 0, 0, 0.3);*/ /* Contorno */
+}
+
+.align {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.player-options,
+.enemy-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.player-options div,
+.enemy-options div {
+  margin: 10px;
+}
+
+.player-options h2,
+.enemy-options h2 {
+  text-align: center;
+  color: #333;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.enemy-options div > img {
+  opacity: 0.3;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+body {
+  background-color: #f5f5f5;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.player-options div,
+.enemy-options div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.player-options img,
+.enemy-options img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+  border: 1px solid #333;
+  padding: 10px;
+}
+
+.player-options img:hover {
+  transform: scale(1.1);
+}
+
+.vencedor {
+  text-align: center;
+  color: #FFFFFF;
+  /* text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.3), 1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3), 1px 1px 0 rgba(0, 0, 0, 0.3); *//* Contorno */
+  font-size: 24px;
+  margin-top: 30px;
+}
+
+button#resetar {
+  display: block;
+  margin: 60px auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #13cebb;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button#resetar:hover {
+  background-color: #0ca596;
+}
+
+
+footer {
+  background: linear-gradient(to right, #FF00FF,  #13cebb, #0066ff);
+  /* Adicione os prefixos de navegador para garantir a compatibilidade */
+  background: -webkit-linear-gradient(to right,  #FF00FF,  #13cebb, #0066ff);
+  background: -moz-linear-gradient(to right,  #FF00FF,  #13cebb, #0066ff);
+  background: -o-linear-gradient(to right,  #FF00FF,  #13cebb, #0066ff);
+  padding: 20px;
+  border-top: 1px solid black ;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  color: #FFFFFF;
+  /*text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.3), 1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3), 1px 1px 0 rgba(0, 0, 0, 0.3); *//* Contorno */
+}
+
+/* Estilos para telas menores */
+@media screen and (max-width: 600px) {
+  .container {
+    padding: 10px;
+    max-width: 100%;
   }
-  
-  header {
-    background: linear-gradient(to right, #FF00FF,  #13cebb, #0066ff);
-    /* Adicione os prefixos de navegador para garantir a compatibilidade */
-    background: -webkit-linear-gradient(to right,  #FF00FF,  #13cebb, #0066ff);
-    background: -moz-linear-gradient(to right,  #FF00FF,  #13cebb, #0066ff);
-    background: -o-linear-gradient(to right,  #FF00FF,  #13cebb, #0066ff);
-    padding: 12px;
-    border-bottom: 1px solid black;
+
+  h1 {
+    font-size: 24px;
   }
-  
-  header h1 {
-    color: #FFFFFF;
-    /*text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.3), 1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3), 1px 1px 0 rgba(0, 0, 0, 0.3);*/ /* Contorno */
-  }
-  
-  .align {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 50px;
-  }
-  
-  .player-options,
-  .enemy-options {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 20px;
-  }
-  
-  .player-options div,
-  .enemy-options div {
-    margin: 10px;
-  }
-  
+
   .player-options h2,
   .enemy-options h2 {
-    text-align: center;
-    color: #333;
-    font-size: 20px;
-    margin-bottom: 10px;
+    font-size: 16px;
   }
-  
-  h1 {
-    text-align: center;
-    color: #333;
-    font-size: 28px;
-    margin-bottom: 20px;
-  }
-  
-  hr {
-    border: none;
-    border-top: 1px solid #ccc;
-    margin-bottom: 20px;
-  }
-  
-  body {
-    background-color: #f5f5f5;
-    font-family: Arial, sans-serif;
-  }
-  
-  .container {
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .player-options div,
-  .enemy-options div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
+
   .player-options img,
   .enemy-options img {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-    border-radius: 50%;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease-in-out;
-    border: 1px solid #333;
-    padding: 10px;
+    width: 60px;
+    height: 60px;
   }
-  
-  .player-options img:hover,
-  .enemy-options img:hover {
-    transform: scale(1.1);
-  }
-  
+
   .vencedor {
-    text-align: center;
-    color: #FFFFFF;
-    /* text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.3), 1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3), 1px 1px 0 rgba(0, 0, 0, 0.3); *//* Contorno */
-    font-size: 24px;
-    margin-top: 30px;
+    font-size: 18px;
   }
 
   button#resetar {
-    display: block;
-    margin: 60px auto;
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #13cebb;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-size: 14px;
+    padding: 8px 16px;
   }
-  
-  button#resetar:hover {
-    background-color: #0ca596;
-  }
-  
-  
-  footer {
-    background: linear-gradient(to right, #FF00FF,  #13cebb, #0066ff);
-    /* Adicione os prefixos de navegador para garantir a compatibilidade */
-    background: -webkit-linear-gradient(to right,  #FF00FF,  #13cebb, #0066ff);
-    background: -moz-linear-gradient(to right,  #FF00FF,  #13cebb, #0066ff);
-    background: -o-linear-gradient(to right,  #FF00FF,  #13cebb, #0066ff);
-    padding: 20px;
-    border-top: 1px solid black ;
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    color: #FFFFFF;
-    /*text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.3), 1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3), 1px 1px 0 rgba(0, 0, 0, 0.3); *//* Contorno */
-  }
-  
-  /* Estilos para telas menores */
-  @media screen and (max-width: 600px) {
-    .container {
-      padding: 10px;
-    }
-  
-    h1 {
-      font-size: 24px;
-    }
-  
-    .player-options h2,
-    .enemy-options h2 {
-      font-size: 16px;
-    }
-  
-    .player-options img,
-    .enemy-options img {
-      width: 60px;
-      height: 60px;
-    }
-  
-    .vencedor {
-      font-size: 18px;
-    }
+}
 
-    button#resetar {
-      font-size: 14px;
-      padding: 8px 16px;
-    }
-  }
-
-  
 /*css do curso*/
 /*
 .player-options, 

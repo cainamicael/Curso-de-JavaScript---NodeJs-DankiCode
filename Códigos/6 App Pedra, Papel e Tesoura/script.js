@@ -116,7 +116,7 @@ function resetarJogo() {
     })
 
     elementos2.forEach(elemento => {
-        elemento.style.opacity = 1
+        elemento.style.opacity = 0.3
     })
     
 }
