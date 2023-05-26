@@ -1,0 +1,91 @@
+/*css do chatgpt*/
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 10px;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background-color: #ccc;
+    margin: 20px 0;
+}
+
+.align {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.player-options,
+.enemy-options {
+    width: 40%;
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+}
+
+.player-options img,
+.enemy-options img {
+    max-width: 200px;
+    width: 100%;
+    height: auto;
+    transition: opacity 0.3s ease;
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.player-options img:hover,
+.enemy-options img:hover {
+    opacity: 1;
+}
+
+.vencedor {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+/*css do curso*/
+/*
+.player-options, 
+.enemy-options {
+    width: 50%;
+
+} 
+
+.player-options img, 
+.enemy-options img {
+    max-width: 200px;
+    transition: 1s;
+    opacity: 0.3;
+    cursor: pointer;
+
+}
+
+.align {
+    display: flex;
+}
+
+.vencedor {
+    text-align: center;
+
+}
+*/
