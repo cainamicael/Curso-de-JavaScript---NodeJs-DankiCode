@@ -1,4 +1,27 @@
 /*css do chatgpt*/
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  header {
+    background: linear-gradient(to right, #FF00FF,  #39dc92, #0066ff);
+  /* Adicione os prefixos de navegador para garantir a compatibilidade */
+    background: -webkit-linear-gradient(to right,  #FF00FF,  #39dc92, #0066ff);
+    background: -moz-linear-gradient(to right,  #FF00FF,  #39dc92, #0066ff);
+    background: -o-linear-gradient(to right,  #FF00FF,  #39dc92, #0066ff);
+    padding: 12px;
+    border-bottom: 1px solid black ;
+
+}
+
+header h1{
+    color: #FFFFFF;
+    text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.3), 1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3), 1px 1px 0 rgba(0, 0, 0, 0.3); /* Contorno */
+}
+
+
 .align {
     display: flex;
     flex-direction: column;
@@ -82,7 +105,8 @@
   
   .vencedor {
     text-align: center;
-    color: #333;
+    color: #FFFFFF;
+    text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.3), 1px -1px 0 rgba(0, 0, 0, 0.3), -1px 1px 0 rgba(0, 0, 0, 0.3), 1px 1px 0 rgba(0, 0, 0, 0.3); /* Contorno */
     font-size: 24px;
     margin-top: 30px;
   }
