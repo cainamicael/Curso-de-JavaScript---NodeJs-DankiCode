@@ -15,6 +15,7 @@
         .player-options img, 
         .enemy-options img {
             max-width: 200px;
+            transition: 1s;
             opacity: 0.3;
             cursor: pointer;
 
@@ -49,8 +50,19 @@
     </div>
     <script>
         var elementos = document.querySelectorAll('.player-options div > img')
+        var elementos2 = document.querySelectorAll('.enemy-options div > img')
         var playerOpt = ''
         var enemyOpt = ''
+
+        function limpaTela() {
+            elementos.forEach(elemento => {
+                elemento.style.opacity = 0.3
+            })
+
+            elementos2.forEach(elemento => {
+                elemento.style.opacity = 0.3
+            })
+        }
 
         function validarVitoria() {
             let vencedor = document.querySelector('.vencedor')
@@ -59,14 +71,17 @@
                 if(enemyOpt == 'papel') {
                     //empate
                     vencedor.innerHTML = 'O jogo foi empatado'
+                    setTimeout(()=>{limpaTela()}, 800)
 
                 } else if(enemyOpt == 'tesoura') {
                     //inimigo ganhou
                     vencedor.innerHTML = 'O inimigo ganhou'
+                    setTimeout(()=>{limpaTela()}, 800)
 
                 } else if(enemyOpt == 'pedra') {
                     //player ganhou
                     vencedor.innerHTML = 'O player ganhou'
+                    setTimeout(()=>{limpaTela()}, 800)
 
                 }
 
@@ -74,28 +89,34 @@
                 if(enemyOpt == 'tesoura') {
                     //empate
                     vencedor.innerHTML = 'O jogo foi empatado'
+                    setTimeout(()=>{limpaTela()}, 800)
 
                 } else if(enemyOpt == 'pedra') {
                     //inimigo ganhou
                     vencedor.innerHTML = 'O inimigo ganhou'
+                    setTimeout(()=>{limpaTela()}, 800)
 
                 } else if(enemyOpt == 'papel') {
                     //player ganhou
                     vencedor.innerHTML = 'O player ganhou'
+                    setTimeout(()=>{limpaTela()}, 800)
 
                 }
             } else if(playerOpt == 'pedra') {
                 if(enemyOpt == 'pedra') {
                     //empate
                     vencedor.innerHTML = 'O jogo foi empatado'
+                    setTimeout(()=>{limpaTela()}, 800)
 
                 } else if(enemyOpt == 'papel') {
                     //inimigo ganhou
                     vencedor.innerHTML = 'O inimigo ganhou'
+                    setTimeout(()=>{limpaTela()}, 800)
 
                 } else if(enemyOpt == 'tesoura') {
                     //player ganhou
                     vencedor.innerHTML = 'O player ganhou'
+                    setTimeout(()=>{limpaTela()}, 800)
 
                 }
             } else {
