@@ -12,8 +12,8 @@
         <h2>App Lista de Supermercado</h2>
     </header>
     <div class="lista-cadastro">
-        <input type="text" name="nome_produto" placeholder="Nome do produto..." required>
-        <input type="number" step="1" name="quantidade_produto" placeholder=" (opcional) Quantidade: 1">
+        <input type="text" name="nome_produto" placeholder="(opcional) Nome do produto...">
+        <input inputmode="numeric" type="tel" step="1" name="quantidade_produto" placeholder=" (opcional) Quantidade: 1"><!--O ideal é o number, mas para mostrar o teclado numerico usamos o type="tel"-->
         <input type="number" step="0.01" name="valor_produto" placeholder="Valor do produto..." required>
         <input type="submit" name="acao" value="Cadastrar">
     </div>
