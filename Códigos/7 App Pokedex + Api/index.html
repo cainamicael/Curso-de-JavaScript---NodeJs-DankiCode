@@ -49,7 +49,25 @@
     <script>
         fetch('https://pokeapi.co/api/v2/pokemon?limit=10')
         .then(response => response.json())
-        .then(json => console.log(json))
+        .then(allPokemon => {
+            var pokemons = []
+
+            allPokemon.results.forEach(val =>{
+                fetch(val.url)
+                .then(response => response.json())
+                .then(pokemonSingle => {
+                    pokemons.push({nome: val.name, imagem: pokemonSingle.sprites.front_default})
+
+                    if(pokemons.length == 10) { //Tem que ser aqui dentro, pois é assíncrono
+                        //finalizamos nossas requisições
+                        console.log(pokemons)
+                    }
+                    
+                })
+
+            })
+
+        })
     </script>
 </body>
 </html>
