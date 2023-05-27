@@ -19,13 +19,12 @@
 <!--Onde será carregada dinamicamente-->
         </div><!--pokemon-boxes-->
     </div>
-
     <script>
         var quantidade = document.getElementById('quantidade');
 
         quantidade.addEventListener('keyup', (event) => {
             if (event.key === 'Enter') {//Para só chamar quando apertar o enter
-                document.querySelector('.overlay-loading').style.display = 'block'
+                document.querySelector('.overlay-loading').style.display = 'block' //Para ativar o loading
                 pegaPokemons(parseInt(quantidade.value)); // Para usarmos no if
 
             }
@@ -47,7 +46,7 @@
     
                         if(pokemons.length == quantidade) { //Tem que ser aqui dentro, pois é assíncrono
                             //finalizamos nossas requisições
-                            var pokemonBoxes = document.querySelector('.pokemon-boxes')
+                            var pokemonBoxes = document.querySelector('.pokemon-boxes')//Para desativar o loading
                             pokemonBoxes.innerHTML = ''//reset
     
                             pokemons.forEach(val => {
