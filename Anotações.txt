@@ -709,3 +709,78 @@ Função para destacar opacidade de item clicado:
         }
     </script>
 
+Loading com JavaScript puro:
+
+    <!DOCTYPE html>
+    <html lang="pt_BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>PokeDex</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="overlay-loading ">
+            <img src="ajax-loader.gif">
+        </div><!--overlay-loading -->
+
+        <div class="main">
+            <h2>PokeDex</h2>
+            <input type="text" name="quantidade" id="quantidade" placeholder="Insira a quantidade de pokemons e aperte enter...">
+            <div class="pokemon-boxes">
+    <!--Onde será carregada dinamicamente-->
+            </div><!--pokemon-boxes-->
+        </div>
+        <script>
+            var quantidade = document.getElementById('quantidade');
+
+            quantidade.addEventListener('keyup', (event) => {
+                if (event.key === 'Enter') {//Para só chamar quando apertar o enter
+                    document.querySelector('.overlay-loading').style.display = 'block' //Para ativar o loading
+                    pegaPokemons(parseInt(quantidade.value)); // Para usarmos no if
+
+                }
+
+            })
+            
+            pegaPokemons(3)//Por padrão, caso não insira nada no input
+            function pegaPokemons(quantidade) {
+                fetch(`https://pokeapi.co/api/v2/pokemon?limit=${quantidade}`)
+                .then(response => response.json())
+                .then(allPokemon => {
+                    var pokemons = []
+        
+                    allPokemon.results.forEach(val =>{
+                        fetch(val.url)
+                        .then(response => response.json())
+                        .then(pokemonSingle => {
+                            pokemons.push({nome: val.name, imagem: pokemonSingle.sprites.front_default})
+        
+                            if(pokemons.length == quantidade) { //Tem que ser aqui dentro, pois é assíncrono
+                                //finalizamos nossas requisições
+                                var pokemonBoxes = document.querySelector('.pokemon-boxes')//Para desativar o loading
+                                pokemonBoxes.innerHTML = ''//reset
+        
+                                pokemons.forEach(val => {
+                                    document.querySelector('.overlay-loading').style.display = 'none'
+                                    pokemonBoxes.innerHTML += `
+                                        <div class="pokemon-box">
+                                            <img src="${val.imagem}" alt="imagem pokemon">
+                                            <p>${val.nome}</p>
+                                        </div>`
+        
+                                })
+                            }
+                            
+                        })
+        
+                    })
+        
+                })
+
+            }
+        </script>
+    </body>
+    </html>
+
