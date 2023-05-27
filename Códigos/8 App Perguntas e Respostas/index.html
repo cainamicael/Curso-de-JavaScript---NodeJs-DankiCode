@@ -36,6 +36,23 @@
         <input type="radio" name="pergunta1" value="incorreta">
         <br>
     </form>
+    <script>
+        var elementos = document.querySelectorAll('input[type=radio]')
+        
+        elementos.forEach((elemento, indice) => {
+            elemento.addEventListener('change', (e) => { //quando mudar
+                let marcado = e.target.value //Tb pode ser o elemento mesmo ao invez do e.target
+
+                if(marcado == 'correta') {
+                    alert('acertou')
+
+                } else if(marcado == 'incorreta') {
+                    alert('errou')
+
+                }
+            })
+        })
+    </script>
 
 </body>
 </html>
