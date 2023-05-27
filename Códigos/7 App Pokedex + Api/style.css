@@ -60,6 +60,9 @@ input[name=quantidade] {
 }
 
 @media screen and (max-width: 768px){
+    .main {
+        margin: 10px 10px;
+    }
     .pokemon-box {
         width: 100%;
         text-align: center;
