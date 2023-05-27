@@ -17,9 +17,14 @@
     </div>
 
     <script>
-        var quantidade = document.getElementById('quantidade')
-        quantidade.addEventListener('keyup', () => {
-            pegaPokemons(parseInt(quantidade.value))//Para usarmos no if
+        var quantidade = document.getElementById('quantidade');
+
+        quantidade.addEventListener('keyup', (event) => {
+            if (event.key === 'Enter') {//Para só chamar quando apertar o enter
+                pegaPokemons(parseInt(quantidade.value)); // Para usarmos no if
+
+            }
+
         })
         
         pegaPokemons(3)//Por padrão, caso não insira nada no input
