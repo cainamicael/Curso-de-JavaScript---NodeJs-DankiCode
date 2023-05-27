@@ -8,7 +8,7 @@ quantidade.addEventListener('keyup', (event) => {
     }
 
 })
-
+document.querySelector('.overlay-loading').style.display = 'block' //Para ativar o loading
 pegaPokemons(3)//Por padrão, caso não insira nada no input
 function pegaPokemons(quantidade) {
     fetch(`https://pokeapi.co/api/v2/pokemon?limit=${quantidade}`)
