@@ -783,4 +783,3 @@ Loading com JavaScript puro:
         </script>
     </body>
     </html>
-
