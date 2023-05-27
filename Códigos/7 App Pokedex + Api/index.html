@@ -10,14 +10,19 @@
 <body>
     <div class="main">
         <h2>PokeDex</h2>
-
+        <input type="text" name="quantidade" id="quantidade" placeholder="Insira a quantidade de pokemons...">
         <div class="pokemon-boxes">
 <!--Onde será carregada dinamicamente-->
         </div><!--pokemon-boxes-->
     </div>
 
     <script>
-        pegaPokemons(30)
+        var quantidade = document.getElementById('quantidade')
+        quantidade.addEventListener('keyup', () => {
+            pegaPokemons(parseInt(quantidade.value))//Para usarmos no if
+        })
+        
+        pegaPokemons(3)//Por padrão, caso não insira nada no input
         function pegaPokemons(quantidade) {
             fetch(`https://pokeapi.co/api/v2/pokemon?limit=${quantidade}`)
             .then(response => response.json())
