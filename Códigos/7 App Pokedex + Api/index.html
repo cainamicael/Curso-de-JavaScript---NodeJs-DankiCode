@@ -12,37 +12,7 @@
         <h2>PokeDex</h2>
 
         <div class="pokemon-boxes">
-
-            <div class="pokemon-box">
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png" alt="imagem pokemon">
-                <p>Dito</p>
-            </div><!--pokemon-box-->
-
-            <div class="pokemon-box">
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png" alt="imagem pokemon">
-                <p>Dito</p>
-            </div><!--pokemon-box-->
-
-            <div class="pokemon-box">
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png" alt="imagem pokemon">
-                <p>Dito</p>
-            </div><!--pokemon-box-->
-
-            <div class="pokemon-box">
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png" alt="imagem pokemon">
-                <p>Dito</p>
-            </div><!--pokemon-box-->
-
-            <div class="pokemon-box">
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png" alt="imagem pokemon">
-                <p>Dito</p>
-            </div><!--pokemon-box-->
-
-            <div class="pokemon-box">
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png" alt="imagem pokemon">
-                <p>Dito</p>
-            </div><!--pokemon-box-->
-
+<!--Onde será carregada dinamicamente-->
         </div><!--pokemon-boxes-->
     </div>
 
@@ -60,7 +30,17 @@
 
                     if(pokemons.length == 10) { //Tem que ser aqui dentro, pois é assíncrono
                         //finalizamos nossas requisições
-                        console.log(pokemons)
+                        var pokemonBoxes = document.querySelector('.pokemon-boxes')
+                        pokemonBoxes.innerHTML = ''//reset
+
+                        pokemons.forEach(val => {
+                            pokemonBoxes.innerHTML += `
+                                <div class="pokemon-box">
+                                    <img src="${val.imagem}" alt="imagem pokemon">
+                                    <p>${val.nome}</p>
+                                </div>`
+
+                        })
                     }
                     
                 })
