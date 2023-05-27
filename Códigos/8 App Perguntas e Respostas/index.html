@@ -44,10 +44,11 @@
                 let marcado = e.target.value //Tb pode ser o elemento mesmo ao invez do e.target
 
                 if(marcado == 'correta') {
-                    alert('acertou')
+                    //recuperar o elemento vizinho que antecede a ele, no caso, o span
+                    let el = e.target.previousElementSibling.style.backgroundColor = 'green' //pd ser elemento também
 
                 } else if(marcado == 'incorreta') {
-                    alert('errou')
+                    let el = elemento.previousElementSibling.style.backgroundColor = 'red'
 
                 }
             })
