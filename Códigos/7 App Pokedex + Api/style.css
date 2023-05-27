@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: rgb(242, 242, 242);
+    background-color: rgb(231, 231, 238);
 }
 
 .main {
@@ -18,7 +18,12 @@ body {
 .main h2 {
     font-size: 45px;
     text-align: center;
-    color: black; /*#ef5350*/
+    color: #e94542; /**/
+}
+
+.main h2::first-letter {
+    color: #ffde00;
+    background-color:#3b4cca;
 }
 
 input[name=quantidade] {
@@ -37,7 +42,7 @@ input[name=quantidade] {
 .pokemon-box {
     width: 29%;
     margin: 20px 2%;
-    background-color: rgb(230, 230, 230);
+    background-color: rgb(231, 231, 238);
     border-radius: 10px;
 }
 
