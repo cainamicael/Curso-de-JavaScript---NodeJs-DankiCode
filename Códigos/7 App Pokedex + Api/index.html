@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="overlay-loading ">
+		<img src="ajax-loader.gif">
+	</div><!--overlay-loading -->
+
     <div class="main">
         <h2>PokeDex</h2>
         <input type="text" name="quantidade" id="quantidade" placeholder="Insira a quantidade de pokemons e aperte enter...">
@@ -21,6 +25,7 @@
 
         quantidade.addEventListener('keyup', (event) => {
             if (event.key === 'Enter') {//Para só chamar quando apertar o enter
+                document.querySelector('.overlay-loading').style.display = 'block'
                 pegaPokemons(parseInt(quantidade.value)); // Para usarmos no if
 
             }
@@ -46,6 +51,7 @@
                             pokemonBoxes.innerHTML = ''//reset
     
                             pokemons.forEach(val => {
+                                document.querySelector('.overlay-loading').style.display = 'none'
                                 pokemonBoxes.innerHTML += `
                                     <div class="pokemon-box">
                                         <img src="${val.imagem}" alt="imagem pokemon">
