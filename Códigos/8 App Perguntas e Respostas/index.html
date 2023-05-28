@@ -12,13 +12,17 @@
             margin: 0;
             padding: 20px;
         }
+
+        h1 {
+            text-align: center;
+        }
     
         .title {
             margin-bottom: 30px;
             text-align: center;
         }
     
-        h1 {
+        h1, h2 {
             font-size: 28px;
             color: #333;
             margin-bottom: 15px;
@@ -93,8 +97,9 @@
     
 </head>
 <body>
+    <h1>Jogo de Perguntas e respostas - Seu resultado: </h1>
     <div class="title">
-        <h1>Quem vai ser contratado? </h1>
+        <h2>Quem vai ser contratado? </h2>
     </div>
     <form class="pergunta">
         <div class="resposta">
@@ -117,7 +122,7 @@
     </form>
 
     <div class="title">
-        <h1>Por que o supermercado 24 horas tem fechadura na porta?</h1>
+        <h2>Por que o supermercado 24 horas tem fechadura na porta?</h2>
     </div>
     <form class="pergunta">
         <div class="resposta">
@@ -140,7 +145,7 @@
     </form>
 
     <div class="title">
-        <h1>Se nada gruda no Teflon, como eles colam o Teflon na panela?</h1>
+        <h2>Se nada gruda no Teflon, como eles colam o Teflon na panela?</h2>
     </div>
     <form class="pergunta">
         <div class="resposta">
@@ -182,7 +187,7 @@
                     }
     
                     acertos++
-    
+
                 } else if (marcado == 'incorreta') {
                     let parentNode = e.target.parentNode
                     parentNode.style.backgroundColor = 'red'
@@ -193,14 +198,14 @@
                         els[n].disabled = true
                     }
     
-                    erros++
-    
                     let correta = parentNode.parentNode.querySelector('[value=correta]')
                     correta.parentNode.style.backgroundColor = 'green'
+
+                    erros++
                 }
     
                 if (acertos + erros === totalRespostas) {
-                    alert(`total de acertos: ${acertos} | total de erros: ${erros}`)
+                    document.querySelector('h1').innerHTML = `Jogo de Perguntas e respostas - Seu resultado: total de acertos: ${acertos} | total de erros: ${erros}`
                 }
             })
         })
