@@ -840,3 +840,4 @@ Recuperar o elemento vizinho que antecede a ele, no caso, o span (posso usar o p
             })
         })
     </script>
+
