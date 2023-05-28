@@ -162,51 +162,48 @@
         </div>
     </form>
     <script>
-        var elementos = document.querySelectorAll('[type=radio]');
-        var acertos = 0;
-        var erros = 0;
+        var elementos = document.querySelectorAll('[type=radio]')
+        var acertos = 0
+        var erros = 0
         var totalRespostas = document.querySelectorAll('[value=correta]').length
     
         elementos.forEach((elemento) => {
             elemento.addEventListener('change', (e) => {
-                let marcado = e.target.value;
+                let marcado = e.target.value
     
                 if (marcado == 'correta') {
-                    let parentNode = e.target.parentNode;
-                    parentNode.style.backgroundColor = 'green';
+                    let parentNode = e.target.parentNode
+                    parentNode.style.backgroundColor = 'green'
     
-                    let els = parentNode.parentNode.querySelectorAll('[type=radio]');
+                    let els = parentNode.parentNode.querySelectorAll('[type=radio]')
     
                     for (var n = 0; n < els.length; n++) {
-                        els[n].disabled = true;
+                        els[n].disabled = true
                     }
     
-                    acertos++;
-
+                    acertos++
+    
                 } else if (marcado == 'incorreta') {
-                    let parentNode = e.target.parentNode;
-                    parentNode.style.backgroundColor = 'red';
+                    let parentNode = e.target.parentNode
+                    parentNode.style.backgroundColor = 'red'
     
-                    let els = parentNode.parentNode.querySelectorAll('[type=radio]');
+                    let els = parentNode.parentNode.querySelectorAll('[type=radio]')
     
                     for (var n = 0; n < els.length; n++) {
-                        els[n].disabled = true;
+                        els[n].disabled = true
                     }
     
-                    erros++;
+                    erros++
     
-                    let correta = parentNode.parentNode.querySelector('[value=correta]');
-                    correta.parentNode.style.backgroundColor = 'green';
+                    let correta = parentNode.parentNode.querySelector('[value=correta]')
+                    correta.parentNode.style.backgroundColor = 'green'
                 }
-        
-                if (acertos+erros === totalRespostas) {
-                    alert(`total de acertos: ${acertos} | total de erros: ${erros}`);
-
+    
+                if (acertos + erros === totalRespostas) {
+                    alert(`total de acertos: ${acertos} | total de erros: ${erros}`)
                 }
-            });
-        });
+            })
+        })
     </script>
-    
-
 </body>
 </html>
