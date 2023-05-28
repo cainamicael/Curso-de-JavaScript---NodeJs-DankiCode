@@ -204,6 +204,7 @@
                     parentNode.style.backgroundColor = 'green'
     
                     let els = parentNode.parentNode.querySelectorAll('[type=radio]')
+                    console.log(e.target)
     
                     for (var n = 0; n < els.length; n++) {
                         els[n].disabled = true
