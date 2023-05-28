@@ -162,54 +162,53 @@
         </div>
     </form>
     <script>
-        var elementos = document.querySelectorAll('[type=radio]')
-        var acertos = 0
-        var erros = 0
-        
-        elementos.forEach((elemento, indice) => {
-            elemento.addEventListener('change', (e) => { //quando mudar
-                let marcado = e.target.value //Tb pode ser o elemento mesmo ao invez do e.target
-
-                if(marcado == 'correta') {
-                    //recuperar o elemento vizinho que antecede a ele, no caso, o span
-                    let parentNode = e.target.parentNode
-                    parentNode.style.backgroundColor = 'green'
-
-                    let els = parentNode.parentNode.querySelectorAll('[type=radio]') //Dentro do formulario, os 3 type="radio"
-
-                    for(var n = 0; n < els.length; n++){
-                        els[n].disabled = true //Deixo eles sendo inúteis, mesmo clicados
-
+        var elementos = document.querySelectorAll('[type=radio]');
+        var acertos = 0;
+        var erros = 0;
+        var respostasProcessadas = 0;
+        var totalRespostas = document.querySelectorAll('[value=correta]').length
+    
+        elementos.forEach((elemento) => {
+            elemento.addEventListener('change', (e) => {
+                let marcado = e.target.value;
+    
+                if (marcado == 'correta') {
+                    let parentNode = e.target.parentNode;
+                    parentNode.style.backgroundColor = 'green';
+    
+                    let els = parentNode.parentNode.querySelectorAll('[type=radio]');
+    
+                    for (var n = 0; n < els.length; n++) {
+                        els[n].disabled = true;
                     }
+    
+                    acertos++;
 
-                    acertos++
-
-                } else if(marcado == 'incorreta') {
-                    //recuperar o elemento vizinho que antecede a ele, no caso, o span
-                    let parentNode = e.target.parentNode
-                    parentNode.style.backgroundColor = 'red'
-
-                    let els = parentNode.parentNode.querySelectorAll('[type=radio]') //Dentro do formulario, os 3 type="radio"
-
-                    for(var n = 0; n < els.length; n++){
-                        els[n].disabled = true //Deixo eles sendo inúteis, mesmo clicados
-                        
+                } else if (marcado == 'incorreta') {
+                    let parentNode = e.target.parentNode;
+                    parentNode.style.backgroundColor = 'red';
+    
+                    let els = parentNode.parentNode.querySelectorAll('[type=radio]');
+    
+                    for (var n = 0; n < els.length; n++) {
+                        els[n].disabled = true;
                     }
-
-                    erros++
-
-                    //para mostrar a correta
-                    let correta = parentNode.parentNode.querySelector('[value=correta]')
-                    correta.parentNode.style.backgroundColor = 'green'
-
+    
+                    erros++;
+    
+                    let correta = parentNode.parentNode.querySelector('[value=correta]');
+                    correta.parentNode.style.backgroundColor = 'green';
                 }
-
-                alert(`total de acertos: ${acertos} | total de erros: ${erros}`)
-
-            })
-
-        })
+    
+                respostasProcessadas++;
+    
+                if (respostasProcessadas === totalRespostas) {
+                    alert(`total de acertos: ${acertos} | total de erros: ${erros}`);
+                }
+            });
+        });
     </script>
+    
 
 </body>
 </html>
