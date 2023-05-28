@@ -785,7 +785,7 @@ Loading com JavaScript puro:
     </html>
 
 
-Recuperar o elemento vizinho que antecede a ele, no caso, o span (posso usar o previeusElementSibling) - desabilitando radio button:
+Recuperar o elemento vizinho que antecede a ele, no caso, o span (posso usar o previousElementSibling) - desabilitando radio button:
 
     <script>
         var elementos = document.querySelectorAll('[type=radio]')
