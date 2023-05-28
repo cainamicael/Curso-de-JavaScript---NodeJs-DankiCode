@@ -6,15 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perguntas e Respostas</title>
     <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             background-color: #f9f9f9;
             margin: 0;
-            padding: 20px;
+        }
+
+        header {
+            background-color: #333;
+            width: 100%;
+            height: 100%;
         }
 
         h1 {
             text-align: center;
+            padding: 45px;
+            color: #fff;
+            font-size: 28px;
+        }
+
+        section {
+            padding: 40px 20px;
         }
     
         .title {
@@ -22,7 +40,7 @@
             text-align: center;
         }
     
-        h1, h2 {
+        h2 {
             font-size: 28px;
             color: #333;
             margin-bottom: 15px;
@@ -97,75 +115,80 @@
     
 </head>
 <body>
-    <h1>Jogo de Perguntas e respostas - Seu resultado: </h1>
-    <div class="title">
-        <h2>Quem vai ser contratado? </h2>
-    </div>
-    <form class="pergunta">
-        <div class="resposta">
-            <span>Programador 'Hello World'</span>
-            <input type="radio" name="pergunta1" value="incorreta">
-            <br>
-        </div>
+    <header>
+        <h1>Jogo de perguntas e respostas - Quantas você acerta?</h1>
+    </header>
 
-        <div class="resposta">
-            <span>Cainã Micael</span>
-            <input type="radio" name="pergunta1" value="correta">
-            <br>
+    <section>
+        <div class="title">
+            <h2>Quem vai ser contratado? </h2>
         </div>
-
-        <div class="resposta">
-            <span>Pseudo Programador</span>
-            <input type="radio" name="pergunta1" value="incorreta">
-            <br>
+        <form class="pergunta">
+            <div class="resposta">
+                <span>Programador 'Hello World'</span>
+                <input type="radio" name="pergunta1" value="incorreta">
+                <br>
+            </div>
+    
+            <div class="resposta">
+                <span>Cainã Micael</span>
+                <input type="radio" name="pergunta1" value="correta">
+                <br>
+            </div>
+    
+            <div class="resposta">
+                <span>Pseudo Programador</span>
+                <input type="radio" name="pergunta1" value="incorreta">
+                <br>
+            </div>
+        </form>
+    
+        <div class="title">
+            <h2>Por que o supermercado 24 horas tem fechadura na porta?</h2>
         </div>
-    </form>
-
-    <div class="title">
-        <h2>Por que o supermercado 24 horas tem fechadura na porta?</h2>
-    </div>
-    <form class="pergunta">
-        <div class="resposta">
-            <span>Porque o supermercado é na verdade uma fachada e a porta só serve para despistar os curiosos, mas nunca está trancada de fato</span>
-            <input type="radio" name="pergunta1" value="incorreta">
-            <br>
+        <form class="pergunta">
+            <div class="resposta">
+                <span>Porque o supermercado é na verdade uma fachada e a porta só serve para despistar os curiosos, mas nunca está trancada de fato</span>
+                <input type="radio" name="pergunta1" value="incorreta">
+                <br>
+            </div>
+    
+            <div class="resposta">
+                <span>Porque os funcionários do supermercado querem dormir tranquilos durante a noite e não serem perturbados por clientes</span>
+                <input type="radio" name="pergunta1" value="incorreta">
+                <br>
+            </div>
+    
+            <div class="resposta">
+                <span>pode haver momentos em que é necessário restringir o acesso a certas áreas</span>
+                <input type="radio" name="pergunta1" value="correta">
+                <br>
+            </div>
+        </form>
+    
+        <div class="title">
+            <h2>Se nada gruda no Teflon, como eles colam o Teflon na panela?</h2>
         </div>
-
-        <div class="resposta">
-            <span>Porque os funcionários do supermercado querem dormir tranquilos durante a noite e não serem perturbados por clientes</span>
-            <input type="radio" name="pergunta1" value="incorreta">
-            <br>
-        </div>
-
-        <div class="resposta">
-            <span>pode haver momentos em que é necessário restringir o acesso a certas áreas</span>
-            <input type="radio" name="pergunta1" value="correta">
-            <br>
-        </div>
-    </form>
-
-    <div class="title">
-        <h2>Se nada gruda no Teflon, como eles colam o Teflon na panela?</h2>
-    </div>
-    <form class="pergunta">
-        <div class="resposta">
-            <span>O revestimento de Teflon é aplicado na superfície da panela por meio de um processo chamado de "spray coating" (revestimento por pulverização) </span>
-            <input type="radio" name="pergunta1" value="correta">
-            <br>
-        </div>
-
-        <div class="resposta">
-            <span>Na verdade, o Teflon não é colado na panela. Ele é moldado diretamente na superfície da panela durante o processo de fabricação</span>
-            <input type="radio" name="pergunta1" value="incorreta">
-            <br>
-        </div>
-
-        <div class="resposta">
-            <span>Os fabricantes usam um tipo especial de cola extremamente aderente, capaz de fixar o Teflon na panela de forma permanente</span>
-            <input type="radio" name="pergunta1" value="incorreta">
-            <br>
-        </div>
-    </form>
+        <form class="pergunta">
+            <div class="resposta">
+                <span>O revestimento de Teflon é aplicado na superfície da panela por meio de um processo chamado de "spray coating" (revestimento por pulverização) </span>
+                <input type="radio" name="pergunta1" value="correta">
+                <br>
+            </div>
+    
+            <div class="resposta">
+                <span>Na verdade, o Teflon não é colado na panela. Ele é moldado diretamente na superfície da panela durante o processo de fabricação</span>
+                <input type="radio" name="pergunta1" value="incorreta">
+                <br>
+            </div>
+    
+            <div class="resposta">
+                <span>Os fabricantes usam um tipo especial de cola extremamente aderente, capaz de fixar o Teflon na panela de forma permanente</span>
+                <input type="radio" name="pergunta1" value="incorreta">
+                <br>
+            </div>
+        </form>
+    </section>
     <script>
         var elementos = document.querySelectorAll('[type=radio]')
         var acertos = 0
