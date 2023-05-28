@@ -144,25 +144,27 @@
     </div>
     <form class="pergunta">
         <div class="resposta">
-            <span>O revestimento de Teflon é aplicado na superfície da panela por meio de um processo chamado de "spray coating" (revestimento por pulverização). </span>
+            <span>O revestimento de Teflon é aplicado na superfície da panela por meio de um processo chamado de "spray coating" (revestimento por pulverização) </span>
             <input type="radio" name="pergunta1" value="correta">
             <br>
         </div>
 
         <div class="resposta">
-            <span>Na verdade, o Teflon não é colado na panela. Ele é moldado diretamente na superfície da panela durante o processo de fabricação.</span>
+            <span>Na verdade, o Teflon não é colado na panela. Ele é moldado diretamente na superfície da panela durante o processo de fabricação</span>
             <input type="radio" name="pergunta1" value="incorreta">
             <br>
         </div>
 
         <div class="resposta">
-            <span>Os fabricantes usam um tipo especial de cola extremamente aderente, capaz de fixar o Teflon na panela de forma permanente.</span>
+            <span>Os fabricantes usam um tipo especial de cola extremamente aderente, capaz de fixar o Teflon na panela de forma permanente</span>
             <input type="radio" name="pergunta1" value="incorreta">
             <br>
         </div>
     </form>
     <script>
         var elementos = document.querySelectorAll('[type=radio]')
+        var acertos = 0
+        var erros = 0
         
         elementos.forEach((elemento, indice) => {
             elemento.addEventListener('change', (e) => { //quando mudar
@@ -180,6 +182,8 @@
 
                     }
 
+                    acertos++
+
                 } else if(marcado == 'incorreta') {
                     //recuperar o elemento vizinho que antecede a ele, no caso, o span
                     let parentNode = e.target.parentNode
@@ -192,12 +196,18 @@
                         
                     }
 
+                    erros++
+
                     //para mostrar a correta
                     let correta = parentNode.parentNode.querySelector('[value=correta]')
                     correta.parentNode.style.backgroundColor = 'green'
 
                 }
+
+                alert(`total de acertos: ${acertos} | total de erros: ${erros}`)
+
             })
+
         })
     </script>
 
