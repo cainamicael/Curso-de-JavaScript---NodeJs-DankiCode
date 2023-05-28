@@ -165,7 +165,6 @@
         var elementos = document.querySelectorAll('[type=radio]');
         var acertos = 0;
         var erros = 0;
-        var respostasProcessadas = 0;
         var totalRespostas = document.querySelectorAll('[value=correta]').length
     
         elementos.forEach((elemento) => {
@@ -199,11 +198,10 @@
                     let correta = parentNode.parentNode.querySelector('[value=correta]');
                     correta.parentNode.style.backgroundColor = 'green';
                 }
-    
-                respostasProcessadas++;
-    
-                if (respostasProcessadas === totalRespostas) {
+        
+                if (acertos+erros === totalRespostas) {
                     alert(`total de acertos: ${acertos} | total de erros: ${erros}`);
+
                 }
             });
         });
