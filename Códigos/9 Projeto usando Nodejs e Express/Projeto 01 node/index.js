@@ -31,12 +31,12 @@ app.get('/', (req, res) => {
 });
 
 app.get('/deletar/:id', (req, res) => {
-    let id = req.params.id//Para recuperar o id
-    console.log(id)
-    tarefas.splice(id, 1)//Remove pelo index
-    res.render('index', {tarefasList:tarefas})//O que eu quero enviar para a página via ejs
-    
-})
+    let id = req.params.id;
+    console.log(id);
+    tarefas.splice(id, 1); // Remove pelo index
+    res.redirect('/'); // Redireciona para a rota principal
+  });
+  
 
 app.listen(5000, () => {
     // A porta 5000 - http://localhost:5000/
