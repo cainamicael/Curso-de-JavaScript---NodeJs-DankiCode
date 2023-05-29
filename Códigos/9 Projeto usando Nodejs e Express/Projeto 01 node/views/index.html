@@ -9,6 +9,10 @@
 </head>
 <body>
     <div class="tarefas">
+        <form method="post">
+            <input type="text" name="tarefa" >
+            <input type="submit" name="acao" value="Inserir">
+        </form>
         <!--Looping do array-->
         <% for(let i = 0; i < tarefasList.length; i++) { %>
             <p><%= tarefasList[i]%> | <a href="/deletar/<%= i%>">X</a></p>
