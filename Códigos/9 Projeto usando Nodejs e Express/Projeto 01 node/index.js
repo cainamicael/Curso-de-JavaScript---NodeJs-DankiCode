@@ -19,8 +19,7 @@ app.set('views', path.join(__dirname, 'views'));
 var tarefas = ['Arrumar o quarto', 'Comprar no supermercado']
 
 app.post('/', (req, res) => {
-    console.log(req.body.tarefa)//O que ele recebeu do post palo name - instalando o body parser
-    tarefas.push(req.body.tarefa)
+    tarefas.push(req.body.tarefa)//O que ele recebeu do post palo name - instalando o body parser
     res.render('index', {tarefasList:tarefas})//Pra voltar pro início
 
 })
@@ -32,7 +31,6 @@ app.get('/', (req, res) => {
 
 app.get('/deletar/:id', (req, res) => {
     let id = req.params.id;
-    console.log(id);
     tarefas.splice(id, 1); // Remove pelo index
     res.redirect('/'); // Redireciona para a rota principal
   });
