@@ -901,12 +901,21 @@ Rodando servidor:
     })
     //Com essas linhas acima, eu consigo rodar meu servidor
 
-Enviando informações dinamicamente via ejs:
+Enviando informações dinamicamente via ejs, sistema de rotas:
+
+index.js:
 
     const express = require('express');
     const path = require('path');
+    const bodyParser = require('body-parser')
 
     const app = express();
+
+    //Para usar o body parser e integrar com o formulário
+    app.use( bodyParser.json())
+    app.use(bodyParser.urlencoded({
+        extended: true
+    }))
 
     //Sistema para renderizar
     app.engine('html', require('ejs').renderFile); // Renderizar pelo ejs
@@ -914,13 +923,52 @@ Enviando informações dinamicamente via ejs:
     app.use('/public', express.static(path.join(__dirname, 'public'))); // Setando diretório estático
     app.set('views', path.join(__dirname, 'views'));
 
+    var tarefas = ['Arrumar o quarto', 'Comprar no supermercado']
+
+    app.post('/', (req, res) => {
+        tarefas.push(req.body.tarefa)//O que ele recebeu do post palo name - instalando o body parser
+        res.render('index', {tarefasList:tarefas})//Pra voltar pro início
+
+    })
+
     app.get('/', (req, res) => {
-    res.render('index', {nome:'Guilherme'})//O que eu quero enviar para a página via ejs
+        res.render('index', {tarefasList:tarefas})//O que eu quero enviar para a página via ejs
         // Requisição - Tudo que eu sei da requisição, como headers | Resposta - O que eu vou enviar para o usuário final
     });
+
+    app.get('/deletar/:id', (req, res) => {
+        let id = req.params.id;
+        tarefas.splice(id, 1); // Remove pelo index
+        res.redirect('/'); // Redireciona para a rota principal
+    });
+    
 
     app.listen(5000, () => {
         // A porta 5000 - http://localhost:5000/
         console.log('Server rodando');
     });
 
+index.html:
+
+    <!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Index</title>
+        <link rel="stylesheet" href="../public/style.css">
+    </head>
+    <body>
+        <div class="tarefas">
+            <form method="post">
+                <input type="text" name="tarefa" >
+                <input type="submit" name="acao" value="Inserir">
+            </form>
+            <!--Looping do array-->
+            <% for(let i = 0; i < tarefasList.length; i++) { %>
+                <p><%= tarefasList[i]%> | <a href="/deletar/<%= i%>">X</a></p>
+            <% } %>
+        </div>
+    </body>
+    </html>
