@@ -841,3 +841,86 @@ Recuperar o elemento vizinho que antecede a ele, no caso, o span (posso usar o p
         })
     </script>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Projeto Node.js e Express
+
+Express: Framework que permite que deixemos nossa aplicação dinâmica - Se baseia em rotas
+
+Rodando servidor:
+
+    const express = require('express')
+    const app = express()
+
+    app.listen(5000, () => { //A porta 5000 - http://localhost:5000/
+        console.log('Server rodando')
+    })
+    //Com essas linhas acima, eu consigo rodar meu servidor
+
+Enviando informações dinamicamente via ejs:
+
+    const express = require('express');
+    const path = require('path');
+
+    const app = express();
+
+    //Sistema para renderizar
+    app.engine('html', require('ejs').renderFile); // Renderizar pelo ejs
+    app.set('view engine', 'html');
+    app.use('/public', express.static(path.join(__dirname, 'public'))); // Setando diretório estático
+    app.set('views', path.join(__dirname, 'views'));
+
+    app.get('/', (req, res) => {
+    res.render('index', {nome:'Guilherme'})//O que eu quero enviar para a página via ejs
+        // Requisição - Tudo que eu sei da requisição, como headers | Resposta - O que eu vou enviar para o usuário final
+    });
+
+    app.listen(5000, () => {
+        // A porta 5000 - http://localhost:5000/
+        console.log('Server rodando');
+    });
+
