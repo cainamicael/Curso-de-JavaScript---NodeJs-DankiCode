@@ -15,7 +15,7 @@
         </form>
         <!--Looping do array-->
         <% for(let i = 0; i < tarefasList.length; i++) { %>
-            <p><%= tarefasList[i]%> | <a href="/deletar/<%= i%>">X</a></p>
+            <p><%= tarefasList[i]%><a href="/deletar/<%= i%>">X</a></p>
         <% } %>
     </div>
 </body>
