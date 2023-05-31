@@ -1157,3 +1157,21 @@ Módulos node
     const http = require('httm')
     const fs = require('fs')
     const path = require('path')
+
+Criando Módulos:
+
+No arquivo dankicode.js:
+
+function helloDankiCode() {
+    console.log('Olá mundo!')
+}
+
+    exports.helloDankiCode = helloDankiCode//Para exportar a função
+
+No index.js
+
+    //Criando próprios módulos
+    const dankicode = require('./dankicode.js')
+
+    dankicode.helloDankiCode()
+
