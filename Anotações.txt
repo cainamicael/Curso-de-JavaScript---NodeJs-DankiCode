@@ -1151,3 +1151,9 @@ Ler prompt de usuário pelo console:
 
     })
 
+Módulos node
+
+    //Alguns módulos que já vem no node
+    const http = require('httm')
+    const fs = require('fs')
+    const path = require('path')
