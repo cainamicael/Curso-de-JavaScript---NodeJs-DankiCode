@@ -1059,7 +1059,7 @@ Lendo arquivos com base na url:
 
 Manipulando arquivos com node
 
-Criando arquivos e adicionando informações em arquivos existentes
+Criando arquivos e adicionando informações em arquivos existentes:
 
     const path = require('path')
     const caminhoENomeDoArquivo = path.join(__dirname, 'danki.txt')
@@ -1077,3 +1077,16 @@ Criando arquivos e adicionando informações em arquivos existentes
         console.log('Salvo novamente com sucesso!')
 
     })
+
+Lendo arquivos:
+
+    const fs = require('fs')
+    const path = require('path')
+
+    const pathFile = path.join(__dirname, 'danki.txt')
+
+    fs.readFile(pathFile, (err, data) => {
+        console.log(data.toString())//Para ficar visível ao invés de ficar em buffer
+
+    })
+
