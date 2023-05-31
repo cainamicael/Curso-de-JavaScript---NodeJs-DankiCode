@@ -928,7 +928,7 @@ index.html:
     </html>
 
 
-
+CONTINUA ABAIXO
 
 
 
@@ -1125,3 +1125,4 @@ Renomeando e deletando arquivo:
         console.log('Arquivo foi deletado')
     })
 
+Ler prompt de usuário pelo console:

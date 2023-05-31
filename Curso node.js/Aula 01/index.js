@@ -1,15 +1,23 @@
 const fs = require('fs')
-const path = require('path')
+const readLine = require('readline')
 
-const pathFile = path.join(__dirname, 'danki.txt')
-const novoNome = path.join(__dirname, 'Novo nome do arquivo.txt')
-
-//Renomeando arquivo
-fs.rename(pathFile, novoNome, err => {
-    if(!err) console.log('Renomeado')
+const rl = readLine.createInterface({
+    input: process.stdin,
+    output: process.stdout
 })
 
-//Deletando arquivo
-fs.unlink(novoNome, err => {
-    console.log('Arquivo foi deletado')
+rl.question('Digite o seu nome: ', res => {
+    console.log(`O nome do usuário é ${res}`)
+
+    rl.question('Qual a sua idade? ', idade => {
+        console.log(`A idade do usuário é: ${idade}`)
+
+    })
+
+})
+
+rl.on('close', () => {
+    console.log('Tchau')//Quando sair do console
+    process.exit(0)
+
 })
