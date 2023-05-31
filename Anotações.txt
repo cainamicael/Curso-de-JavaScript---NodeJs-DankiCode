@@ -1183,3 +1183,30 @@ No index.js
     console.log(dankicode.num)
     console.log(dankicode.pessoa.nome)
 
+Modularizando classes:
+
+No dankicode.js:
+
+    class DankiCode {
+
+        constructor() {
+            this.nome = 'Guilherme'
+            this.testes()
+        }
+
+        testes() {
+            console.log(this.nome)
+        }
+    }
+
+    module.exports = DankiCode//Para usar classe, é esta sintaxe
+
+No index.js:
+
+    //Criando próprios módulos
+    const DankiCode = require('./dankicode.js')//Igual o nome da classe
+
+    const danki = new DankiCode
+
+    console.log(danki.nome)
+

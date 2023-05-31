@@ -1,6 +1,6 @@
 //Criando próprios módulos
-const dankicode = require('./dankicode.js')
+const DankiCode = require('./dankicode.js')//Igual o nome da classe
 
-dankicode.helloDankiCode()
-console.log(dankicode.num)
-console.log(dankicode.pessoa.nome)
+const danki = new DankiCode
+
+console.log(danki.nome)
