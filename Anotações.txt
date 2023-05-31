@@ -993,3 +993,8 @@ index.html:
 
 
 Curso de Node Js
+
+Para criarmos a aplicação, precisamos do package.json
+
+Damos o comando: npm init
+
