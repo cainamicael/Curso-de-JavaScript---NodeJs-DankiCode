@@ -18,7 +18,11 @@ app.set('views', path.join(__dirname, '/views'))
 
 //Rotas
 app.get('/', (req, res) => {
-    res.send('Estamos na página raiz')
+    res.send('home')
+})
+
+app.get('/:slug', (req, res) => {
+    res.send(req.params.slug)
 })
 
 //Servidor
