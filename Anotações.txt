@@ -1162,16 +1162,24 @@ Criando Módulos:
 
 No arquivo dankicode.js:
 
-function helloDankiCode() {
-    console.log('Olá mundo!')
-}
+    function helloDankiCode() {
+        console.log('Olá mundo!')
+    }
 
-    exports.helloDankiCode = helloDankiCode//Para exportar a função
+    var n = 10
+
+    var obj = {nome: 'Guilherme', idade: 27}
+
+    //Configurando saída e nomes
+    exports.helloDankiCode = helloDankiCode
+    exports.num = n;//Posso colocar o nome que eu quiser
+    exports.pessoa = obj
 
 No index.js
 
-    //Criando próprios módulos
     const dankicode = require('./dankicode.js')
 
     dankicode.helloDankiCode()
+    console.log(dankicode.num)
+    console.log(dankicode.pessoa.nome)
 
