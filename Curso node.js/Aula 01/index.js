@@ -2,14 +2,14 @@ const fs = require('fs')
 const path = require('path')
 
 const pathFile = path.join(__dirname, 'danki.txt')
+const novoNome = path.join(__dirname, 'Novo nome do arquivo.txt')
 
-fs.readFile(pathFile, (err, data) => {
-    let str = data.toString()
+//Renomeando arquivo
+fs.rename(pathFile, novoNome, err => {
+    if(!err) console.log('Renomeado')
+})
 
-    let newStr = str.split('/')//Cria um array
-    newStr.forEach(nome => console.log(nome))
-
-    let newStr2 = str.substring(0, 3)//Pega os caracteres desde o indice do primeiro param. atá o indice do 2º param.
-    console.log(newStr2)
-
+//Deletando arquivo
+fs.unlink(novoNome, err => {
+    console.log('Arquivo foi deletado')
 })
