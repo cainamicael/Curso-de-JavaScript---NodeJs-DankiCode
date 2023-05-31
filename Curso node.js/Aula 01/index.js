@@ -21,6 +21,7 @@ const server = http.createServer((req, res) => {
 
     } else {
         return res.end()//Sem o endpoint, retorna vazio - Se não tiver o else, carrega infinitamete
+        
     }
   
 })
