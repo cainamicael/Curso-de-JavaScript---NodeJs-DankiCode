@@ -16,6 +16,11 @@ app.set('view engine', 'html')
 app.use('/public', express.static(path.join(__dirname, 'public')))
 app.set('views', path.join(__dirname, '/views'))
 
+//Rotas
+app.get('/', (req, res) => {
+    res.send('Estamos na página raiz')
+})
+
 //Servidor
 app.listen(5000, ()=>{
     console.log('O server está rodando')
