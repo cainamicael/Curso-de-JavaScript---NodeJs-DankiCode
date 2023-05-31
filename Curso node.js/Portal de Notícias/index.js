@@ -1,20 +1,20 @@
-const express = require('express');
-const path = require('path');
+//Módulos
+const express = require('express')
+var bobyParser = require('body-parser')
 const bodyParser = require('body-parser')
+const path = require('path')
 
-const app = express();
+const app = express()
 
-//Para usar o body parser e integrar com o formulário
-app.use( bodyParser.json())
+//Configurações
+app.use(bobyParser.json())
 app.use(bodyParser.urlencoded({
     extended: true
 }))
-
-//Sistema para renderizar
-app.engine('html', require('ejs').renderFile); //Renderizar pelo ejs
-app.set('view engine', 'html');
-app.use('/public', express.static(path.join(__dirname, 'public'))); //Setando diretório estático
-app.set('views', path.join(__dirname, 'pages'));//Setando o diretório das páginas
+app.engine('html', require('ejs').renderFile)
+app.set('view engine', 'html')
+app.use('/public', express.static(path.join(__dirname, 'public')))
+app.set('views', path.join(__dirname, '/pages'))
 
 //Rotas
 app.get('/', (req, res) => {
@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
 
     //Para saber se estamos usando a barra de busca ou não
     if(req.query.busca == null) { 
-        res.render('index', {})
+        res.render('home', {})
 
     } else { 
         //Usamos a barra de busca
@@ -37,7 +37,7 @@ app.get('/:slug', (req, res) => { //URLs Amigáveis
     res.send(req.params.slug)
 })
 
+//Servidor
 app.listen(5000, () => {
-    // A porta 5000 - http://localhost:5000/
     console.log('Server rodando');
 });
