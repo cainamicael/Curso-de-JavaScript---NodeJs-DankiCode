@@ -5,21 +5,12 @@ const path = require('path')
 const hostName = '127.0.0.1'
 const port = 3000
 
-//const path = require('path')
 const caminhoENomeDoArquivo = path.join(__dirname, 'danki.txt')
 
-/*
 //criar novo arquivo
 fs.writeFile(caminhoENomeDoArquivo , 'Aqui vai o conteúdo do aarquivo', erro =>{
     if(erro) throw erro
     console.log('O arquivo foi criado com sucesso')
-
-})*/
-
-//Cria novo arquivo ou insere conteúdo depois do que já existe
-fs.appendFile(caminhoENomeDoArquivo, '\nAdicionando este conteúdo', err => {
-    if(err) throw err
-    console.log('Salvo novamente com sucesso!')
 
 })
 
@@ -31,9 +22,16 @@ const server = http.createServer((req, res) => {
     if(req.url == '/danki' ) {
         //Abrindo um arquivo html
         fs.readFile(filePath, (error, data) => {
-        res.writeHead(200, {'Content-Type': 'text/html'})
-        res.write(data) //É o próprio arquivo html, no caso, é o prório filePath
-        res.end()
+            //Cria novo arquivo ou insere conteúdo depois do que já existe
+            fs.appendFile(caminhoENomeDoArquivo, '\nAdicionando este conteúdo', err => {
+                if(err) throw err
+                console.log('Salvo novamente com sucesso!')
+            
+            })
+
+            res.writeHead(200, {'Content-Type': 'text/html'})
+            res.write(data) //É o próprio arquivo html, no caso, é o prório filePath
+            res.end()
 
         })
 
