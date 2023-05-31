@@ -841,7 +841,7 @@ Recuperar o elemento vizinho que antecede a ele, no caso, o span (posso usar o p
         })
     </script>
 
-Projeto Node.js, Express e body-parser
+Projeto Node.js, Express, ejs e body-parser
 
 Express: Framework que permite que deixemos nossa aplicação dinâmica - Se baseia em rotas
 
