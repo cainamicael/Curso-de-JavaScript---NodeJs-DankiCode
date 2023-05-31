@@ -18,7 +18,16 @@ app.set('views', path.join(__dirname, '/views'))
 
 //Rotas
 app.get('/', (req, res) => {
-    res.send('home')
+    console.log(req.query)//Para quando estivermos usando a pesquisa. Não é slug
+
+    if(req.query.busca == null) { //Para saber se estamos usando a barra de busca ou não
+        res.send('home')
+
+    } else { //Usamos a barra de busca
+        res.send(`Você fez a busca pelo termo: ${req.query.busca}`)
+
+    }
+
 })
 
 app.get('/:slug', (req, res) => { //URLs Amigáveis
