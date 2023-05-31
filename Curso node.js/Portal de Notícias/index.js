@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
     res.send('home')
 })
 
-app.get('/:slug', (req, res) => {
+app.get('/:slug', (req, res) => { //URLs Amigáveis
     res.send(req.params.slug)
 })
 
