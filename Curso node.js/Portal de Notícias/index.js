@@ -18,12 +18,15 @@ app.set('views', path.join(__dirname, '/views'))
 
 //Rotas
 app.get('/', (req, res) => {
-    console.log(req.query)//Para quando estivermos usando a pesquisa. Não é slug
+    //Para quando estivermos usando a pesquisa. Não é slug
+    console.log(req.query)
 
-    if(req.query.busca == null) { //Para saber se estamos usando a barra de busca ou não
+    //Para saber se estamos usando a barra de busca ou não
+    if(req.query.busca == null) { 
         res.send('home')
 
-    } else { //Usamos a barra de busca
+    } else { 
+        //Usamos a barra de busca
         res.send(`Você fez a busca pelo termo: ${req.query.busca}`)
 
     }
