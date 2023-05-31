@@ -997,4 +997,6 @@ Curso de Node Js
 Para criarmos a aplicação, precisamos do package.json
 
 Damos o comando: npm init
+e depois criar o index.js
 
+Para rodarmos nossa aplicação, usamos o comando: node index.js
