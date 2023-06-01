@@ -1287,6 +1287,6 @@ Importando no index.js
 
 Listando todas as collections:
 
-    Posts.find({}).sort({'_id': -1}).exec().then(p => console.log(p[0])).catch(e => console.log(e.message))
+    Posts.find({}).sort({'_id': -1}).exec().then(posts => console.log(posts)).catch(e => console.log(e.message))
     //O sort é para dizer que é em ordem decrescente
 
