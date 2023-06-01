@@ -188,6 +188,8 @@ section.outras-noticias h2 {
     width: 40%;
     height: 100%;
     background-color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .mais-lidas > h3 {
@@ -197,4 +199,43 @@ section.outras-noticias h2 {
     padding: 10px 8px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+}
+
+.mais-lida-noticia-single {
+    text-align: left;
+    padding: 20px;
+    display: flex;
+}
+
+.mais-lida-noticia-single img {
+    width: 30%;
+}
+
+.mais-lida-noticia-single .texto-mais-lida-single {
+    width: 70%;
+    padding: 8px 20px;
+}
+
+.texto-mais-lida-single h4 {
+    color: #40BE65;
+    letter-spacing: 3.2px;
+}
+
+.texto-mais-lida-single p {
+    color: #7B8591;
+    font-size: 14px;
+}
+
+.texto-mais-lida-single a {
+    margin-top: 10px;
+    display: block;
+    width: 101px;
+    height: 36px;
+    border: 1px solid #EBEBEB;
+    text-decoration: none;
+    color: #0AACDC;
+    border-radius: 10px;
+    line-height: 36px;
+    text-align: center;
+    font-size: 14px;
 }
