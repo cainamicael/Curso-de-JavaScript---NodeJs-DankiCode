@@ -1214,7 +1214,6 @@ Cabeçalho para projetos com express, ejs, body-parser:
 
     //Módulos
     const express = require('express')
-    var bobyParser = require('body-parser')
     const bodyParser = require('body-parser')
     const path = require('path')
 

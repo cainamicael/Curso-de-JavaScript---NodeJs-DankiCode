@@ -1,14 +1,13 @@
 //Módulos
 const express = require('express')
 var bobyParser = require('body-parser')
-const bodyParser = require('body-parser')
 const path = require('path')
 
 const app = express()
 
 //Configurações
 app.use(bobyParser.json())
-app.use(bodyParser.urlencoded({
+app.use(bobyParser.urlencoded({
     extended: true
 }))
 app.engine('html', require('ejs').renderFile)
