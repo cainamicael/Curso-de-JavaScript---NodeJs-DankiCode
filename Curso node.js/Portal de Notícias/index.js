@@ -10,7 +10,7 @@ const app = express()
 
 
 //Conectando ao mongo
-mongoose.connect('mongodb+srv://root:mn60B7jIvkruNND3@cluster0.dmxkhyz.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb+srv://root:mn60B7jIvkruNND3@cluster0.dmxkhyz.mongodb.net/dankicode?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log('Conectado ao banco de dados com sucesso');
   })
@@ -30,9 +30,9 @@ app.set('views', path.join(__dirname, '/pages'))
 app.get('/', (req, res) => {
     //Para saber se estamos usando a barra de busca ou não
     if(req.query.busca == null) { 
-        
-        
+        Posts.find({}).sort({'_id': -1}).exec().then(p => console.log(p[0])).catch(e => console.log(e.message))
         res.render('home', {})
+
     } else { 
         //Usamos a barra de busca
         res.render('busca', {})

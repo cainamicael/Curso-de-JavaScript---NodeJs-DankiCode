@@ -1246,9 +1246,14 @@ Conectando ao Mongo db
 
 npm install mongoose
 
-    mongoose.connect('mongodb+srv://root:7UqWSYx6hjbGfFfS@cluster0.dmxkhyz.mongodb.net/?retryWrites=true&w=majority',{useNewUrlParser: true, useUnifiedTopology: true})//O obj é para usar a versão atualizada - A senha é dada no site
-    .then(() => {console.log('Conectado ao mongo com sucesso')})
-    .catch(err => {console.log(err.message)})
+//Conectando ao mongo
+mongoose.connect('mongodb+srv://root:mn60B7jIvkruNND3@cluster0.dmxkhyz.mongodb.net/dankicode?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    console.log('Conectado ao banco de dados com sucesso');
+  })
+  .catch(err => {
+    console.log(err.message);
+  });
 
 Funcionamento do mongo db
 
