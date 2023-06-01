@@ -1258,3 +1258,24 @@ Exemplo de Coleção:
 
     {"_id":{"$oid":"6478f83cb8083524522d12ae"},"titulo":"Como ser um programador?!","imagem":"https://blog.dankicode.com/wp-content/uploads/2020/12/desenvolvedor-full-stack-em-2021.png","categoria":"educação","conteudo":"<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis et, nulla quos hic ab unde quia h3 Animi ex nemo enim quisquam quidem pariatur assumenda modi? Ipsum, omnis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt neque itaque nobis aspernatur? Non optio recusandae deleniti odio perspiciatis unde. Repellat praesentium, minima aperiam magnam consectetur soluta dolores non dolore?</P><p> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis et, nulla quos hic ab unde quia h3 Animi ex nemo enim quisquam quidem pariatur assumenda modi? Ipsum, omnis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt neque itaque nobis aspernatur? Non optio recusandae deleniti odio perspiciatis unde. Repellat praesentium, minima aperiam magnam consectetur soluta dolores non dolore?</p>"}
 
+Criando esquemas:
+
+    //Arquivo Posts.js
+    var mongoose = require('mongoose')
+    var Schema = mongoose.Schema
+
+    var postSchema = new Schema({
+        titulo: String,
+        imagem: String,
+        categoria: String,
+        conteudo: String,
+        slug: String
+    },{collection: 'posts'})
+
+    var posts = mongoose.model('Posts', postSchema)
+
+    module.exports = posts
+
+Importando no index.js
+
+    const posts = require('./Posts.js')

@@ -1,8 +1,10 @@
 //Módulos
 const express = require('express')
-const mongoose = require('mongoose')
 var bobyParser = require('body-parser')
 const path = require('path')
+
+const mongoose = require('mongoose')
+const Posts = require('./Posts.js')
 
 const app = express()
 
@@ -21,13 +23,10 @@ app.set('views', path.join(__dirname, '/pages'))
 
 //Rotas
 app.get('/', (req, res) => {
-    //Para quando estivermos usando a pesquisa. Não é slug
-    console.log(req.query)
-
     //Para saber se estamos usando a barra de busca ou não
     if(req.query.busca == null) { 
+        Posts.find({}).sort({'_id':-1}).exec().then(post => console.log(post[0])).catch(e => console.log(e.message))
         res.render('home', {})
-
     } else { 
         //Usamos a barra de busca
         res.render('busca', {})
