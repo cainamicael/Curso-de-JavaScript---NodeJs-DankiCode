@@ -186,9 +186,11 @@ section.outras-noticias h2 {
 
 .mais-lidas {
     width: 40%;
+    height: 100%;
+    background-color: white;
 }
 
-.mais-lidas h3 {
+.mais-lidas > h3 {
     background-color: #3F51B5;
     color: white;
     text-align: center;
