@@ -7,9 +7,7 @@ const app = express()
 
 //Configurações
 app.use(bobyParser.json())
-app.use(bobyParser.urlencoded({
-    extended: true
-}))
+app.use(bobyParser.urlencoded({extended: true}))
 app.engine('html', require('ejs').renderFile)
 app.set('view engine', 'html')
 app.use('/public', express.static(path.join(__dirname, 'public')))
