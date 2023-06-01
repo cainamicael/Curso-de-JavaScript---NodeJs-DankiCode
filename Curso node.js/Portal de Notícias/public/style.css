@@ -22,6 +22,7 @@ header {
 
 .logo {
     width: 50%;
+    text-align: left;
 }
 
 .logo h2 {
@@ -289,7 +290,7 @@ section.noticia {
 }
 
 .noticia-single h3 {
-    color: #303336;
+    color: #7B8591;
     font-size: 33px;
     margin: 10px 0;
 }
