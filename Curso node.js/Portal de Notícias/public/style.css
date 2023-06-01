@@ -266,7 +266,7 @@ header{
   }
 
   footer{
-      
+      height: 60px;
       background-color: #0aacdc;
       text-align: center;
       color:white;
