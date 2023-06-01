@@ -1,9 +1,14 @@
 //Módulos
 const express = require('express')
+const mongoose = require('mongoose')
 var bobyParser = require('body-parser')
 const path = require('path')
 
 const app = express()
+
+mongoose.connect('mongodb+srv://root:7UqWSYx6hjbGfFfS@cluster0.dmxkhyz.mongodb.net/?retryWrites=true&w=majority',{useNewUrlParser: true, useUnifiedTopology: true})//O obj é para usar a versão atualizada
+.then(() => {console.log('Conectado ao mongo com sucesso')})
+.catch(err => {console.log(err.message)})
 
 //Configurações
 app.use(bobyParser.json())

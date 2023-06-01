@@ -1242,3 +1242,10 @@ Para não ter slug no input de busca:
 
     <form action="/">
 
+Conectando ao Mongo db 
+
+npm install mongoose
+
+    mongoose.connect('mongodb+srv://root:7UqWSYx6hjbGfFfS@cluster0.dmxkhyz.mongodb.net/?retryWrites=true&w=majority',{useNewUrlParser: true, useUnifiedTopology: true})//O obj é para usar a versão atualizada - A senha é dada no site
+    .then(() => {console.log('Conectado ao mongo com sucesso')})
+    .catch(err => {console.log(err.message)})
