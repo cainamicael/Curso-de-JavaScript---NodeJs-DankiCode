@@ -1249,3 +1249,12 @@ npm install mongoose
     mongoose.connect('mongodb+srv://root:7UqWSYx6hjbGfFfS@cluster0.dmxkhyz.mongodb.net/?retryWrites=true&w=majority',{useNewUrlParser: true, useUnifiedTopology: true})//O obj é para usar a versão atualizada - A senha é dada no site
     .then(() => {console.log('Conectado ao mongo com sucesso')})
     .catch(err => {console.log(err.message)})
+
+Funcionamento do mongo db
+
+coleções (conjunto de documentos não relacionais):
+
+Exemplo de Coleção:
+
+    {"_id":{"$oid":"6478f83cb8083524522d12ae"},"titulo":"Como ser um programador?!","imagem":"https://blog.dankicode.com/wp-content/uploads/2020/12/desenvolvedor-full-stack-em-2021.png","categoria":"educação","conteudo":"<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis et, nulla quos hic ab unde quia h3 Animi ex nemo enim quisquam quidem pariatur assumenda modi? Ipsum, omnis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt neque itaque nobis aspernatur? Non optio recusandae deleniti odio perspiciatis unde. Repellat praesentium, minima aperiam magnam consectetur soluta dolores non dolore?</P><p> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis et, nulla quos hic ab unde quia h3 Animi ex nemo enim quisquam quidem pariatur assumenda modi? Ipsum, omnis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt neque itaque nobis aspernatur? Non optio recusandae deleniti odio perspiciatis unde. Repellat praesentium, minima aperiam magnam consectetur soluta dolores non dolore?</p>"}
+
