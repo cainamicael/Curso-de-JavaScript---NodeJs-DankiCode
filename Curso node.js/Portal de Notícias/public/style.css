@@ -156,6 +156,19 @@ section.outras-noticias h2 {
     margin: 20px 0;
 }
 
+.box-ultimas-single a {
+    display: block;
+    width: 101px;
+    height: 36px;
+    border: 1px solid #EBEBEB;
+    text-decoration: none;
+    color: #0AACDC;
+    border-radius: 10px;
+    line-height: 36px;
+    text-align: center;
+    font-size: 13px;
+}
+
 .box-ultimas-single h2 {
     font-size: 28px !important;
     color: #303336;
