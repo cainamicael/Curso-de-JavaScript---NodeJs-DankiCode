@@ -26,14 +26,16 @@ app.get('/', (req, res) => {
 
     } else { 
         //Usamos a barra de busca
-        res.send(`Você fez a busca pelo termo: ${req.query.busca}`)
+        res.render('home', {})
 
     }
 
 })
 
 app.get('/:slug', (req, res) => { //URLs Amigáveis
-    res.send(req.params.slug)
+    //res.send(req.params.slug)
+    res.render(`single`, {})
+
 })
 
 //Servidor
