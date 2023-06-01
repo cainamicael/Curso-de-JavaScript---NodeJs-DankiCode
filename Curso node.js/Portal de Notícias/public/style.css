@@ -29,6 +29,11 @@ header {
     color: white;
 }
 
+.logo a {
+    color: white;
+    text-decoration: none;
+}
+
 .form-busca {
     width: 50%;
     text-align: right;
