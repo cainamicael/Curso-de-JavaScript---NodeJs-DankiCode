@@ -1234,3 +1234,7 @@ Cabeçalho para projetos com express, ejs, body-parser:
         console.log('O server está rodando')
     })
 
+Incluindo o header com ejs:
+
+    <%- include('partials/header.html') %>
+
