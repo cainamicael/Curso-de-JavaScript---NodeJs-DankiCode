@@ -132,6 +132,7 @@ section.outras-noticias h2 {
 
 .ultimas {
     width: 60%;
+    height: 120px;
     padding: 0 10px;
     display: flex;
     flex-wrap: wrap;
