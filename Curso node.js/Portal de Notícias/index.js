@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
 
     } else { 
         //Usamos a barra de busca
-        res.render('home', {})
+        res.render('busca', {})
 
     }
 

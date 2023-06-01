@@ -301,6 +301,15 @@ section.noticia {
 }
 
 @media screen and (max-width: 768px){
+    .noticia-single {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .logo {
+        text-align: center;
+    }
+
     .logo, .form-busca {
         width: 100%;
     }

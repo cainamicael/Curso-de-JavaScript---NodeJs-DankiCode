@@ -1238,3 +1238,7 @@ Incluindo o header com ejs:
 
     <%- include('partials/header.html') %>
 
+Para não ter slug no input de busca:
+
+    <form action="/">
+
