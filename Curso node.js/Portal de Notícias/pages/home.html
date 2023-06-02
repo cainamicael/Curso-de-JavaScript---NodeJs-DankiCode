@@ -2,17 +2,15 @@
 
     <section class="noticia-destaque">
         <div class="center">
-            <a href="<%= posts[0].slug%>">
+            
                 <div class="img-destaque">
                     <div class="overlay-destaque"></div><!--overlay-destaque-->
                         <div class="title-destaque-descricao">
-                            <h2><%= posts[0].titulo%></h2>
+                            <a href="<%= posts[0].slug%>"><h2><%= posts[0].titulo%></h2></a>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem exercitationem illo est pariatur cumque molestiae quam amet temporibus recusandae assumenda a impedit voluptas laudantium officiis quasi odio officia, laborum rem?</p>
                         </div><!--title-destaque-descricao-->
                         <img src="<%= posts[0].imagem%>">
                 </div><!--img-destaque-->
-            </a>
-
             
         </div><!--center-->
     </section><!--noticia-destaque-->
