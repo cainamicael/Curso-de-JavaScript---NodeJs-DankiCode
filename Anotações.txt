@@ -1335,3 +1335,16 @@ No home.html:
             </div><!--title-destaque-descricao-->
             <img src="<%= posts[0].imagem%>">
     </div><!--img-destaque-->
+
+Filtrando pelo slug e atualizando as views:
+
+    app.get('/:slug', (req, res) => { //URLs Amigáveis
+        //res.send(req.params.slug)
+        Posts.findOneAndUpdate({slug: req.params.slug}, {$inc: {views: 1}}, {new: true}).exec()//Filtrar onde o parametro é igual ao slug passado e incremantar 1 na view
+        .then(resposta => {
+            console.log(resposta)
+            res.render('single', {})
+        })
+        .catch(e => console.log(e.message))
+
+    })
