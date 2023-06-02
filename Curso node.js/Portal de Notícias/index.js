@@ -11,12 +11,8 @@ const app = express()
 
 //Conectando ao mongo
 mongoose.connect('mongodb+srv://root:mn60B7jIvkruNND3@cluster0.dmxkhyz.mongodb.net/dankicode?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => {
-    console.log('Conectado ao banco de dados com sucesso');
-  })
-  .catch(err => {
-    console.log(err.message);
-  });
+.then(() => {console.log('Conectado ao banco de dados com sucesso');})
+.catch(err => {console.log(err.message);});
 
 //Configurações
 app.use(bobyParser.json())
@@ -32,8 +28,9 @@ app.get('/', (req, res) => {
     if(req.query.busca == null) { 
         Posts.find({}).sort({'_id': -1}).exec()
         .then(posts => {
-            console.log(posts)
-            res.render('home', {})
+            //Temos que fazer isso para poder encurtar a descrição
+            
+            res.render('home', {posts: posts})
         })
         .catch(e => console.log(e.message))
 
