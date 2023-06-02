@@ -21,25 +21,19 @@
             <br><br>
             <div class="center">
                 <div class="ultimas">
-                    <div class="box-ultima-single">
-                        <img src="/public/images/noticia.jpg" alt="Pessoa com prancha na praia">
-                        <div class="conteudo-noticia-single">
-                            <h3>Natureza em Geral</h3><!--categoria-->
-                            <h2>Como encarar o surf em Floripa</h2><!--título-->
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta libero atque eveniet aliquid ut ad ullam fuga, ex quam! </p><!--pedaço da notícia-->
-                            <a href="/encarar-o-surf">Ler Mais</a>
-                        </div><!--conteudo-noticia-single-->
-                    </div><!--box-ultima-single-->
 
+                    <%for(let i =  0; i < posts.length; i++) { %>
                     <div class="box-ultima-single">
-                        <img src="/public/images/noticia.jpg" alt="Pessoa com prancha na praia">
+                        <img src="<%= posts[i].imagem%>">
                         <div class="conteudo-noticia-single">
-                            <h3>Natureza em Geral</h3><!--categoria-->
-                            <h2>Como encarar o surf em Floripa</h2><!--título-->
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta libero atque eveniet aliquid ut ad ullam fuga, ex quam! </p><!--pedaço da notícia-->
+                            <h3><%= posts[i].categoria%></h3><!--categoria-->
+                            <h2><%= posts[i].titulo%></h2><!--título-->
+                            <p><%- posts[i].descricaoCurta%></p><!--pedaço da notícia-->
                             <a href="/encarar-o-surf">Ler Mais</a>
                         </div><!--conteudo-noticia-single-->
                     </div><!--box-ultima-single-->
+                    <% } %>
+
                 </div><!--ultimas-->
 
                 <div class="mais-lidas">

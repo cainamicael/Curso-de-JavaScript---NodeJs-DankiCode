@@ -1331,7 +1331,7 @@ No home.html:
         <div class="overlay-destaque"></div><!--overlay-destaque-->
             <div class="title-destaque-descricao">
                 <a href="<%= posts[0].slug%>"><h2><%= posts[0].titulo%></h2></a>
-                <p><%- posts[0].descricaoCurta%>...</p>
+                <p><%- posts[0].descricaoCurta%>...</p>//tem que ser - para recolhecer as tags html que tem no bd
             </div><!--title-destaque-descricao-->
             <img src="<%= posts[0].imagem%>">
     </div><!--img-destaque-->
