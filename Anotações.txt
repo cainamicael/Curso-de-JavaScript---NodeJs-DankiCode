@@ -1303,5 +1303,35 @@ No index.js:
 
     }
 
+Encurtarndo a descrição:
+
+    if(req.query.busca == null) { 
+        Posts.find({}).sort({'_id': -1}).exec()
+        .then(posts => {
+            //Temos que fazer isso para poder encurtar a descrição
+            posts = posts.map(val => {
+              return {
+                titulo: val.titulo,
+                conteudo: val.conteudo,
+                descricaoCurta: val.conteudo.substring(0, 100),
+                imagem: val.imagem,
+                slug: val.slug,
+                categoria: val.categoria
+              }
+            })
+            res.render('home', {posts: posts})
+        })
+        .catch(e => console.log(e.message))
+
+    }
+
 No home.html:
 
+    <div class="img-destaque">
+        <div class="overlay-destaque"></div><!--overlay-destaque-->
+            <div class="title-destaque-descricao">
+                <a href="<%= posts[0].slug%>"><h2><%= posts[0].titulo%></h2></a>
+                <p><%- posts[0].descricaoCurta%>...</p>
+            </div><!--title-destaque-descricao-->
+            <img src="<%= posts[0].imagem%>">
+    </div><!--img-destaque-->

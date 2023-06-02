@@ -29,7 +29,16 @@ app.get('/', (req, res) => {
         Posts.find({}).sort({'_id': -1}).exec()
         .then(posts => {
             //Temos que fazer isso para poder encurtar a descrição
-            
+            posts = posts.map(val => {
+              return {
+                titulo: val.titulo,
+                conteudo: val.conteudo,
+                descricaoCurta: val.conteudo.substring(0, 100),
+                imagem: val.imagem,
+                slug: val.slug,
+                categoria: val.categoria
+              }
+            })
             res.render('home', {posts: posts})
         })
         .catch(e => console.log(e.message))
