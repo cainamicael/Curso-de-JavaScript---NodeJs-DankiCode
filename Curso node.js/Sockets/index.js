@@ -5,6 +5,8 @@ const io = require('socket.io')(http)
 var usuarios = []
 var socketIds = []//Outra "camada" de segurança
 
+var mensagens = []
+
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html')
 
@@ -24,7 +26,7 @@ io.on('connection',(socket)=>{
             socket.emit('new user',{success: true, qtdOnline: usuarios.length, usuariosOnline: usuarios})
 
             //Emit para os outros usuários dizendo que tem um novo usuário ativo.
-            //socket.broadcast.emit("hello", "world")
+            socket.broadcast.emit('entrou', 'Usuário ' + nome +  ' entrou!')
 
         }
 

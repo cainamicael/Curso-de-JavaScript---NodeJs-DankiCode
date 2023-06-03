@@ -37,6 +37,12 @@
               alert(`${nome}, Bem vindo ao DankiChat! Temos o total de ${data.qtdOnline} usuários online`)
               console.log(data.usuariosOnline)//Para mostrar todos os usuários que estão online
 
+              //Para notificar que um novo usuário entrou na conversa
+              socket.on('entrou', (data) => {
+                alert(data)
+
+              })
+
             }else{
                 alert('Já existe usuário com este nome....')
                 window.location.href= "/"
@@ -52,7 +58,7 @@
         form.addEventListener('submit',(e)=>{
             e.preventDefault()
             if(input.value){
-                socket.emit('chat message',{msg:input.value,nome:nome})
+                socket.emit('chat message',{msg:input.value, nome:nome})
                 input.value = ''
 
             }
