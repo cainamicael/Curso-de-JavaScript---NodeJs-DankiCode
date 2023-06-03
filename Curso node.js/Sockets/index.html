@@ -30,14 +30,23 @@
     <script>
         var socket = io()
 
-        //Vai receber o dado do backend - Todos os usuários
-        socket.on('conectado', msg => {//nome do evento que criamos no backend
-            console.log('Todos os usuarios estão recebendo' + msg)
+        var nome = prompt('Qual é o seu nome? ')
+        alert('Bem vindo ao danki chat, ' + nome + '!')
 
-        })
+        var messages = document.getElementById('messages')
+        var form = document.getElementById('form')
+        var input = document.getElementById('input')
 
-        socket.on('novo usuario', msg => {//Recebe o evento do broadcast
-            console.log(msg)
+        //Para quando eu enviar o form
+        form.addEventListener('submit', (e) => {
+            e.preventDefault()//Evitar o comportamento padrão
+
+            if(input.value) {//se existir algum valor
+                socket.emit('chat message', {msg: input.value, nome: nome})//Agora eu estou enviando do front para o back
+                input.value = ''//Depois de tudo, vamos resetar o valor do input
+                alert('A mensagem foi enviada com sucesso!')
+
+            }
 
         })
 
