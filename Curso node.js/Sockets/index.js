@@ -7,6 +7,9 @@ app.get('/', (req, res) => {
 
 })
 
+
+
 http.listen(3000, () => {
     console.log('Servidor em que vamos usar socket iniciado')
+
 })
