@@ -28,7 +28,13 @@
 
     <script src="/socket.io/socket.io.js"></script>
     <script>
-        var socket = io();
+        var socket = io()
+
+        //Vai receber o dado do backend
+        socket.on('conectado', msg => {//nome do evento que criamos no backend
+            console.log(msg)
+            
+        })
 
     </script>
   </body>

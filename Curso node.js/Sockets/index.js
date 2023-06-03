@@ -11,6 +11,9 @@ app.get('/', (req, res) => {
 io.on('connection', socket => { //O socket faz referência ao usuário
     console.log('Usuário conectado ' + socket.id)//A gente pode ver detalhes da conexão
 
+    //Vai enviar o dado para o frontend
+    io.emit('conectado', 'Aqui é o conteúdo que vamos passar para o front')//no front tem que ser o mesmo nome
+
     //Já que o usuário é o parâmetro socket, para sabermos se ele está desconectado usamos:
     socket.on('disconnect', () => {
         console.log('Usuário desconectado')
