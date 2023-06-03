@@ -65,23 +65,30 @@
 
         })
 
-        socket.on('chat message',function(obj){
-            if(obj.nome == nome){
-              //coloco a mensagem com uma cor.
-              var item = document.createElement('li')
-              item.style.backgroundColor = 'gray'
-              item.textContent = obj.nome+' disse: '+obj.msg
-              messages.appendChild(item)
-              window.scrollTo(0, document.body.scrollHeight)
+        socket.on('chat message',function(array){
+            document.getElementById('messages').innerHTML = ''
+            
+            array.forEach(obj => {
 
-            }else{
-              //coloco com outra.
-              var item = document.createElement('li')
-              item.textContent =obj.nome+' disse: '+obj.msg
-              messages.appendChild(item)
-              window.scrollTo(0, document.body.scrollHeight)
+                if(obj.nome == nome){
+                    //coloco a mensagem com uma cor.
+                    var item = document.createElement('li')
+                    item.style.backgroundColor = 'gray'
+                    item.textContent = obj.nome+' disse: '+obj.msg
+                    messages.appendChild(item)
+                    window.scrollTo(0, document.body.scrollHeight)
+      
+                  }else{
+                    //coloco com outra.
+                    var item = document.createElement('li')
+                    item.textContent =obj.nome+' disse: '+obj.msg
+                    messages.appendChild(item)
+                    window.scrollTo(0, document.body.scrollHeight)
+      
+                  }
 
-            }
+
+            })
 
         })
     </script>

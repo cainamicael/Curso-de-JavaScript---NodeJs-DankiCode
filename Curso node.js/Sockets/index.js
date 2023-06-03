@@ -34,7 +34,8 @@ io.on('connection',(socket)=>{
 
     socket.on('chat message',(obj)=>{
         if(usuarios.indexOf(obj.nome) != -1 && usuarios.indexOf(obj.nome) == socketIds.indexOf(socket.id)) {
-            io.emit('chat message',obj)
+            mensagens.push(obj)
+            io.emit('chat message', mensagens)
 
         } else {
             console.log('Erro: Você não tem permissão para executar a ação.')
