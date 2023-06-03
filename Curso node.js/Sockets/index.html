@@ -44,7 +44,6 @@
             if(input.value) {//se existir algum valor
                 socket.emit('chat message', {msg: input.value, nome: nome})//Agora eu estou enviando do front para o back
                 input.value = ''//Depois de tudo, vamos resetar o valor do input
-                alert('A mensagem foi enviada com sucesso!')
 
             }
 
