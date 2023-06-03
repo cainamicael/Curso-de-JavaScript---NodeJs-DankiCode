@@ -30,10 +30,15 @@
     <script>
         var socket = io()
 
-        //Vai receber o dado do backend
+        //Vai receber o dado do backend - Todos os usuários
         socket.on('conectado', msg => {//nome do evento que criamos no backend
+            console.log('Todos os usuarios estão recebendo' + msg)
+
+        })
+
+        socket.on('novo usuario', msg => {
             console.log(msg)
-            
+
         })
 
     </script>
