@@ -1423,7 +1423,7 @@ Sistema de busca com mongoDB:
     })
     .catch(e => console.log(e.message))
 
-Sockets:
+Sockets: (npm install socket.io express)
 
 Estrutura básica:
 
