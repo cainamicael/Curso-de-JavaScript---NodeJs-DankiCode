@@ -17,7 +17,7 @@
 
       #messages > li { padding: 0.5rem 1rem; }
 
-      #messages > li:nth-child(odd) { background: #efefef; }
+      #messages > li { background-color: white; }
     </style>
   </head>
   <body>
@@ -37,7 +37,7 @@
         var form = document.getElementById('form')
         var input = document.getElementById('input')
 
-        //Para quando eu enviar o form
+        //Para quando eu enviar o form, vamos mandar os dados para o servidor fazer as operações necessárias
         form.addEventListener('submit', (e) => {
             e.preventDefault()//Evitar o comportamento padrão
 
@@ -48,6 +48,28 @@
 
             }
 
+        })
+
+        //Agora vamos ouvir o servidor
+        socket.on('chat message', obj => {
+            if(obj.nome == nome){
+                //Coloco a mensagem com um background diferente
+                var item = document.createElement('li')
+                item.textContent = `${obj.nome}: ${obj.msg}`
+                item.style.backgroundColor = 'gray'
+                messages.appendChild(item)
+                window.scrollTo(0, document.body.scrollHeight)
+
+            } else {
+                //Não fui eu quem digitei. O fundo vai ser de outra cor (no caso vai ser branco)
+                var item = document.createElement('li')
+                item.textContent = `${obj.nome}: ${obj.msg}`
+                item.style.backgroundColor = 'white'
+                messages.appendChild(item)
+                window.scrollTo(0, document.body.scrollHeight)
+
+
+            }
         })
 
     </script>

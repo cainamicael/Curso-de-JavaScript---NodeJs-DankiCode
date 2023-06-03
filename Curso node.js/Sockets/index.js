@@ -11,8 +11,8 @@ app.get('/', (req, res) => {
 io.on('connection', socket => { //O socket faz referência ao usuário
    
     socket.on('chat message', (obj) => {
-        console.log(obj)
-        
+        io.emit('chat message', obj) //Estou enviando o obj para todos os clientes
+
     })
 
 })
