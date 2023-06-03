@@ -23,7 +23,7 @@ io.on('connection',(socket)=>{
             usuarios.push(nome)
             socketIds.push(socket.id)
 
-            socket.emit('new user',{success: true, qtdOnline: usuarios.length, usuariosOnline: usuarios})
+            socket.emit('new user',{success: true, qtdOnline: usuarios.length, usuariosOnline: usuarios, mensagens: mensagens})
 
             //Emit para os outros usuários dizendo que tem um novo usuário ativo.
             socket.broadcast.emit('entrou', 'Usuário ' + nome +  ' entrou!')
@@ -34,7 +34,7 @@ io.on('connection',(socket)=>{
 
     socket.on('chat message',(obj)=>{
         if(usuarios.indexOf(obj.nome) != -1 && usuarios.indexOf(obj.nome) == socketIds.indexOf(socket.id)) {
-            mensagens.push(obj)
+            mensagens.push(obj)//Posso salvar no banco de dados também
             io.emit('chat message', mensagens)
 
         } else {
