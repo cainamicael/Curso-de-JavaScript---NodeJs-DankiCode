@@ -66,8 +66,8 @@
         })
 
         socket.on('chat message',function(array){
-            document.getElementById('messages').innerHTML = ''
-            
+            document.getElementById('messages').innerHTML = ''//Para evitar duplicidade nas mensagens
+
             array.forEach(obj => {
 
                 if(obj.nome == nome){
