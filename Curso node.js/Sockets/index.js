@@ -11,15 +11,17 @@ app.get('/', (req, res) => {
 })
 
 io.on('connection',(socket)=>{
-    socket.on('new user',function(data){
-        if(usuarios.indexOf(data) != -1){
+    socket.on('new user', function(nome){
+        if(usuarios.indexOf(nome) != -1){
+            //O nome já está em uso
             socket.emit('new user',{success: false})
 
         }else{
-            usuarios.push(data)
+            //Ainda não tem ninguém com esse nome. Podemos usar
+            usuarios.push(nome)
             socketIds.push(socket.id)
 
-            socket.emit('new user',{success: true})
+            socket.emit('new user',{success: true, online: usuarios.length})
 
             //Emit para os outros usuários dizendo que tem um novo usuário ativo.
             //socket.broadcast.emit("hello", "world")
