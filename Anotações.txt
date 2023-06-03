@@ -1412,3 +1412,14 @@ Queries aninhadas:
         .catch(e => console.log(e.message))
 
     }
+
+Sistema de busca com mongoDB:
+
+    Posts.find({ titulo: { $regex: req.query.busca, $options: 'i' } }).exec()//Para buscar textos parciais do título
+    .then(posts => {
+        console.log(posts)
+        res.render('busca', { posts: posts })
+
+    })
+    .catch(e => console.log(e.message))
+

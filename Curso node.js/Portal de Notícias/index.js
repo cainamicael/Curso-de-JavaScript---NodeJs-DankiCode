@@ -38,6 +38,7 @@ app.get('/', (req, res) => {
                 slug: val.slug,
                 categoria: val.categoria
               }
+
             })
 
             Posts.find({}).sort({'views': -1}).limit(3).exec()//Mostra as maiores views
@@ -52,6 +53,7 @@ app.get('/', (req, res) => {
                         categoria: val.categoria,
                         views: val.views
                     }
+
                 })
 
                 res.render('home', {posts: posts, postsTop:postsTop})
@@ -65,7 +67,12 @@ app.get('/', (req, res) => {
 
     } else { 
         //Usamos a barra de busca
-        res.render('busca', {})
+        Posts.find({ titulo: { $regex: req.query.busca, $options: 'i' } }).exec()//Para buscar textos parciais do título
+        .then(posts => {
+            res.render('busca', { posts: posts, contagem: posts.length})
+
+        })
+        .catch(e => console.log(e.message))
 
     }
 
@@ -88,11 +95,13 @@ app.get('/:slug', (req, res) => { //URLs Amigáveis
                         categoria: val.categoria,
                         views: val.views
                     }
+
                 })
 
                 res.render('single', {noticia: resposta, postsTop: postsTop})
 
             })
+            .catch(e => console.log(e.message))
 
         } else {
             res.redirect('/')//Para se não existir o slug, voltar para o home
