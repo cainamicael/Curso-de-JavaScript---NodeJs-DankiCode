@@ -75,7 +75,24 @@ app.get('/:slug', (req, res) => { //URLs Amigáveis
     //res.send(req.params.slug)
     Posts.findOneAndUpdate({slug: req.params.slug}, {$inc: {views: 1}}, {new: true}).exec()//Filtrar onde o parametro é igual ao slug passado e incremantar 1 na view
     .then(resposta => {
-        res.render('single', {noticia: resposta})
+    Posts.find({}).sort({'views': -1}).limit(3).exec()//Mostra as maiores views
+        .then(postsTop => {
+            postsTop = postsTop.map(val => {
+                return {
+                    titulo: val.titulo,
+                    conteudo: val.conteudo,
+                    descricaoCurta: val.conteudo.substring(0, 100),
+                    imagem: val.imagem,
+                    slug: val.slug,
+                    categoria: val.categoria,
+                    views: val.views
+                }
+            })
+
+            res.render('single', {noticia: resposta, postsTop: postsTop})
+
+        })
+
     })
     .catch(e => console.log(e.message))
 
@@ -84,6 +101,6 @@ app.get('/:slug', (req, res) => { //URLs Amigáveis
 
 //Servidor
 app.listen(5000, () => {
-    console.log('Server rodando');
+    console.log('Server rodando')
     
-});
+})

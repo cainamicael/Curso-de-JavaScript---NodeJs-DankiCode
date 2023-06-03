@@ -20,41 +20,18 @@
             <div class="mais-lidas">
                 <h3>As Mais Lidas</h3>
                 <div class="mais-lidas-noticias">
-                    <div class="mais-lida-noticia-single">
-                        <img src="/public/images/small.jpg" alt="Beija flor">
-                        <div class="texto-mais-lida-single">
-                            <h4>Natureza</h4>
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim cumque suscipit beatae similique dolorem.</p>
-                            <a href="/encarar-o-surf">Ler Mais</a>
-                        </div><!--texto-mais-lida-noticia-single-->
-                    </div><!--mais-lida-noticia-single-->
 
-                    <div class="mais-lida-noticia-single">
-                        <img src="/public/images/small.jpg" alt="Beija flor">
-                        <div class="texto-mais-lida-single">
-                            <h4>Natureza</h4>
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim cumque suscipit beatae similique dolorem.</p>
-                            <a href="/encarar-o-surf">Ler Mais</a>
-                        </div><!--texto-mais-lida-noticia-single-->
-                    </div><!--mais-lida-noticia-single-->
+                    <%for(let i = 0; i < postsTop.length; i++) { %>
+                        <div class="mais-lida-noticia-single">
+                            <img src="<%= postsTop[i].imagem%>">
+                            <div class="texto-mais-lida-single">
+                                <h4><%= postsTop[i].categoria%></h4>
+                                <p><%- postsTop[i].descricaoCurta%>...</p>
+                                <a href="<%= postsTop[i].slug%>">Ler Mais</a>
+                            </div><!--texto-mais-lida-noticia-single-->
+                        </div><!--mais-lida-noticia-single-->
+                        <% } %>
 
-                    <div class="mais-lida-noticia-single">
-                        <img src="/public/images/small.jpg" alt="Beija flor">
-                        <div class="texto-mais-lida-single">
-                            <h4>Natureza</h4>
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim cumque suscipit beatae similique dolorem.</p>
-                            <a href="/encarar-o-surf">Ler Mais</a>
-                        </div><!--texto-mais-lida-noticia-single-->
-                    </div><!--mais-lida-noticia-single-->
-
-                    <div class="mais-lida-noticia-single">
-                        <img src="/public/images/small.jpg" alt="Beija flor">
-                        <div class="texto-mais-lida-single">
-                            <h4>Natureza</h4>
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim cumque suscipit beatae similique dolorem.</p>
-                            <a href="/encarar-o-surf">Ler Mais</a>
-                        </div><!--texto-mais-lida-noticia-single-->
-                    </div><!--mais-lida-noticia-single-->
                 </div><!--mais-lidas-noticias-->
 
             </div><!--mais-lidas-->
