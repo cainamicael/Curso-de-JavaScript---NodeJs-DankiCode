@@ -3,7 +3,7 @@ const http = require('http').createServer(app)
 const io = require('socket.io')(http)
 
 var usuarios = []
-var socketIds = []
+var socketIds = []//Outra "camada" de segurança
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html')
