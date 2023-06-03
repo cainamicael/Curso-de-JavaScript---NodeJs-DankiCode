@@ -1423,3 +1423,21 @@ Sistema de busca com mongoDB:
     })
     .catch(e => console.log(e.message))
 
+Sockets:
+
+Estrutura básica do socket:
+
+    const app = require('express')()
+    const http = require('http').createServer(app)
+    const io = require('socket.io')(http)
+
+    app.get('/', (req, res) => {
+        res.sendFile(__dirname + '/index.html')
+
+    })
+
+    http.listen(3000, () => {
+    console.log('listening on *:3000')
+
+    })
+
