@@ -1447,3 +1447,44 @@ Para usar sockets no front:
         var socket = io();
     </script>
 
+Enviando e recebendo eventos.
+
+Backend:
+
+    //Para sabermos quando o usuário for conectado
+    io.on('connection', socket => { //O socket faz referência ao usuário
+        console.log('Usuário conectado ' + socket.id)//A gente pode ver detalhes da conexão
+
+        //Vai enviar o dado para o frontend - Vai enviar para todos os usuários da aplicação
+        io.emit('conectado', 'Aqui é o conteúdo que vamos passar para o front')//no front tem que ser o mesmo nome
+
+        //Para enviar um dado para todos os usuários, com excessão do que entrou agora
+        socket.broadcast.emit('novo usuario', `Usuário ${socket.id} acabou de entrar!`)//novo evento
+
+        //Já que o usuário é o parâmetro socket, para sabermos se ele está desconectado usamos:
+        socket.on('disconnect', () => {
+            console.log('Usuário desconectado')
+            
+        })
+
+    })
+
+Frontend:
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io()
+
+        //Vai receber o dado do backend - Todos os usuários
+        socket.on('conectado', msg => {//nome do evento que criamos no backend
+            console.log('Todos os usuarios estão recebendo' + msg)
+
+        })
+
+        socket.on('novo usuario', msg => {//Recebe o evento do broadcast
+            console.log(msg)
+
+        })
+
+    </script>
+
