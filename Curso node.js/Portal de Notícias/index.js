@@ -40,6 +40,7 @@ app.get('/', (req, res) => {
               }
             })
             res.render('home', {posts: posts})
+
         })
         .catch(e => console.log(e.message))
 
@@ -55,10 +56,10 @@ app.get('/:slug', (req, res) => { //URLs Amigáveis
     //res.send(req.params.slug)
     Posts.findOneAndUpdate({slug: req.params.slug}, {$inc: {views: 1}}, {new: true}).exec()//Filtrar onde o parametro é igual ao slug passado e incremantar 1 na view
     .then(resposta => {
-        console.log(resposta)
         res.render('single', {noticia: resposta})
     })
     .catch(e => console.log(e.message))
+
 
 })
 
