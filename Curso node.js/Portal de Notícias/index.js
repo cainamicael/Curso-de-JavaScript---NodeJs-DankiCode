@@ -75,7 +75,7 @@ app.get('/:slug', (req, res) => { //URLs Amigáveis
     //res.send(req.params.slug)
     Posts.findOneAndUpdate({slug: req.params.slug}, {$inc: {views: 1}}, {new: true}).exec()//Filtrar onde o parametro é igual ao slug passado e incremantar 1 na view
     .then(resposta => {
-        if(resposta != null) {
+        if(resposta != null) {//A resposta diz se existe o slug ou vai retornar null
             Posts.find({}).sort({'views': -1}).limit(3).exec()//Mostra as maiores views
             .then(postsTop => {
                 postsTop = postsTop.map(val => {
