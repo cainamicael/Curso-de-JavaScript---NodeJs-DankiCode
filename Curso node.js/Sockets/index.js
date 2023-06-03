@@ -21,7 +21,7 @@ io.on('connection',(socket)=>{
             usuarios.push(nome)
             socketIds.push(socket.id)
 
-            socket.emit('new user',{success: true, online: usuarios.length})
+            socket.emit('new user',{success: true, qtdOnline: usuarios.length, usuariosOnline: usuarios})
 
             //Emit para os outros usuários dizendo que tem um novo usuário ativo.
             //socket.broadcast.emit("hello", "world")

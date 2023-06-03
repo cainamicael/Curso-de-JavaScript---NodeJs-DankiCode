@@ -34,7 +34,8 @@
 
         socket.on('new user',function(data){
             if(data.success){
-              alert(`${nome}, Bem vindo ao DankiChat! Temos o total de ${data.online} usuários online`)
+              alert(`${nome}, Bem vindo ao DankiChat! Temos o total de ${data.qtdOnline} usuários online`)
+              console.log(data.usuariosOnline)//Para mostrar todos os usuários que estão online
 
             }else{
                 alert('Já existe usuário com este nome....')
