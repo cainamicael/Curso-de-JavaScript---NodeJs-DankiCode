@@ -69,6 +69,18 @@ app.get('/', (req, res) => {
         //Usamos a barra de busca
         Posts.find({ titulo: { $regex: req.query.busca, $options: 'i' } }).exec()//Para buscar textos parciais do título
         .then(posts => {
+            posts = posts.map(val => {
+                return {
+                  titulo: val.titulo,
+                  conteudo: val.conteudo,
+                  descricaoCurta: val.conteudo.substring(0, 100),
+                  imagem: val.imagem,
+                  slug: val.slug,
+                  categoria: val.categoria
+                }
+  
+              })
+
             res.render('busca', { posts: posts, contagem: posts.length})
 
         })
