@@ -17,7 +17,7 @@
 
       #messages > li { padding: 0.5rem 1rem; }
 
-      #messages > li { background-color: white; }
+      #messages > li{ background-color: white;}
     </style>
   </head>
   <body>
@@ -25,53 +25,58 @@
     <form id="form" action="">
       <input id="input" autocomplete="off" /><button>Send</button>
     </form>
-
     <script src="/socket.io/socket.io.js"></script>
     <script>
         var socket = io()
+    
+        var nome = prompt('Qual seu nome?')
+        socket.emit('new user',nome)
 
-        var nome = prompt('Qual é o seu nome? ')
-        alert('Bem vindo ao danki chat, ' + nome + '!')
+        socket.on('new user',function(data){
+            if(data.success){
+              alert('Bem-vindo ao Danki Chat '+nome)
+
+            }else{
+                alert('Já existe usuário com este nome....')
+                window.location.href= "/"
+
+            }
+
+        })
 
         var messages = document.getElementById('messages')
         var form = document.getElementById('form')
         var input = document.getElementById('input')
 
-        //Para quando eu enviar o form, vamos mandar os dados para o servidor fazer as operações necessárias
-        form.addEventListener('submit', (e) => {
-            e.preventDefault()//Evitar o comportamento padrão
-
-            if(input.value) {//se existir algum valor
-                socket.emit('chat message', {msg: input.value, nome: nome})//Agora eu estou enviando do front para o back
-                input.value = ''//Depois de tudo, vamos resetar o valor do input
+        form.addEventListener('submit',(e)=>{
+            e.preventDefault()
+            if(input.value){
+                socket.emit('chat message',{msg:input.value,nome:nome})
+                input.value = ''
 
             }
 
         })
 
-        //Agora vamos ouvir o servidor
-        socket.on('chat message', obj => {
+        socket.on('chat message',function(obj){
             if(obj.nome == nome){
-                //Coloco a mensagem com um background diferente
-                var item = document.createElement('li')
-                item.textContent = `${obj.nome}: ${obj.msg}`
-                item.style.backgroundColor = 'gray'
-                messages.appendChild(item)
-                window.scrollTo(0, document.body.scrollHeight)
+              //coloco a mensagem com uma cor.
+              var item = document.createElement('li')
+              item.style.backgroundColor = 'gray'
+              item.textContent = obj.nome+' disse: '+obj.msg
+              messages.appendChild(item)
+              window.scrollTo(0, document.body.scrollHeight)
 
-            } else {
-                //Não fui eu quem digitei. O fundo vai ser de outra cor (no caso vai ser branco)
-                var item = document.createElement('li')
-                item.textContent = `${obj.nome}: ${obj.msg}`
-                item.style.backgroundColor = 'white'
-                messages.appendChild(item)
-                window.scrollTo(0, document.body.scrollHeight)
-
-
+            }else{
+              //coloco com outra.
+              var item = document.createElement('li')
+              item.textContent =obj.nome+' disse: '+obj.msg
+              messages.appendChild(item)
+              window.scrollTo(0, document.body.scrollHeight)
 
             }
-        })
 
+        })
     </script>
   </body>
 </html>
