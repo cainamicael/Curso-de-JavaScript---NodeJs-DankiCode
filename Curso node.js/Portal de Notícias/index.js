@@ -75,23 +75,30 @@ app.get('/:slug', (req, res) => { //URLs Amigáveis
     //res.send(req.params.slug)
     Posts.findOneAndUpdate({slug: req.params.slug}, {$inc: {views: 1}}, {new: true}).exec()//Filtrar onde o parametro é igual ao slug passado e incremantar 1 na view
     .then(resposta => {
-    Posts.find({}).sort({'views': -1}).limit(3).exec()//Mostra as maiores views
-        .then(postsTop => {
-            postsTop = postsTop.map(val => {
-                return {
-                    titulo: val.titulo,
-                    conteudo: val.conteudo,
-                    descricaoCurta: val.conteudo.substring(0, 100),
-                    imagem: val.imagem,
-                    slug: val.slug,
-                    categoria: val.categoria,
-                    views: val.views
-                }
+        if(resposta != null) {
+            Posts.find({}).sort({'views': -1}).limit(3).exec()//Mostra as maiores views
+            .then(postsTop => {
+                postsTop = postsTop.map(val => {
+                    return {
+                        titulo: val.titulo,
+                        conteudo: val.conteudo,
+                        descricaoCurta: val.conteudo.substring(0, 100),
+                        imagem: val.imagem,
+                        slug: val.slug,
+                        categoria: val.categoria,
+                        views: val.views
+                    }
+                })
+
+                res.render('single', {noticia: resposta, postsTop: postsTop})
+
             })
 
-            res.render('single', {noticia: resposta, postsTop: postsTop})
+        } else {
+            res.redirect('/')//Para se não existir o slug, voltar para o home
 
-        })
+        }
+    
 
     })
     .catch(e => console.log(e.message))
