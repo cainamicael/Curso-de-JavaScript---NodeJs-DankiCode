@@ -21,7 +21,7 @@
     </style>
   </head>
   <body>
-    <h1>Usuários online:</h1>
+    <h1 style="display: none;">Usuários online:</h1>
     <span id="users">
         <ul></ul>
     </span>
@@ -41,6 +41,7 @@
               alert(`${nome}, Bem vindo ao DankiChat! Temos o total de ${data.qtdOnline} usuários online`)
 
               //Para mostrar todos os usuários que estão online
+              /*
               console.log(data.usuariosOnline)
               var users = document.getElementById('users')
               users.innerHTML = ''
@@ -50,7 +51,7 @@
                 user.style.textDecoration = 'none'
                 user.textContent = ` | ${u} `
                 users.appendChild(user)
-              })
+              })*/
 
 
               //Todo usuário novo que entrar vai poder ver as mensagens
