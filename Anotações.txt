@@ -1675,3 +1675,20 @@ Frontend:
     </body>
     </html>
 
+Deploy:
+
+Vamos usar a aws, e o serviço ec2
+
+ec2: Um servidor com o sistema operacional do nosso interesse
+Na aws, instância é sinônimo de servidor
+
+Vamos usar o powershell para rodar nossa instância e intalar o node
+https://docs.aws.amazon.com/pt_br/sdk-for-javascript/v2/developer-guide/setting-up-node-on-ec2-instance.html
+
+Para não usar a porta 5000, usamos o nginx (reverse proxy)
+sudo yum nginx
+sudo service nginx start
+
+SFTP (vamos usar o filezila)
+
+Vamos usar o PM2
