@@ -169,8 +169,8 @@ app.post('/admin/login', (req, res) => {
 
 //Quando clicarmos no submit do cadastro da notícia, vamos para esta rota
 app.post('/admin/cadastro', (req, res) => {
-
-    console.log(req.files)
+    
+    
     //Inserir no banco de dados
     Posts.create({
         titulo: req.body.titulo_noticia,
