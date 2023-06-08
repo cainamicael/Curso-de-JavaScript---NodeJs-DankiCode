@@ -1,6 +1,6 @@
 /*
     usuarios via bd
-    logout
+    mostrar usuario ou senha incorretos
     editar noticias
 */
 
@@ -174,6 +174,18 @@ app.post('/admin/login', (req, res) => {
 
 })
 
+app.get('/admin/logout', (req, res) => {
+    req.session.destroy( err => {
+        if(err){
+            console.log(err.message)
+
+        } else {
+            res.redirect('/admin/login')
+
+        }
+    })
+})
+
 //Quando clicarmos no submit do cadastro da notícia, vamos para esta rota
 app.post('/admin/cadastro', (req, res) => {
     let formato = req.files.arquivo.name.split('.')
@@ -198,7 +210,9 @@ app.post('/admin/cadastro', (req, res) => {
         autor: 'admin',
         views: 0
     })
+
     res.redirect('/admin/login')
+
 })
 
 //Quando clicarmos no X para deletar
