@@ -183,8 +183,10 @@ app.post('/admin/login', (req, res) => {
             if(val.login === req.body.login && val.senha === req.body.senha)  {
                 req.session.login = req.body.login
                 req.session.senha = req.body.senha
+
+                res.redirect('/admin/login')
     
-            } 
+            }
     
         })
         
