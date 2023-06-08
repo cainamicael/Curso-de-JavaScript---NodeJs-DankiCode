@@ -171,7 +171,7 @@ app.post('/admin/cadastro', (req, res) => {
         autor: 'admin',
         views: 0
     })
-    res.send('Cadastrado com sucesso!')
+    res.redirect('/admin/login')
 })
 
 //Quando clicarmos no X para deletar
