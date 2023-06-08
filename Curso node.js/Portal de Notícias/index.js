@@ -51,7 +51,7 @@ app.get('/', (req, res) => {
 
             })
 
-            Posts.find({}).sort({'views': -1}).limit(3).exec()//Mostra as maiores views
+            Posts.find({}).sort({'views': -1}).limit(6).exec()//Mostra as maiores views
             .then(postsTop => {
                 postsTop = postsTop.map(val => {
                     return {
@@ -105,7 +105,7 @@ app.get('/:slug', (req, res) => { //URLs Amigáveis
     Posts.findOneAndUpdate({slug: req.params.slug}, {$inc: {views: 1}}, {new: true}).exec()//Filtrar onde o parametro é igual ao slug passado e incremantar 1 na view
     .then(resposta => {
         if(resposta != null) {//A resposta diz se existe o slug ou vai retornar null
-            Posts.find({}).sort({'views': -1}).limit(3).exec()//Mostra as maiores views
+            Posts.find({}).sort({'views': -1}).limit(6).exec()//Mostra as maiores views
             .then(postsTop => {
                 postsTop = postsTop.map(val => {
                     return {
@@ -137,17 +137,19 @@ app.get('/:slug', (req, res) => { //URLs Amigáveis
 
 })
 
+//Podemos substituir pela collection do banco de dados
 var usuarios = [{
-    login: 'guilherme',
-    senha: 123456
+    login: 'admin',
+    senha: 'admin'
 }]
 
+//Pegar os dados do formulario
 app.post('/admin/login', (req, res) => {
     usuarios.forEach(val => {
         if(val.login == req.body.login && val.senha == req.body.senha)  {
             req.session.login = req.body.login
             req.session.senha = req.body.senha
-            
+
         }
 
     })
@@ -156,6 +158,27 @@ app.post('/admin/login', (req, res) => {
 
 })
 
+//Quando clicarmos no submit do cadastro da notícia, vamos para esta rota
+app.post('/admin/cadastro', (req, res) => {
+    //Inserir no banco de dados
+    Posts.create({
+        titulo: req.body.titulo_noticia,
+        conteudo: req.body.noticia,
+        imagem: req.body.url_imagem,
+        slug: substituirCaracteresEspeciais(req.body.titulo_noticia).replace(' ', '-'),
+        categoria: req.body.categoria,
+        autor: 'admin',
+        views: 0
+    })
+    res.send('Cadastrado com sucesso!')
+})
+
+//Quando clicarmos no X para deletar
+app.get('/admin/deletar/:id', (req, res) => {
+    res.send('Deletada a notícia com o id ' + req.params.id)
+})
+
+//Depois que a rota acima é redirecionada
 app.get('/admin/login', (req, res) => {
     //Caso não tenha sido criada, vamos criar
     if(req.session.login == null) { 
@@ -174,3 +197,43 @@ app.listen(5000, () => {
     console.log('Server rodando')
     
 })
+
+//Para termos o slug de maneira automática
+function substituirCaracteresEspeciais(palavra) {
+    const caracteresEspeciais = {
+      'á': 'a',
+      'à': 'a',
+      'ã': 'a',
+      'â': 'a',
+      'é': 'e',
+      'è': 'e',
+      'ê': 'e',
+      'í': 'i',
+      'ì': 'i',
+      'î': 'i',
+      'ó': 'o',
+      'ò': 'o',
+      'õ': 'o',
+      'ô': 'o',
+      'ú': 'u',
+      'ù': 'u',
+      'û': 'u',
+      'ç': 'c',
+      '^': '',
+      '~': ''
+    };
+  
+    let palavraSemAcento = palavra.toLowerCase();
+  
+    for (let caractere in caracteresEspeciais) {
+      const expressaoRegular = new RegExp(caractere, 'g');
+      palavraSemAcento = palavraSemAcento.replace(expressaoRegular, caracteresEspeciais[caractere]);
+    }
+
+    function removerEspacosFinais(string) {
+        return string.replace(/\s+$/, '');
+      }
+
+    return removerEspacosFinais(palavraSemAcento);
+    
+  }

@@ -1,12 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>painel do Admin</title>
+    <style>
+        * {
+            margin: 0;
+            top: 0;
+            box-sizing: border-box;
+        }
+
+        .header-painel {
+            width: 100%;
+            padding: 10px;
+            background-color: #3F51B5;
+            color: white;
+            text-align: center;
+
+        }
+
+        form {
+            padding: 10px;
+            margin: 20px 0;
+        }
+
+        form input {
+            margin-bottom: 20px;
+            width: 100%;
+            height: 40px;
+            padding-left: 10px;
+            border: 1px solid #ccc;
+        }
+
+        form textarea {
+            width: 100%;
+            height: 120px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        form input[type=submit] {
+            width: 100%;
+            height: 40px;
+            background-color: #3F51B5;
+            color: white;
+            border: 0;
+            cursor: pointer;
+        }
+
+        .noticia-single {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            border-bottom: 2px dashed #ccc;
+            padding: 10px;
+        }
+
+        .noticia-single a {
+            text-decoration: none;
+            color: red;
+        }
+    </style>
 </head>
 <body>
-    <h1>Logado</h1>
+    <div class="header-painel">
+        <h2>Cadastro Notícia</h2>
+    </div>
+    <form method="post" action="/admin/cadastro">
+        <input type="text" name="titulo_noticia" placeholder="Título da notícia...">
+        <input type="text" name="categoria" placeholder="Categoria da notícia...">
+        <input type="text" name="url_imagem" placeholder="Link da imagem da notícia...">
+        <textarea name="noticia" placeholder="Notícia..."></textarea>
+        <input type="submit" name="acao" value="Cadastrar">
+    </form>
+
+    <br>
+    <div class="header-painel">
+        <h2>Listando notícias</h2>
+    </div>
+
+    <div class="noticia-single">
+        <p>Título notícia: Minha notícia</p>
+        <a href="/admin/deletar/10">(X)</a>
+    </div>
 </body>
 </html>

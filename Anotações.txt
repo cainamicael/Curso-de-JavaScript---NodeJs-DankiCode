@@ -1722,17 +1722,19 @@ Usando sessões:
 
 Login com node.js:
 
+    //Podemos substituir pela collection do banco de dados
     var usuarios = [{
         login: 'guilherme',
         senha: 123456
     }]
 
+    //Pegar os dados do formulario
     app.post('/admin/login', (req, res) => {
         usuarios.forEach(val => {
             if(val.login == req.body.login && val.senha == req.body.senha)  {
                 req.session.login = req.body.login
                 req.session.senha = req.body.senha
-                
+
             }
 
         })
@@ -1741,6 +1743,7 @@ Login com node.js:
 
     })
 
+    //Depois que a rota acima é redirecionada
     app.get('/admin/login', (req, res) => {
         //Caso não tenha sido criada, vamos criar
         if(req.session.login == null) { 
