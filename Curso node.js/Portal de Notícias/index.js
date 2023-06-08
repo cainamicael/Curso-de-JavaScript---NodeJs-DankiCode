@@ -165,7 +165,7 @@ app.post('/admin/cadastro', (req, res) => {
         titulo: req.body.titulo_noticia,
         conteudo: req.body.noticia,
         imagem: req.body.url_imagem,
-        slug: substituirCaracteresEspeciais(req.body.titulo_noticia).replace(' ', '-'),
+        slug: substituirCaracteresEspeciais(req.body.titulo_noticia),
         categoria: req.body.categoria,
         autor: 'admin',
         views: 0
@@ -220,7 +220,9 @@ function substituirCaracteresEspeciais(palavra) {
       'û': 'u',
       'ç': 'c',
       '^': '',
-      '~': ''
+      '~': '',
+      '#': '',
+      ' ': '-'
     };
   
     let palavraSemAcento = palavra.toLowerCase();
