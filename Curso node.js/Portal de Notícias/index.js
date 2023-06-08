@@ -1,19 +1,31 @@
+/*
+    usuarios via bd
+    logout
+    editar noticias
+*/
+
+
+
+
 //Módulos
 const express = require('express')
 var bobyParser = require('body-parser')
 const path = require('path')
 const fs = require('fs')
-
 const mongoose = require('mongoose')
 const Posts = require('./Posts.js')
-
 var session = require('express-session')
 const posts = require('./Posts.js')
-
 const fileupload = require('express-fileupload')
 
 const app = express()
 
+//Conectando ao mongo
+mongoose.connect('mongodb+srv://root:mn60B7jIvkruNND3@cluster0.dmxkhyz.mongodb.net/dankicode?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
+.then(() => {console.log('Conectado ao banco de dados com sucesso');})
+.catch(err => {console.log(err.message);});
+
+//Configurações
 //Dizendo que nosso app vai usar sessões
 app.use(session({
     secret: 'sdgijqe9dgarg64ag2e0eaFGH',
@@ -28,15 +40,9 @@ useTempFiles: true,
 tempFileDir: path.join(__dirname, 'temp')
 }))
 
-
-//Conectando ao mongo
-mongoose.connect('mongodb+srv://root:mn60B7jIvkruNND3@cluster0.dmxkhyz.mongodb.net/dankicode?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
-.then(() => {console.log('Conectado ao banco de dados com sucesso');})
-.catch(err => {console.log(err.message);});
-
-//Configurações
-app.use(bobyParser.json())
-app.use(bobyParser.urlencoded({extended: true}))
+//Não precisa usar o bobyParser
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
 app.engine('html', require('ejs').renderFile)
 app.set('view engine', 'html')
 app.use('/public', express.static(path.join(__dirname, 'public')))
