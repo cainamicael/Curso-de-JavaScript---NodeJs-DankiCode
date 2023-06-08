@@ -1,5 +1,4 @@
 /*
-    usuarios via bd
     mostrar usuario ou senha incorretos
     editar noticias
 */
@@ -152,31 +151,17 @@ app.get('/:slug', (req, res) => { //URLs Amigáveis
 
 
 
+
+
 //Parte do painel de gestão
 
 
 
-
-
-//Podemos substituir pela collection do banco de dados
-/*
-var usuarios = [{
-    login: 'admin',
-    senha: 'admin'
-}]*/
-
-
-
-
-
-
-
-
-
+var erro = ''
 
 //Pegar os dados do formulario
 app.post('/admin/login', (req, res) => {
-    Usuarios.find({}).exec()
+    Usuarios.find({}).exec()//Collection com os usuários
     .then(usuarios => {
         usuarios.forEach(val => {
             
@@ -184,6 +169,9 @@ app.post('/admin/login', (req, res) => {
                 req.session.login = req.body.login
                 req.session.senha = req.body.senha
     
+            } else {
+                erro = 'erro'
+
             }
     
         })
@@ -199,7 +187,7 @@ app.post('/admin/login', (req, res) => {
 app.get('/admin/login', (req, res) => {
     //Caso não tenha sido criada, vamos criar
     if(req.session.login == null) { 
-        res.render('admin-login')
+        res.render('admin-login', {erro: erro})
 
     } else {
         //Se já existe, vamos mostrar o valor
@@ -233,6 +221,7 @@ app.get('/admin/logout', (req, res) => {
             console.log(err.message)
 
         } else {
+            erro = ''
             res.redirect('/admin/login')
 
         }
