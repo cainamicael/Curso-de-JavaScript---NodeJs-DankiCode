@@ -11,7 +11,12 @@ var session = require('express-session')
 const app = express()
 
 //Dizendo que nosso app vai usar sessões
-app.use(session({secret: 'keyword cat', cookie: {maxAge: 60000}}))
+app.use(session({
+    secret: 'sdgijqe9dgarg64ag2e0eaFGH',
+    cookie: { maxAge: 60000 },
+    resave: true,
+    saveUninitialized: true
+  }));
 
 
 //Conectando ao mongo

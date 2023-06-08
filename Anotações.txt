@@ -1699,6 +1699,13 @@ Sessões com express: (npm install express-session)
 
     app.use(session({secret: 'keyword cat', cookie: {maxAge: 60000}}))
 
+    //Forma 2:
+    app.use(session({
+        secret: 'sdgijqe9dgarg64ag2e0eaFGH',
+        cookie: { maxAge: 60000 },
+        resave: true,
+        saveUninitialized: true
+    }));
 
 Usando sessões:
 
