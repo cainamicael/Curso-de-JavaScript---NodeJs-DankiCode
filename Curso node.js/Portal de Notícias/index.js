@@ -9,6 +9,8 @@ const Posts = require('./Posts.js')
 var session = require('express-session')
 const posts = require('./Posts.js')
 
+const fileupload = require('express-fileupload')
+
 const app = express()
 
 //Dizendo que nosso app vai usar sessões
@@ -18,6 +20,12 @@ app.use(session({
     resave: true,
     saveUninitialized: true
   }));
+
+//Dizer que vamos ter o upload de arquivos
+app.use(fileupload({
+useTempFiles: true,
+tempFileDir: path.join(__dirname, 'temp')
+}))
 
 
 //Conectando ao mongo
@@ -161,6 +169,8 @@ app.post('/admin/login', (req, res) => {
 
 //Quando clicarmos no submit do cadastro da notícia, vamos para esta rota
 app.post('/admin/cadastro', (req, res) => {
+
+    console.log(req.files)
     //Inserir no banco de dados
     Posts.create({
         titulo: req.body.titulo_noticia,

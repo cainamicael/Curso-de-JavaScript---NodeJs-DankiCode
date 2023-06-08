@@ -1784,3 +1784,13 @@ Rotas de Cadastro e Explusão:
     })
 
 Upload com Express: (npm install express-fileupload)
+
+    const fileupload = require('express-fileupload')
+
+    app.use(fileupload({
+    useTempFiles: true,
+    tempFileDir: path.join(__dirname, 'temp')
+    }))
+
+    //Não esquecer de colocar o enctype na tag
+    <form enctype="multipart/form-data" method="post" action="/admin/cadastro">
