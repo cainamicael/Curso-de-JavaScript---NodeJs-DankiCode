@@ -1,6 +1,7 @@
 /*
-    mostrar usuario ou senha incorretos
     editar noticias
+    isset imagem
+    busca no dashboard
 */
 
 //Módulos
@@ -230,28 +231,43 @@ app.get('/admin/logout', (req, res) => {
 
 //Quando clicarmos no submit do cadastro da notícia, vamos para esta rota
 app.post('/admin/cadastro', (req, res) => {
-    let formato = req.files.arquivo.name.split('.')
-    var imagem = ''
+    if(req.files != undefined) {
 
-    //Configurando para aceitar somente jpg
-    if(formato[formato.length - 1] == 'jpg') {
-        imagem = new Date().getTime() + '.jpg'
-        req.files.arquivo.mv(__dirname + '/public/images/' + imagem)//Vai mover para a pasta e renomear o arquivo para não ter nome repetido
+        let formato = req.files.arquivo.name.split('.')
+        var imagem = ''
+
+        //Configurando para aceitar somente jpg
+        if(formato[formato.length - 1] == 'jpg') {
+            imagem = new Date().getTime() + '.jpg'
+            req.files.arquivo.mv(__dirname + '/public/images/' + imagem)//Vai mover para a pasta e renomear o arquivo para não ter nome repetido
+
+        } else {
+            fs.unlinkSync(req.files.arquivo.tempFilePath)
+        }
+
+            //Inserir no banco de dados
+        Posts.create({
+            titulo: req.body.titulo_noticia,
+            conteudo: req.body.noticia,
+            imagem: 'http://localhost:5000/public/images/' + imagem,
+            slug: substituirCaracteresEspeciais(req.body.titulo_noticia),
+            categoria: req.body.categoria,
+            autor: 'admin',
+            views: 0
+        })
 
     } else {
-        fs.unlinkSync(req.files.arquivo.tempFilePath)
+        Posts.create({
+            titulo: req.body.titulo_noticia,
+            conteudo: req.body.noticia,
+            imagem: req.body.url_imagem,
+            slug: substituirCaracteresEspeciais(req.body.titulo_noticia),
+            categoria: req.body.categoria,
+            autor: 'admin',
+            views: 0
+        })
+
     }
-    
-    //Inserir no banco de dados
-    Posts.create({
-        titulo: req.body.titulo_noticia,
-        conteudo: req.body.noticia,
-        imagem: 'http://localhost:5000/public/images/' + imagem,
-        slug: substituirCaracteresEspeciais(req.body.titulo_noticia),
-        categoria: req.body.categoria,
-        autor: 'admin',
-        views: 0
-    })
 
     res.redirect('/admin/login')
 
@@ -259,7 +275,7 @@ app.post('/admin/cadastro', (req, res) => {
 
 //Quando clicarmos no X para deletar
 app.get('/admin/deletar/:id', (req, res) => {
-    posts.deleteOne({_id: req.params.id})
+    Posts.deleteOne({_id: req.params.id})
     .then(() => {
         res.redirect('/admin/login')
         
