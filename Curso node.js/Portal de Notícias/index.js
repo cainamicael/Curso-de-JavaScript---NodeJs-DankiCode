@@ -4,9 +4,6 @@
     editar noticias
 */
 
-
-
-
 //Módulos
 const express = require('express')
 var bobyParser = require('body-parser')
@@ -152,6 +149,14 @@ app.get('/:slug', (req, res) => { //URLs Amigáveis
 
 
 })
+
+
+
+//Parte do painel de gestão
+
+
+
+
 
 //Podemos substituir pela collection do banco de dados
 var usuarios = [{
