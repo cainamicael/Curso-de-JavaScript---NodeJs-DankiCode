@@ -2,6 +2,7 @@
 const express = require('express')
 var bobyParser = require('body-parser')
 const path = require('path')
+const fs = require('fs')
 
 const mongoose = require('mongoose')
 const Posts = require('./Posts.js')
@@ -169,13 +170,23 @@ app.post('/admin/login', (req, res) => {
 
 //Quando clicarmos no submit do cadastro da notícia, vamos para esta rota
 app.post('/admin/cadastro', (req, res) => {
-    
+    let formato = req.files.arquivo.name.split('.')
+    var imagem = ''
+
+    //Configurando para aceitar somente jpg
+    if(formato[formato.length - 1] == 'jpg') {
+        imagem = new Date().getTime() + '.jpg'
+        req.files.arquivo.mv(__dirname + '/public/images/' + imagem)//Vai mover para a pasta e renomear o arquivo para não ter nome repetido
+
+    } else {
+        fs.unlinkSync(req.files.arquivo.tempFilePath)
+    }
     
     //Inserir no banco de dados
     Posts.create({
         titulo: req.body.titulo_noticia,
         conteudo: req.body.noticia,
-        imagem: req.body.url_imagem,
+        imagem: 'http://localhost:5000/public/images/' + imagem,
         slug: substituirCaracteresEspeciais(req.body.titulo_noticia),
         categoria: req.body.categoria,
         autor: 'admin',
