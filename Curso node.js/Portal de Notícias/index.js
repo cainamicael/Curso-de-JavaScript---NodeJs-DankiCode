@@ -1,7 +1,7 @@
 /*
-    editar noticias
     remover imagem no delete
     busca no dashboard
+    ver se da para entrar sem session
 */
 
 //Módulos
