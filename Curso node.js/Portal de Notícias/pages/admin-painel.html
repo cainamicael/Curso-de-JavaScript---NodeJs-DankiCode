@@ -18,22 +18,13 @@
         }
 
         .container {
-            display: grid;
-            grid-template-columns: 1fr;
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
-            gap: 20px;
-        }
-
-        @media (min-width: 768px) {
-            .container {
-                grid-template-columns: repeat(2, 1fr);
-            }
         }
 
         .cadastro {
-            padding-right: 20px;
+            margin-bottom: 20px;
         }
 
         .header-painel {
@@ -151,6 +142,22 @@
 
         .noticias-list-item a:hover {
             color: #d32f2f;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .cadastro {
+                padding-right: 20px;
+            }
+
+            .listagem {
+                padding-left: 20px;
+            }
         }
     </style>
 </head>
