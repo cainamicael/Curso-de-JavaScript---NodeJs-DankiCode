@@ -174,6 +174,38 @@ app.post('/admin/login', (req, res) => {
 
 })
 
+//Depois que a rota acima é redirecionada
+app.get('/admin/login', (req, res) => {
+    //Caso não tenha sido criada, vamos criar
+    if(req.session.login == null) { 
+        res.render('admin-login')
+
+    } else {
+        //Se já existe, vamos mostrar o valor
+        Posts.find({}).sort({'_id': -1}).exec()
+        .then(posts => {
+            //Temos que fazer isso para poder encurtar a descrição
+            posts = posts.map(val => {
+              return {
+                id: val._id,
+                titulo: val.titulo,
+                conteudo: val.conteudo,
+                descricaoCurta: val.conteudo.substring(0, 100),
+                imagem: val.imagem,
+                slug: val.slug,
+                categoria: val.categoria
+              }
+
+            })
+
+            res.render('admin-painel', {posts: posts})
+        
+        })
+
+    }
+
+})
+
 app.get('/admin/logout', (req, res) => {
     req.session.destroy( err => {
         if(err){
@@ -222,38 +254,6 @@ app.get('/admin/deletar/:id', (req, res) => {
         res.redirect('/admin/login')
         
     })
-})
-
-//Depois que a rota acima é redirecionada
-app.get('/admin/login', (req, res) => {
-    //Caso não tenha sido criada, vamos criar
-    if(req.session.login == null) { 
-        res.render('admin-login')
-
-    } else {
-        //Se já existe, vamos mostrar o valor
-        Posts.find({}).sort({'_id': -1}).exec()
-        .then(posts => {
-            //Temos que fazer isso para poder encurtar a descrição
-            posts = posts.map(val => {
-              return {
-                id: val._id,
-                titulo: val.titulo,
-                conteudo: val.conteudo,
-                descricaoCurta: val.conteudo.substring(0, 100),
-                imagem: val.imagem,
-                slug: val.slug,
-                categoria: val.categoria
-              }
-
-            })
-
-            res.render('admin-painel', {posts: posts})
-        
-        })
-
-    }
-
 })
 
 //Servidor
