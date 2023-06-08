@@ -7,6 +7,7 @@ const mongoose = require('mongoose')
 const Posts = require('./Posts.js')
 
 var session = require('express-session')
+const posts = require('./Posts.js')
 
 const app = express()
 
@@ -175,7 +176,11 @@ app.post('/admin/cadastro', (req, res) => {
 
 //Quando clicarmos no X para deletar
 app.get('/admin/deletar/:id', (req, res) => {
-    res.send('Deletada a notícia com o id ' + req.params.id)
+    posts.deleteOne({_id: req.params.id})
+    .then(() => {
+        res.redirect('/admin/login')
+        
+    })
 })
 
 //Depois que a rota acima é redirecionada
@@ -186,7 +191,25 @@ app.get('/admin/login', (req, res) => {
 
     } else {
         //Se já existe, vamos mostrar o valor
-        res.render('admin-painel')
+        Posts.find({}).sort({'_id': -1}).exec()
+        .then(posts => {
+            //Temos que fazer isso para poder encurtar a descrição
+            posts = posts.map(val => {
+              return {
+                id: val._id,
+                titulo: val.titulo,
+                conteudo: val.conteudo,
+                descricaoCurta: val.conteudo.substring(0, 100),
+                imagem: val.imagem,
+                slug: val.slug,
+                categoria: val.categoria
+              }
+
+            })
+
+            res.render('admin-painel', {posts: posts})
+        
+        })
 
     }
 

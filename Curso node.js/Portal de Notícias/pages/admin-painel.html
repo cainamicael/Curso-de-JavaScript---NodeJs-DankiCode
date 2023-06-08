@@ -81,9 +81,11 @@
         <h2>Listando notícias</h2>
     </div>
 
+    <% for(let i = 0; i < posts.length; i++) { %>
     <div class="noticia-single">
-        <p>Título notícia: Minha notícia</p>
-        <a href="/admin/deletar/10">(X)</a>
+        <p>Título da notícia: <%= posts[i].titulo %></p>
+        <a href="/admin/deletar/<%= posts[i].id %>">(X)</a>
     </div>
+    <% } %>
 </body>
 </html>
