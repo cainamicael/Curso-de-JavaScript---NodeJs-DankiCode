@@ -137,15 +137,33 @@ app.get('/:slug', (req, res) => { //URLs Amigáveis
 
 })
 
+var usuarios = [{
+    login: 'guilherme',
+    senha: 123456
+}]
+
+app.post('/admin/login', (req, res) => {
+    usuarios.forEach(val => {
+        if(val.login == req.body.login && val.senha == req.body.senha)  {
+            req.session.login = req.body.login
+            req.session.senha = req.body.senha
+            
+        }
+
+    })
+
+    res.redirect('/admin/login')
+
+})
+
 app.get('/admin/login', (req, res) => {
     //Caso não tenha sido criada, vamos criar
     if(req.session.login == null) { 
-        req.session.login = 'Guilherme'
-        res.send('Sua sessão foi criada')
+        res.render('admin-login')
 
     } else {
         //Se já existe, vamos mostrar o valor
-        res.send(req.session.login)
+        res.render('admin-painel')
 
     }
 
