@@ -1,6 +1,6 @@
 /*
     editar noticias
-    isset imagem
+    remover imagem no delete
     busca no dashboard
 */
 
@@ -280,6 +280,90 @@ app.get('/admin/deletar/:id', (req, res) => {
         res.redirect('/admin/login')
         
     })
+})
+
+//Quando clicarmos em editar
+app.get('/admin/editar/:id', (req, res) => {
+    Posts.find({_id: req.params.id})
+    .then((post) => {
+        res.render('editar', {post: post[0]})
+        
+    })
+
+})
+
+app.post('/admin/editado/:id', (req,res) => {
+    //img atual
+    Posts.findOne({_id: req.params.id})
+    .then(post => {
+
+        var img = post.imagem.split('/')
+        imagemAtual = img[img.length -1]
+        var pathFile = path.join(__dirname, `/public/images/${imagemAtual}`)
+        console.log(pathFile)
+
+        if(!req.files){//se o upload estiver vazio
+            if(req.body.url_imagem == '') {
+                //Se também o espaço do url estiver vazio, logo não vamos mexer na imagem
+                Posts.findOneAndUpdate({_id: req.params.id}, {
+                    titulo: req.body.titulo_noticia,
+                    categoria: req.body.categoria,
+                    conteudo: req.body.noticia
+                }, {new: true})
+                .then(() => {})
+                .catch(e => console.log(e.message))
+
+            } else {
+                //se o url estiver com algum valor
+                Posts.findOneAndUpdate({_id: req.params.id}, {
+                    titulo: req.body.titulo_noticia,
+                    categoria: req.body.categoria,
+                    conteudo: req.body.noticia,
+                    imagem: req.body.url_imagem
+                }, {new: true})
+                .then(() => {})
+                .catch(e => console.log(e.message))
+            }
+
+        } else {
+            //Tenho que fazer o upload
+            let formato = req.files.arquivo.name.split('.')
+            var imagem = ''
+    
+            //Configurando para aceitar somente jpg
+            if(formato[formato.length - 1] == 'jpg') {
+                imagem = new Date().getTime() + '.jpg'
+                req.files.arquivo.mv(__dirname + '/public/images/' + imagem)//Vai mover para a pasta e renomear o arquivo para não ter nome repetido
+
+                fs.unlinkSync(pathFile, (err) => { //remover imagem anterior
+                    if (err) {
+                        console.log(err.message)
+                    } else {
+                        console.log('Imagem atual removida com sucesso')
+                    }
+                })
+    
+            } else {
+                fs.unlinkSync(req.files.arquivo.tempFilePath)
+
+            }
+        
+            Posts.findOneAndUpdate({_id: req.params.id}, {
+                titulo: req.body.titulo_noticia,
+                categoria: req.body.categoria,
+                conteudo: req.body.noticia,
+                imagem: 'http://localhost:5000/public/images/' + imagem
+            }, {new: true})
+            .then(() => {})
+            .catch(e => console.log(e.message))
+
+        }
+
+        res.send('done')
+
+
+    })
+
 })
 
 //Servidor
