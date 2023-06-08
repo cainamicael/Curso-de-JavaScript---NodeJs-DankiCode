@@ -1692,3 +1692,24 @@ sudo service nginx start
 SFTP (vamos usar o filezila)
 
 Vamos usar o PM2
+
+Sessões com express: (npm install express-session)
+
+    var session = require('express-session')
+
+    app.use(session({secret: 'keyword cat', cookie: {maxAge: 60000}}))
+
+
+Usando sessões:
+
+    //Caso não tenha sido criada, vamos criar
+    if(req.session.login == null) { 
+        req.session.login = 'Guilherme'
+        res.send('Sua sessão foi criada')
+
+    } else {
+        //Se já existe, vamos mostrar o valor
+        res.send(req.session.login)
+
+    }
+

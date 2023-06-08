@@ -6,7 +6,12 @@ const path = require('path')
 const mongoose = require('mongoose')
 const Posts = require('./Posts.js')
 
+var session = require('express-session')
+
 const app = express()
+
+//Dizendo que nosso app vai usar sessões
+app.use(session({secret: 'keyword cat', cookie: {maxAge: 60000}}))
 
 
 //Conectando ao mongo
@@ -124,6 +129,20 @@ app.get('/:slug', (req, res) => { //URLs Amigáveis
     })
     .catch(e => console.log(e.message))
 
+
+})
+
+app.get('/admin/login', (req, res) => {
+    //Caso não tenha sido criada, vamos criar
+    if(req.session.login == null) { 
+        req.session.login = 'Guilherme'
+        res.send('Sua sessão foi criada')
+
+    } else {
+        //Se já existe, vamos mostrar o valor
+        res.send(req.session.login)
+
+    }
 
 })
 
