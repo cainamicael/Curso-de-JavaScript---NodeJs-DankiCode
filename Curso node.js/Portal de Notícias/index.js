@@ -12,7 +12,7 @@ const fs = require('fs')
 const mongoose = require('mongoose')
 const Posts = require('./Posts.js')
 var session = require('express-session')
-const posts = require('./Posts.js')
+const Usuarios = require('./Usuarios.js')
 const fileupload = require('express-fileupload')
 
 const app = express()
@@ -159,23 +159,39 @@ app.get('/:slug', (req, res) => { //URLs Amigáveis
 
 
 //Podemos substituir pela collection do banco de dados
+/*
 var usuarios = [{
     login: 'admin',
     senha: 'admin'
-}]
+}]*/
+
+
+
+
+
+
+
+
+
 
 //Pegar os dados do formulario
 app.post('/admin/login', (req, res) => {
-    usuarios.forEach(val => {
-        if(val.login == req.body.login && val.senha == req.body.senha)  {
-            req.session.login = req.body.login
-            req.session.senha = req.body.senha
-
-        }
+    Usuarios.find({}).exec()
+    .then(usuarios => {
+        usuarios.forEach(val => {
+            
+            if(val.login === req.body.login && val.senha === req.body.senha)  {
+                req.session.login = req.body.login
+                req.session.senha = req.body.senha
+    
+            } 
+    
+        })
+        
+        res.redirect('/admin/login')
 
     })
-
-    res.redirect('/admin/login')
+    .catch(e => console.log(e.message))
 
 })
 
