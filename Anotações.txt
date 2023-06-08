@@ -1757,3 +1757,29 @@ Login com node.js:
 
     })
 
+Rotas de Cadastro e Explusão:
+
+    //Quando clicarmos no submit do cadastro da notícia, vamos para esta rota
+    app.post('/admin/cadastro', (req, res) => {
+        //Inserir no banco de dados
+        Posts.create({
+            titulo: req.body.titulo_noticia,
+            conteudo: req.body.noticia,
+            imagem: req.body.url_imagem,
+            slug: substituirCaracteresEspeciais(req.body.titulo_noticia),
+            categoria: req.body.categoria,
+            autor: 'admin',
+            views: 0
+        })
+        res.send('Cadastrado com sucesso!')
+    })
+
+    //Quando clicarmos no X para deletar
+    app.get('/admin/deletar/:id', (req, res) => {
+        posts.deleteOne({_id: req.params.id})
+        .then(() => {
+            res.redirect('/admin/login')
+            
+        })
+    })
+
