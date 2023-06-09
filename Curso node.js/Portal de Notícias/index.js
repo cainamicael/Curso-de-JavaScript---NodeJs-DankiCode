@@ -300,7 +300,6 @@ app.post('/admin/editado/:id', (req,res) => {
         var img = post.imagem.split('/')
         imagemAtual = img[img.length -1]
         var pathFile = path.join(__dirname, `/public/images/${imagemAtual}`)
-        console.log(pathFile)
 
         if(!req.files){//se o upload estiver vazio
             if(req.body.url_imagem == '') {
@@ -323,6 +322,14 @@ app.post('/admin/editado/:id', (req,res) => {
                 }, {new: true})
                 .then(() => {})
                 .catch(e => console.log(e.message))
+
+                if (fs.existsSync(pathFile)) {
+                    fs.unlinkSync(pathFile)
+                    console.log('Imagem removida com sucesso')
+                } else {
+                    console.log('O arquivo não existe.')
+                    console.log(img)
+                }
             }
 
         } else {
@@ -335,27 +342,28 @@ app.post('/admin/editado/:id', (req,res) => {
                 imagem = new Date().getTime() + '.jpg'
                 req.files.arquivo.mv(__dirname + '/public/images/' + imagem)//Vai mover para a pasta e renomear o arquivo para não ter nome repetido
 
-                fs.unlinkSync(pathFile, (err) => { //remover imagem anterior
-                    if (err) {
-                        console.log(err.message)
-                    } else {
-                        console.log('Imagem atual removida com sucesso')
-                    }
-                })
-    
+                //Faz o upload
+                Posts.findOneAndUpdate({_id: req.params.id}, {
+                    titulo: req.body.titulo_noticia,
+                    categoria: req.body.categoria,
+                    conteudo: req.body.noticia,
+                    imagem: 'http://localhost:5000/public/images/' + imagem
+                }, {new: true})
+                .then(() => {})
+                .catch(e => console.log(e.message))
+
+                if (fs.existsSync(pathFile)) {
+                    fs.unlinkSync(pathFile)
+                    console.log('Imagem removida com sucesso')
+                } else {
+                    console.log('O arquivo não existe.')
+                    console.log(img)
+                }
+
             } else {
                 fs.unlinkSync(req.files.arquivo.tempFilePath)
 
             }
-        
-            Posts.findOneAndUpdate({_id: req.params.id}, {
-                titulo: req.body.titulo_noticia,
-                categoria: req.body.categoria,
-                conteudo: req.body.noticia,
-                imagem: 'http://localhost:5000/public/images/' + imagem
-            }, {new: true})
-            .then(() => {})
-            .catch(e => console.log(e.message))
 
         }
 
