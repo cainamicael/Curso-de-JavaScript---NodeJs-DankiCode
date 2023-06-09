@@ -367,7 +367,7 @@ app.post('/admin/editado/:id', (req,res) => {
 
         }
 
-        res.send('done')
+        res.redirect('/admin/login')
 
 
     })
