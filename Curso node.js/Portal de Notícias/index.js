@@ -2,11 +2,13 @@
     remover imagem no delete
     busca no dashboard
     ver se da para entrar sem session
+    ver pq as vezes quando cadastra pede o login novamente
+    front do editar
 */
 
 //Módulos
 const express = require('express')
-var bobyParser = require('body-parser')
+//var bobyParser = require('body-parser')
 const path = require('path')
 const fs = require('fs')
 const mongoose = require('mongoose')
@@ -245,7 +247,7 @@ app.post('/admin/cadastro', (req, res) => {
             fs.unlinkSync(req.files.arquivo.tempFilePath)
         }
 
-            //Inserir no banco de dados
+        //Inserir no banco de dados
         Posts.create({
             titulo: req.body.titulo_noticia,
             conteudo: req.body.noticia,
