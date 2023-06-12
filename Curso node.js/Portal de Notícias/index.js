@@ -1,6 +1,4 @@
 /*
-    remover imagem no delete
-    busca no dashboard
     ver se da para entrar sem session
     ver pq as vezes quando cadastra pede o login novamente
     front do editar
@@ -286,6 +284,7 @@ app.get('/admin/deletar/:id', (req, res) => {
         console.log(imagem)
 
         var imgFile = path.join(__dirname, `/public/images/${imagem}`)
+
         //Para remover a imagem depois de deletar
         if (fs.existsSync(imgFile)) {
             fs.unlinkSync(imgFile)
