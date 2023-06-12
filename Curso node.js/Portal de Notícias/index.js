@@ -48,7 +48,7 @@ app.set('views', path.join(__dirname, '/pages'))
 app.get('/', (req, res) => {
     //Para saber se estamos usando a barra de busca ou não
     if (req.query.busca == null) {
-        Posts.find({}).sort({ '_id': -1 }).exec()
+        Posts.find({}).sort({ 'views': -1 }).exec()
             .then(posts => {
                 //Temos que fazer isso para poder encurtar a descrição
                 posts = posts.map(val => {
