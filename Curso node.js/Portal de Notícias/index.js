@@ -1,5 +1,4 @@
 /*
-    ver se da para entrar sem session
     ver pq as vezes quando cadastra pede o login novamente
     front do editar
 */
@@ -231,53 +230,60 @@ app.get('/admin/logout', (req, res) => {
 
 //Quando clicarmos no submit do cadastro da notícia, vamos para esta rota
 app.post('/admin/cadastro', (req, res) => {
-    if(req.files != undefined) {
+    if(req.session.login != null) {
 
-        let formato = req.files.arquivo.name.split('.')
-        var imagem = ''
+        if(req.files != undefined) {
 
-        //Configurando para aceitar somente jpg
-        if(formato[formato.length - 1] == 'jpg') {
-            imagem = new Date().getTime() + '.jpg'
-            req.files.arquivo.mv(__dirname + '/public/images/' + imagem)//Vai mover para a pasta e renomear o arquivo para não ter nome repetido
-
+            let formato = req.files.arquivo.name.split('.')
+            var imagem = ''
+    
+            //Configurando para aceitar somente jpg
+            if(formato[formato.length - 1] == 'jpg') {
+                imagem = new Date().getTime() + '.jpg'
+                req.files.arquivo.mv(__dirname + '/public/images/' + imagem)//Vai mover para a pasta e renomear o arquivo para não ter nome repetido
+    
+            } else {
+                fs.unlinkSync(req.files.arquivo.tempFilePath)
+            }
+    
+            //Inserir no banco de dados
+            Posts.create({
+                titulo: req.body.titulo_noticia,
+                conteudo: req.body.noticia,
+                imagem: 'http://localhost:5000/public/images/' + imagem,
+                slug: substituirCaracteresEspeciais(req.body.titulo_noticia),
+                categoria: req.body.categoria,
+                autor: 'admin',
+                views: 0
+            })
+    
         } else {
-            fs.unlinkSync(req.files.arquivo.tempFilePath)
+            Posts.create({
+                titulo: req.body.titulo_noticia,
+                conteudo: req.body.noticia,
+                imagem: req.body.url_imagem,
+                slug: substituirCaracteresEspeciais(req.body.titulo_noticia),
+                categoria: req.body.categoria,
+                autor: 'admin',
+                views: 0
+            })
+    
         }
+    
+        res.redirect('/admin/login')
+    
 
-        //Inserir no banco de dados
-        Posts.create({
-            titulo: req.body.titulo_noticia,
-            conteudo: req.body.noticia,
-            imagem: 'http://localhost:5000/public/images/' + imagem,
-            slug: substituirCaracteresEspeciais(req.body.titulo_noticia),
-            categoria: req.body.categoria,
-            autor: 'admin',
-            views: 0
-        })
 
-    } else {
-        Posts.create({
-            titulo: req.body.titulo_noticia,
-            conteudo: req.body.noticia,
-            imagem: req.body.url_imagem,
-            slug: substituirCaracteresEspeciais(req.body.titulo_noticia),
-            categoria: req.body.categoria,
-            autor: 'admin',
-            views: 0
-        })
-
-    }
-
-    res.redirect('/admin/login')
-
+     } else {res.redirect('/admin/login')}
+    
 })
 
 //Quando clicarmos no X para deletar
 app.get('/admin/deletar/:id', (req, res) => {
 
-    Posts.findOne({_id: req.params.id})
-    .then(attr => {
+    if(req.session.login != null) { 
+        Posts.findOne({_id: req.params.id})
+        .then(attr => {
         var img = attr.imagem
         img = img.split('/')
         var imagem = img[img.length -1]
@@ -301,6 +307,9 @@ app.get('/admin/deletar/:id', (req, res) => {
 
     })
 
+    } else {res.redirect('/admin/login')}
+    
+
 })
 
 //Quando clicarmos em editar
@@ -320,84 +329,92 @@ app.get('/admin/editar/:id', (req, res) => {
 })
 
 app.post('/admin/editado/:id', (req,res) => {
-    //img atual
-    Posts.findOne({_id: req.params.id})
-    .then(post => {
 
-        var img = post.imagem.split('/')
-        imagemAtual = img[img.length -1]
-        var pathFile = path.join(__dirname, `/public/images/${imagemAtual}`)
+    if(req.session.login != null) { 
 
-        if(!req.files){//se o upload estiver vazio
-            if(req.body.url_imagem == '') {
-                //Se também o espaço do url estiver vazio, logo não vamos mexer na imagem
-                Posts.findOneAndUpdate({_id: req.params.id}, {
-                    titulo: req.body.titulo_noticia,
-                    categoria: req.body.categoria,
-                    conteudo: req.body.noticia
-                }, {new: true})
-                .then(() => {})
-                .catch(e => console.log(e.message))
+//img atual
+Posts.findOne({_id: req.params.id})
+.then(post => {
 
+    var img = post.imagem.split('/')
+    imagemAtual = img[img.length -1]
+    var pathFile = path.join(__dirname, `/public/images/${imagemAtual}`)
+
+    if(!req.files){//se o upload estiver vazio
+        if(req.body.url_imagem == '') {
+            //Se também o espaço do url estiver vazio, logo não vamos mexer na imagem
+            Posts.findOneAndUpdate({_id: req.params.id}, {
+                titulo: req.body.titulo_noticia,
+                categoria: req.body.categoria,
+                conteudo: req.body.noticia
+            }, {new: true})
+            .then(() => {})
+            .catch(e => console.log(e.message))
+
+        } else {
+            //se o url estiver com algum valor
+            Posts.findOneAndUpdate({_id: req.params.id}, {
+                titulo: req.body.titulo_noticia,
+                categoria: req.body.categoria,
+                conteudo: req.body.noticia,
+                imagem: req.body.url_imagem
+            }, {new: true})
+            .then(() => {})
+            .catch(e => console.log(e.message))
+
+            if (fs.existsSync(pathFile)) {
+                fs.unlinkSync(pathFile)
+                console.log('Imagem removida com sucesso')
             } else {
-                //se o url estiver com algum valor
-                Posts.findOneAndUpdate({_id: req.params.id}, {
-                    titulo: req.body.titulo_noticia,
-                    categoria: req.body.categoria,
-                    conteudo: req.body.noticia,
-                    imagem: req.body.url_imagem
-                }, {new: true})
-                .then(() => {})
-                .catch(e => console.log(e.message))
+                console.log('O arquivo não existe.')
+                console.log(img)
+            }
+        }
 
-                if (fs.existsSync(pathFile)) {
-                    fs.unlinkSync(pathFile)
-                    console.log('Imagem removida com sucesso')
-                } else {
-                    console.log('O arquivo não existe.')
-                    console.log(img)
-                }
+    } else {
+        //Tenho que fazer o upload
+        let formato = req.files.arquivo.name.split('.')
+        var imagem = ''
+
+        //Configurando para aceitar somente jpg
+        if(formato[formato.length - 1] == 'jpg') {
+            imagem = new Date().getTime() + '.jpg'
+            req.files.arquivo.mv(__dirname + '/public/images/' + imagem)//Vai mover para a pasta e renomear o arquivo para não ter nome repetido
+
+            //Faz o upload
+            Posts.findOneAndUpdate({_id: req.params.id}, {
+                titulo: req.body.titulo_noticia,
+                categoria: req.body.categoria,
+                conteudo: req.body.noticia,
+                imagem: 'http://localhost:5000/public/images/' + imagem
+            }, {new: true})
+            .then(() => {})
+            .catch(e => console.log(e.message))
+
+            if (fs.existsSync(pathFile)) {
+                fs.unlinkSync(pathFile)
+                console.log('Imagem removida com sucesso')
+            } else {
+                console.log('O arquivo não existe.')
+                console.log(img)
             }
 
         } else {
-            //Tenho que fazer o upload
-            let formato = req.files.arquivo.name.split('.')
-            var imagem = ''
-    
-            //Configurando para aceitar somente jpg
-            if(formato[formato.length - 1] == 'jpg') {
-                imagem = new Date().getTime() + '.jpg'
-                req.files.arquivo.mv(__dirname + '/public/images/' + imagem)//Vai mover para a pasta e renomear o arquivo para não ter nome repetido
-
-                //Faz o upload
-                Posts.findOneAndUpdate({_id: req.params.id}, {
-                    titulo: req.body.titulo_noticia,
-                    categoria: req.body.categoria,
-                    conteudo: req.body.noticia,
-                    imagem: 'http://localhost:5000/public/images/' + imagem
-                }, {new: true})
-                .then(() => {})
-                .catch(e => console.log(e.message))
-
-                if (fs.existsSync(pathFile)) {
-                    fs.unlinkSync(pathFile)
-                    console.log('Imagem removida com sucesso')
-                } else {
-                    console.log('O arquivo não existe.')
-                    console.log(img)
-                }
-
-            } else {
-                fs.unlinkSync(req.files.arquivo.tempFilePath)
-
-            }
+            fs.unlinkSync(req.files.arquivo.tempFilePath)
 
         }
 
-        res.redirect('/admin/login')
+    }
+
+    res.redirect('/admin/login')
 
 
-    })
+})
+
+
+
+    } else {res.redirect('/admin/login')}
+    
 
 })
 
