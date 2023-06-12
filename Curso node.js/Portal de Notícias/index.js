@@ -1,6 +1,5 @@
 //Módulos
 const express = require('express')
-//var bobyParser = require('body-parser')
 const path = require('path')
 const fs = require('fs')
 const mongoose = require('mongoose')
