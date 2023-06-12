@@ -11,7 +11,10 @@ const fileupload = require('express-fileupload')
 const app = express()
 
 //Conectando ao mongo
-mongoose.connect('mongodb+srv://root:mn60B7jIvkruNND3@cluster0.dmxkhyz.mongodb.net/dankicode?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
+const url = require('./connect.js')
+console.log(url.url)
+
+mongoose.connect(url.url, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => { console.log('Conectado ao banco de dados com sucesso'); })
     .catch(err => { console.log(err.message); });
 
