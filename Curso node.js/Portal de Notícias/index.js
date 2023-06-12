@@ -1,8 +1,3 @@
-/*
-    ver pq as vezes quando cadastra pede o login novamente
-    front do editar
-*/
-
 //Módulos
 const express = require('express')
 //var bobyParser = require('body-parser')
