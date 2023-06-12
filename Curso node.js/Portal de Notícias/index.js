@@ -277,11 +277,31 @@ app.post('/admin/cadastro', (req, res) => {
 
 //Quando clicarmos no X para deletar
 app.get('/admin/deletar/:id', (req, res) => {
-    Posts.deleteOne({_id: req.params.id})
-    .then(() => {
-        res.redirect('/admin/login')
-        
+
+    Posts.findOne({_id: req.params.id})
+    .then(attr => {
+        var img = attr.imagem
+        img = img.split('/')
+        var imagem = img[img.length -1]
+        console.log(imagem)
+
+        var imgFile = path.join(__dirname, `/public/images/${imagem}`)
+        //Para remover a imagem depois de deletar
+        if (fs.existsSync(imgFile)) {
+            fs.unlinkSync(imgFile)
+            console.log('Imagem removida com sucesso')
+        } else {
+            console.log('A imagem era via url')
+        }
+
+        Posts.deleteOne({_id: req.params.id})
+        .then(() => {
+            res.redirect('/admin/login')
+            
+        })
+
     })
+
 })
 
 //Quando clicarmos em editar
