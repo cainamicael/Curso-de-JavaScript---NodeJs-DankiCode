@@ -305,11 +305,17 @@ app.get('/admin/deletar/:id', (req, res) => {
 
 //Quando clicarmos em editar
 app.get('/admin/editar/:id', (req, res) => {
-    Posts.find({_id: req.params.id})
-    .then((post) => {
-        res.render('editar', {post: post[0]})
-        
-    })
+    if(req.session.login != null) {
+        Posts.find({_id: req.params.id})
+        .then((post) => {
+            res.render('editar', {post: post[0]})
+            
+        })
+
+     } else {
+        res.redirect('/admin/login')
+     }
+    
 
 })
 
