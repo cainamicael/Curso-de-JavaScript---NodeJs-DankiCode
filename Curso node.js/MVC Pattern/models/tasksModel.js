@@ -1,4 +1,4 @@
-const tasks = []
+const tasks = ['tarefa 01', 'tarefa 02']
 
 // Função para obter todas as tarefas
 function getTasks() {
