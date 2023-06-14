@@ -1845,4 +1845,6 @@ Criação do MVC:
     npm init -y
     npm install express ejs
 
-Processando Pagamentos (strip)
+Processando Pagamentos (stripe)
+
+    npm install stripe
