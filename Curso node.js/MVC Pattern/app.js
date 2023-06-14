@@ -13,10 +13,10 @@ app.set('views', viewsPath);
 app.use(express.urlencoded({ extended: true })); 
 
 // Rota para listar tarefas
-app.get('/', tasksController.listTasks)
+app.get('/', tasksController.listTasks)// Não se usa parênteses pois é referência de uma callback
 
 // Rota para adicionar tarefas
-app.post('/add', tasksController.addTask)
+app.post('/add', tasksController.addTask)// Não se usa parênteses pois é referência de uma callback
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000')
