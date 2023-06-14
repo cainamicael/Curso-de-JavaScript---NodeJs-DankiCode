@@ -36,11 +36,34 @@ app.get('/redirecionarpagamento', async (req, res) => {
         quantity: 1,
       }],
     mode: 'payment',
-    success_url: `${YOUR_DOMAIN}/success.html`,
-    cancel_url: `${YOUR_DOMAIN}/cancel.html`,
+    success_url: `${YOUR_DOMAIN}/sucesso?token={CHECKOUT_SESSION_ID}`, //Para passar o token para ter segurança
+    cancel_url: `${YOUR_DOMAIN}?falha`,
   })
 
   res.redirect(303, session.url);
+})
+
+app.get('/sucesso', async (req, res) => {
+    if(req.query.token != null) {
+        try {
+            const session = await stripe.checkout.sessions.retrieve(req.query.token)
+    
+            if(session.payment_status == 'paid') {
+                //libera o produto
+                //envia email
+                res.send('Pago')
+            } else {
+                res.send('Não foi pago')
+            }
+        } catch(e) {
+            res.send('Falhou')
+        }
+
+    } else {
+        res.send('Precisamos do token')
+
+    }
+
 })
 
 app.listen(port, () => {
