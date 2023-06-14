@@ -1,9 +1,11 @@
 const express = require('express')
 const fs = require('fs')
 const path = require('path')
-//const stripe = require('stripe')(process.env.SECRET_API)
-const stripe = require('stripe')('sk_test_51NIu1gKBMGEzBZ2CDhVVrJke8J9Uw5HDdEVttpIaexCYFhViCjexZBl5dyLpgHX090CCZMrgTh9yd3gIlJ4izLww00uBmmutH6')
 require('dotenv/config')
+//const stripe = require('stripe')(process.env.SECRET_API)
+
+//Usando chave de teste
+const stripe = require('stripe')('sk_test_51NIu1gKBMGEzBZ2CDhVVrJke8J9Uw5HDdEVttpIaexCYFhViCjexZBl5dyLpgHX090CCZMrgTh9yd3gIlJ4izLww00uBmmutH6')
 
 const port = 5000
 
