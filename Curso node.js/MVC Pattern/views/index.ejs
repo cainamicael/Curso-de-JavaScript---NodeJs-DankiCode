@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lista de Tarefas</title>
+</head>
+<body>
+  <h1>Lista de Tarefas</h1>
+
+  <ul>
+    <% tasks.forEach(task => { %>
+      <li><%= task %></li>
+    <% }) %>
+  </ul>
+
+  <form action="/add" method="post">
+    <input type="text" name="task" placeholder="Digite uma nova tarefa" required>
+    <button type="submit">Adicionar Tarefa</button>
+  </form>
+</body>
+</html>

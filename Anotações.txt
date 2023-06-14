@@ -1831,3 +1831,16 @@ Upload com Express: (npm install express-fileupload)
         autor: 'admin',
         views: 0
     })
+
+MVC Pattern:
+
+O padrão MVC é uma arquitetura comum para o desenvolvimento de aplicativos web, onde o código é dividido em três componentes principais:
+
+Model: O modelo representa os dados e a lógica de negócios do aplicativo.
+View: A visualização é responsável por exibir os dados ao usuário e interagir com ele.
+Controller: O controlador lida com as solicitações do usuário, atualiza o modelo e seleciona a visualização apropriada para exibir.
+
+Criação do MVC:
+
+    npm init -y
+    npm install express ejs
