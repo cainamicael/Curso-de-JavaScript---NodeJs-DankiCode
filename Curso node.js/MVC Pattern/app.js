@@ -9,6 +9,9 @@ app.set('view engine', 'ejs')
 const viewsPath = path.join(__dirname, 'views');
 app.set('views', viewsPath);
 
+// Middleware para fazer o parse do corpo da solicitação
+app.use(express.urlencoded({ extended: true })); 
+
 // Rota para listar tarefas
 app.get('/', tasksController.listTasks)
 
