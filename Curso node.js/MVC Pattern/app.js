@@ -1,10 +1,13 @@
 const express = require('express')
 const tasksController = require('./controllers/tasksController.js')
+const path = require('path')
 
 const app = express()
 
 //Middleware setando o ejs
-app.set('views engine', 'ejs')
+app.set('view engine', 'ejs')
+const viewsPath = path.join(__dirname, 'views');
+app.set('views', viewsPath);
 
 // Rota para listar tarefas
 app.get('/', tasksController.listTasks)
