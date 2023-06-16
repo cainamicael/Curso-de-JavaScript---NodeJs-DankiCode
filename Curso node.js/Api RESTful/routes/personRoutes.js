@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const Person = require('../models/Person.js')
 
-//create
+//Create
 router.post('/', async (req, res) => { //Tiro o person, pois já foi setado no index
   const {name, salary, approved} = req.body
 
@@ -22,7 +22,7 @@ router.post('/', async (req, res) => { //Tiro o person, pois já foi setado no i
   }
 })
 
-//read
+//Read
 router.get('/', async (req, res) => {
   try {
     const person = await Person.find()
@@ -32,7 +32,7 @@ router.get('/', async (req, res) => {
   }
 })
 
-//
+//Read single
 router.get('/:id', async (req, res) => {
   try {
     const id = req.params.id
