@@ -2023,3 +2023,62 @@ Api com JWT e bycript(criptografia de senha)
 
     npm install express dotenv nodemon mongoose jsonwebtoken
     npm install bcrypt ou bcryptjs
+
+Criptografia da senha:
+
+    //Create password
+    const salt = await bcrypt.genSalt(12)//Adiciona dificuldade na senha
+    const passwordHash = await bcrypt.hash(password, salt)//Criando hash
+
+    //Create user
+    const user = {
+    name,
+    email,
+    password: passwordHash
+    }
+
+    try {
+    await User.create(user)
+    res.status(201).json({msg: "Usuário criado com sucesso"})
+    } catch(e) {
+    console.log(e)
+    res.status(500).json({erro: "Aconteceu um erro"})
+    }
+
+Descriptografia da senha:
+
+    //check if password match
+    const checkPassword = await bcrypt.compare(password, user.password)
+    console.log(checkPassword)
+    if(!checkPassword) {return res.status(404).json({msg: "Senha incorreta"})}
+
+    //Login with JWT token
+    try{
+    const secret = process.env.SECRET_JWT
+
+    //What will be sending in my token
+    const token = jwt.sign({
+        id: user._id,
+    }, secret)
+
+    res.status(200).json({msg: "Autenticação realizada com sucesso", token})
+    } catch(e) {
+        console.log(e)
+        res.status(500).json({erro: "Aconteceu um erro"})
+    }
+
+Token com JWT:
+
+    try{
+    const secret = process.env.SECRET_JWT
+
+    //What will be sending in my token
+    const token = jwt.sign({
+        id: user._id,
+    }, secret)
+
+    res.status(200).json({msg: "Autenticação realizada com sucesso", token})
+    } catch(e) {
+        console.log(e)
+        res.status(500).json({erro: "Aconteceu um erro"})
+    }
