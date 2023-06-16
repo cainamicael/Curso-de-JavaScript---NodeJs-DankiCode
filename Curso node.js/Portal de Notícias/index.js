@@ -2,6 +2,7 @@
 const express = require('express')
 const path = require('path')
 const fs = require('fs')
+require('dotenv/config')
 const mongoose = require('mongoose')
 const Posts = require('./Posts.js')
 var session = require('express-session')
@@ -9,9 +10,13 @@ const Usuarios = require('./Usuarios.js')
 const fileupload = require('express-fileupload')
 
 const app = express()
+const SECRET_BD = process.env.SECRET_BD
+const USER = process.env.USER
+const NOME_BD = process.env.NOME_BD
+
 
 //Conectando ao mongo
-mongoose.connect('mongodb+srv://root:mn60B7jIvkruNND3@cluster0.dmxkhyz.mongodb.net/dankicode?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(`mongodb+srv://${USER}:${SECRET_BD}@cluster0.dmxkhyz.mongodb.net/${NOME_BD}?retryWrites=true&w=majority`, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => { console.log('Conectado ao banco de dados com sucesso'); })
     .catch(err => { console.log(err.message); });
 
