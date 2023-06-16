@@ -1978,3 +1978,10 @@ Api:
 
     app.use(express.urlencoded({extended: true}))//Configura para leitura de json
     app.use(express.json())
+
+Rotas com json:
+
+    app.get('/', (req, res) => {
+        res.status(200).json({message: 'Oi Express'})
+    })
+
