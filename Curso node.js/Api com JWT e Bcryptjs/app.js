@@ -21,6 +21,8 @@ app.get('/user/:id', async (req, res) => {
   //Check if users exists
   const user = await User.findById(id, '-password')
   if(!user) {return res.status(404).json({msg: "Usuário não encontrado"})}
+
+  res.status(200).json(user)
 })
 
 //Register User
