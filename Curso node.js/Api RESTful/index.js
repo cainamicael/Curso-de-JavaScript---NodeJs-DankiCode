@@ -7,7 +7,7 @@ const PORT = process.env.PORT
 const app = express()
 
 //Middlewares para trabalhar com json
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 //Rotas
