@@ -2018,3 +2018,8 @@ No index:
 
     const personRoutes = require('./routes/personRoutes.js')
     app.use('/person', personRoutes)//Tudo que tiver /person será redirecionado para personRoutes
+
+Api com JWT e bycript(criptografia de senha)
+
+    npm install express dotenv nodemon mongoose jsonwebtoken
+    npm install bcrypt ou bcryptjs
