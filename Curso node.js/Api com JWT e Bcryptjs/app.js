@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 })
 
 //Private route
-app.get('/user/:id', async (req, res) => {
+app.get('/user/:id', checkToken, async (req, res) => {
   const id = req.params.id
 
   //Check if users exists
@@ -24,6 +24,23 @@ app.get('/user/:id', async (req, res) => {
 
   res.status(200).json(user)
 })
+
+function checkToken(req, res, next) {
+  const authHeader = req.headers['authorization'] //O token em sí, mais com alguns parametros antes
+  const token = authHeader && authHeader.split(' ')[1]//Se veio o token, pega a segunda parte do token
+
+  if(!token) {return res.status(401).json({msg: "Acesso negado"})}
+
+  //Validação do token
+  try {
+    const secret = process.env.SECRET_JWT
+    jwt.verify(token, secret)
+
+    next()
+  } catch(e) {
+      res.status(400).json({msg: "Token inválido"})
+  }
+}
 
 //Register User
 app.post('/auth/register', async (req, res) => {
