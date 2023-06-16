@@ -1973,3 +1973,8 @@ Deixando mais segura:
     app.listen(port, () => {
         console.log('Servidor rodando na porta ' + port)
     })
+
+Api:
+
+    app.use(express.urlencoded({extended: true}))//Configura para leitura de json
+    app.use(express.json())
