@@ -2131,6 +2131,10 @@ Client: node ace
 
 Executando: node ace serve --watch //Irá rodar no localhost:333
 
-Rotas: 
+Rotas: start/routes.ts
 
-    start/routes.ts
+Para usarmos banco de dados (ORM), usamos o lucid: npm i @adonisjs/lucid
+
+Configurando lucid: node ace configure @adonisjs/lucid //Neste caso usaremos o sqlite (espaço e enter)
+    usaremos in the terminal
+
