@@ -2119,3 +2119,10 @@ Usa a arquitetura MVC
 Recursos - Cli, File upload simples, Validações
 Pacotes externos - Orm, Autenticação
 
+Instalação:
+
+    npm init adonis-ts-app@latest . //O ponto é para dizer que é no diretório atual
+
+    Escolhemos o que vamos criar. Neste caso, api
+
+    Uraremos o eslint e o prettier
