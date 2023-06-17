@@ -2113,3 +2113,9 @@ Rota privada, usando token e middleware:
     }
     }
     
+Api restful com o framework AdonisJS
+
+Usa a arquitetura MVC
+Recursos - Cli, File upload simples, Validações
+Pacotes externos - Orm, Autenticação
+
