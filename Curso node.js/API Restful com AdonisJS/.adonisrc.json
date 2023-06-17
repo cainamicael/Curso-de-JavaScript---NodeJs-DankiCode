@@ -1,7 +1,9 @@
 {
   "typescript": true,
   "commands": [
-    "./commands"
+    "./commands",
+    "@adonisjs/core/build/commands/index.js",
+    "@adonisjs/repl/build/commands"
   ],
   "exceptionHandlerNamespace": "App/Exceptions/Handler",
   "aliases": {
@@ -15,6 +17,24 @@
     "./start/kernel"
   ],
   "providers": [
-    "./providers/AppProvider"
+    "./providers/AppProvider",
+    "@adonisjs/core"
+  ],
+  "aceProviders": [
+    "@adonisjs/repl"
+  ],
+  "tests": {
+    "suites": [
+      {
+        "name": "functional",
+        "files": [
+          "tests/functional/**/*.spec(.ts|.js)"
+        ],
+        "timeout": 60000
+      }
+    ]
+  },
+  "testProviders": [
+    "@japa/preset-adonis/TestsProvider"
   ]
 }

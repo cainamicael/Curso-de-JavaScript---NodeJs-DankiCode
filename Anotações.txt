@@ -2125,4 +2125,12 @@ Instalação:
 
     Escolhemos o que vamos criar. Neste caso, api
 
-    Uraremos o eslint e o prettier
+    Usaremos o eslint e o prettier
+
+Client: node ace 
+
+Executando: node ace serve --watch //Irá rodar no localhost:333
+
+Rotas: 
+
+    start/routes.ts
