@@ -2149,3 +2149,27 @@ Setando prefixo na rota (para evitar cors):
             return { hello: 'world' }
         })
     }).prefix('/api') //Agora todas nossas rotas serão: localhorst:333/api/
+
+Construindo aplicação:
+
+Criando models(tables) via orm: node ace make:model Moment -m //O nome do model é Moment - o -m é para criar a migration
+
+Criando estrutura do model(app/models/Moments):
+
+    @column()
+    public title: string
+
+    @column()
+    public description: string
+
+    @column()
+    public image: string
+
+Refletindo model no banco de dados atraves da migration:
+
+Setando migration (database/migrations/moment):
+
+    table.string('title')
+    table.string('description')
+    table.string('image')
+
