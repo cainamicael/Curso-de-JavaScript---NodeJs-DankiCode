@@ -2173,4 +2173,26 @@ Setando migration (database/migrations/moment):
     table.string('description')
     table.string('image')
 
-Subindo migration: node ace migration:run
+Subindo migration (instalar via yarn o sqlite se precisar): node ace migration:run //Na pasta temp/db.sqlite3
+
+Ações do CRUD:
+
+Criando controller: node ace make:controller Moment //No singular - app/controller/http/MomentsController
+
+Setando controller:
+
+    export default class MomentsController {
+    public async store() {
+            return {
+                msg: "Deu certo"
+            }
+        }
+    }
+
+Adicionando controller nas rotas:
+
+    Route.post('/moments', 'MomentsController.store')
+
+Listando rotas: node ace list routes
+
+Deixando o framework fazer as rotas:
