@@ -2207,3 +2207,7 @@ Configurando de maneira correta o controller:
 
     Descomenta a linha: import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
     e para usar o banco, precisaremos importar o model: import Moment from 'App/Models/Moment'
+    e importar: import Application from '@adonisjs/core/build/standalone'//para upload
+    e o uuid: import {v4 as uuidv4} from 'uuid'//Colocar ele primeiro para evitar erro
+
+Gerando nomes aleatorios para upload de imagens: npm i uuid
