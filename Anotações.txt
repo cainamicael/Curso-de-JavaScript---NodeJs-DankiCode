@@ -2196,3 +2196,14 @@ Adicionando controller nas rotas:
 Listando rotas: node ace list routes
 
 Deixando o framework fazer as rotas:
+
+    Ao inves de fazer manual, como o post acima, faremos:
+    Route.resource('/moments', 'MomentsController')
+    Assim de maneira automática ele criará todas as rotas
+
+Setando rotas automáticas de API: Route.resource('/moments', 'MomentsController').apiOnly()
+
+Configurando de maneira correta o controller:
+
+    Descomenta a linha: import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+    e para usar o banco, precisaremos importar o model: import Moment from 'App/Models/Moment'
