@@ -2173,3 +2173,4 @@ Setando migration (database/migrations/moment):
     table.string('description')
     table.string('image')
 
+Subindo migration: node ace migration:run
