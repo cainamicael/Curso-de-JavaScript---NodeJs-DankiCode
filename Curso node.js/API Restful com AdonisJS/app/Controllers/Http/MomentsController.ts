@@ -16,7 +16,9 @@ export default class MomentsController {
         if(image){
             const imageName = `${uuidv4()}.${image.extname}`
 
-            await image.move(Application.tmpPath(`uploads/${imageName}`))//Onde quero que fiquue guardada no meu server
+            await image.move(Application.tmpPath(`uploads`), {
+                name: imageName
+            })//Onde quero que fique guardada no meu server
 
             body.image = imageName
         }
