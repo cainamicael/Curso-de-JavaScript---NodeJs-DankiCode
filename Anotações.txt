@@ -2279,3 +2279,5 @@ Gerando nomes aleatorios para upload de imagens: npm i uuid
         msg: "Momento criado com sucesso",
         data: moment
     }
+
+Api de Upload de imagens: npm i express dotenv mongoose multer//O multer é para upload
