@@ -2257,3 +2257,25 @@ Código do controller (O nome dos métodos correspondentes a cada rota vem do: n
     }
 
 Gerando nomes aleatorios para upload de imagens: npm i uuid
+
+    const body = request.body()
+    const image = request.file('image', this.validationOptions)//image é o nome do input
+
+    if(image){
+        const imageName = `${uuidv4()}.${image.extname}`
+
+        await image.move(Application.tmpPath(`uploads`), {
+            name: imageName
+        })//Onde quero que fique guardada no meu server
+
+        body.image = imageName
+    }
+
+    const moment = await Moment.create(body)//Fará o insert no bd
+
+    response.status(201)
+
+    return{
+        msg: "Momento criado com sucesso",
+        data: moment
+    }
