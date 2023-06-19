@@ -2216,6 +2216,7 @@ Código do controller (O nome dos métodos correspondentes a cada rota vem do: n
     import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
     import Moment from 'App/Models/Moment'
     import Application from '@ioc:Adonis/Core/Application' //para upload
+    import fs from 'fs'
 
     export default class MomentsController {
         private validationOptions = {
@@ -2253,8 +2254,72 @@ Código do controller (O nome dos métodos correspondentes a cada rota vem do: n
                 data: moments
             }
         }
+
+        public async show({params}: HttpContextContract) {
+            const moment = await Moment.findOrFail(params.id)
+
+            return {
+                data: moment
+            }
+        }
+
+        public async destroy({params}: HttpContextContract) {
+            const moment = await Moment.findOrFail(params.id)
+
+            await moment.delete()
+            
+            //Para remover a imagem
+            const imageName = moment.image
+            const imagePath = Application.tmpPath(`uploads/${imageName}`);
+            fs.unlinkSync(imagePath);
+            
+
+            return {
+                msg: "Momento excluído e imagem removida com sucesso",
+                data: moment
+            }
+        }
+
+        public async update({params, request}: HttpContextContract) {
+            const body = request.body()
+            const moment = await Moment.findOrFail(params.id)
+
+            moment.title = body.title
+            moment.description = body.description
+
+            if(moment.image != body.image || !moment.image){
+                const image = request.file('image', this.validationOptions)
+
+                if(image) {
+                    const imageName = `${uuidv4()}.${image.extname}`
+                    await image.move(Application.tmpPath(`uploads`), {
+                        name: imageName
+                    })//Onde quero que fique guardada no meu server
+
+                    //Caso não use patch
+                    if(moment.image) {
+                        const actualImage = moment.image
+                        const imagePath = Application.tmpPath(`uploads/${actualImage}`);
+                        fs.unlinkSync(imagePath);
+                    }
+            
+                    moment.image = imageName
+                }
+
+                await moment.save()
+
+                return {
+                    message: "Momento atualizado com sucesso",
+                    data: moment
+                }
+
+            }
+
+        }
     
     }
+
+
 
 Gerando nomes aleatorios para upload de imagens: npm i uuid
 
@@ -2281,3 +2346,36 @@ Gerando nomes aleatorios para upload de imagens: npm i uuid
     }
 
 Api de Upload de imagens: npm i express dotenv mongoose multer//O multer é para upload
+
+Como client para testarmos os endpoints usaremos a extensão thunder client
+
+Multer:
+
+    const multer = require('multer')
+    const path = require('path')
+
+    const storage = multer.diskStorage({
+        destination: function(req, file, cb){
+            cb(null, 'uploads/')
+        },
+        filename: function(req, file, cb) {
+            cb(null, Date.now() + path.extname(file.originalname))
+        }
+    })
+
+    const upload = multer({storage})
+
+    module.exports = upload
+
+Usando o multer(no router):
+
+    const express = require('express')
+    const router = express.Router()
+
+    const upload = require('../config/multer')
+
+    const pictureController = require('../controllers/pictureController')
+
+    router.post('/', upload.single('file'), pictureController.create)//O campo file é o name do input
+
+    module.exports = router
