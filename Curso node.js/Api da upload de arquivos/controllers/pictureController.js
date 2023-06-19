@@ -37,17 +37,11 @@ exports.remove = async (req, res) => {
         
         if(!picture) { return res.status(404).json({message: "Imagem não encontrada"}) }
 
-        fs.unlink(picture.src, (error) => {
-            if (error) {
-              console.error(error.message);
-              return res.status(500).json({ message: "Erro ao remover imagem" });
-            }})
-        
+        fs.unlink(picture.src)
+
         await picture.remove()
         res.json({ message: "Imagem removida com sucesso" })
     } catch (e) {
-        console.log('Catch::::::::::')
-        console.log(e.message)
         res.status(500).json({message: "Erro ao remover imagem"})
     }
 }
