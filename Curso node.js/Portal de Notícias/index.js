@@ -1,8 +1,8 @@
 //Módulos
+require('dotenv/config')
 const express = require('express')
 const path = require('path')
 const fs = require('fs')
-require('dotenv/config')
 const mongoose = require('mongoose')
 const Posts = require('./Posts.js')
 var session = require('express-session')
@@ -35,7 +35,6 @@ app.use(fileupload({
     tempFileDir: path.join(__dirname, 'temp')
 }))
 
-//Não precisa usar o bobyParser
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.engine('html', require('ejs').renderFile)
